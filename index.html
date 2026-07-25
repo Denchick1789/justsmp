@@ -42,7 +42,7 @@
             list-style: none;
         }
 
-        /* ===== ЗОЛОТОЙ СЛИТОК (ОБЩИЙ СТИЛЬ) ===== */
+        /* ===== ЗОЛОТОЙ СЛИТОК ===== */
         .gold-ingot {
             display: inline-block;
             width: 40px;
@@ -53,7 +53,7 @@
         }
 
         /* ============================================================ */
-        /* ====================== ШАПКА / HEADER ======================= */
+        /* ====================== ШАПКА ================================ */
         /* ============================================================ */
         .header {
             position: fixed;
@@ -156,7 +156,7 @@
         }
 
         /* ============================================================ */
-        /* ====================== СЕКЦИЯ: HERO ========================= */
+        /* ====================== HERO ================================= */
         /* ============================================================ */
         .hero {
             min-height: 100vh;
@@ -320,7 +320,7 @@
         }
 
         /* ============================================================ */
-        /* ====================== СЕКЦИЯ: IP =========================== */
+        /* ====================== IP =================================== */
         /* ============================================================ */
         .ip-section {
             padding: 40px 0;
@@ -393,15 +393,6 @@
         @keyframes rippleAnim {
             to { transform: scale(4); opacity: 0; }
         }
-        .ip-copy-btn .checkmark {
-            display: inline-block;
-            animation: checkmarkAnim 0.5s ease;
-        }
-        @keyframes checkmarkAnim {
-            0% { transform: scale(0) rotate(-45deg); opacity: 0; }
-            50% { transform: scale(1.3) rotate(0deg); opacity: 1; }
-            100% { transform: scale(1) rotate(0deg); opacity: 1; }
-        }
 
         /* ============================================================ */
         /* ================== ОБЩИЕ СТИЛИ ДЛЯ СЕКЦИЙ =================== */
@@ -448,7 +439,7 @@
         }
 
         /* ============================================================ */
-        /* ====================== СЕКЦИЯ: ABOUT ======================== */
+        /* ====================== ABOUT ================================ */
         /* ============================================================ */
         .about {
             background: #0f0f08;
@@ -489,7 +480,7 @@
         }
 
         /* ============================================================ */
-        /* ====================== СЕКЦИЯ: FEATURES ===================== */
+        /* ====================== FEATURES ============================= */
         /* ============================================================ */
         .features {
             background: #0a0a0a;
@@ -530,7 +521,7 @@
         }
 
         /* ============================================================ */
-        /* ====================== СЕКЦИЯ: NEWS ========================= */
+        /* ====================== NEWS ================================= */
         /* ============================================================ */
         .news {
             background: #0f0f08;
@@ -628,7 +619,7 @@
         }
 
         /* ============================================================ */
-        /* ====================== СЕКЦИЯ: RULES ======================== */
+        /* ====================== RULES ================================ */
         /* ============================================================ */
         .rules {
             background: #0a0a0a;
@@ -668,7 +659,7 @@
         }
 
         /* ============================================================ */
-        /* ====================== СЕКЦИЯ: BANS ========================= */
+        /* ====================== BANS ================================= */
         /* ============================================================ */
         .bans {
             background: #0f0f08;
@@ -728,7 +719,7 @@
         }
 
         /* ============================================================ */
-        /* ====================== СЕКЦИЯ: TEAM ========================= */
+        /* ====================== TEAM ================================= */
         /* ============================================================ */
         .team {
             background: #0a0a0a;
@@ -785,7 +776,7 @@
         }
 
         /* ============================================================ */
-        /* ====================== СЕКЦИЯ: CONTACTS ===================== */
+        /* ====================== CONTACTS ============================= */
         /* ============================================================ */
         .contacts {
             background: #0a0a0a;
@@ -839,7 +830,7 @@
         }
 
         /* ============================================================ */
-        /* ====================== ПОДВАЛ / ФУТЕР ====================== */
+        /* ====================== FOOTER =============================== */
         /* ============================================================ */
         .footer {
             background: #040404;
@@ -916,7 +907,7 @@
         }
 
         /* ============================================================ */
-        /* ==================== КНОПКА НАВЕРХ ========================== */
+        /* ==================== SCROLL TOP ============================= */
         /* ============================================================ */
         .scroll-top {
             position: fixed;
@@ -949,7 +940,7 @@
         }
 
         /* ============================================================ */
-        /* ==================== ВКЛАДКА ТЕМ ============================ */
+        /* ==================== THEME TOGGLE =========================== */
         /* ============================================================ */
         .theme-toggle {
             position: fixed;
@@ -1540,10 +1531,15 @@
             // ============== РЕАЛЬНЫЙ ОНЛАЙН ЧЕРЕЗ API ===================
             // ============================================================
 
-            const SERVER_IP_FOR_API = '185.9.145.86';
+            // ===== ИСПРАВЛЕНО: используем два API для надёжности =====
+            const SERVER_HOST = '185.9.145.86';
             const SERVER_PORT = 31048;
-            const API_URL = 'https://api.mcsrvstat.us/2/' + SERVER_IP_FOR_API + '/' + SERVER_PORT;
             const DISPLAY_IP = 'JustSMP.minerent.io:31048';
+
+            // Основной API (mcsrvstat)
+            const API_URL_1 = 'https://api.mcsrvstat.us/2/' + SERVER_HOST + '/' + SERVER_PORT;
+            // Резервный API (minetools)
+            const API_URL_2 = 'https://api.minetools.eu/ping/' + SERVER_HOST + '/' + SERVER_PORT;
 
             const statusText = document.getElementById('statusText');
             const statusDot = document.getElementById('statusDot');
@@ -1556,47 +1552,72 @@
                 statusText.textContent = '🔄 Проверка сервера...';
                 statusDot.style.background = '#ffaa00';
 
-                fetch(API_URL)
+                // Пробуем основной API
+                fetch(API_URL_1)
                     .then(response => {
                         if (!response.ok) throw new Error('HTTP ' + response.status);
                         return response.json();
                     })
                     .then(data => {
-                        console.log('📡 Данные получены:', data);
-
-                        if (data.online === false) {
-                            statusText.textContent = '❌ Сервер офлайн';
-                            statusDot.style.background = '#ff4444';
-                            onlineEl.textContent = '0';
-                            maxEl.textContent = '0';
-                            versionEl.textContent = '?';
-                            return;
-                        }
-
-                        statusText.textContent = '✅ Сервер онлайн · 24/7';
-                        statusDot.style.background = '#3aff6a';
-
-                        const online = data.players ? data.players.online : 0;
-                        if (online !== lastOnline) {
-                            onlineEl.classList.remove('pulse');
-                            void onlineEl.offsetWidth;
-                            onlineEl.classList.add('pulse');
-                            lastOnline = online;
-                        }
-                        onlineEl.textContent = online;
-
-                        maxEl.textContent = data.players ? data.players.max : '?';
-                        versionEl.textContent = data.version || '1.21.11';
-
+                        console.log('📡 Данные с mcsrvstat:', data);
+                        processServerData(data);
                     })
                     .catch(error => {
-                        console.error('❌ Ошибка:', error);
-                        statusText.textContent = '⚠️ Ошибка соединения';
-                        statusDot.style.background = '#ffaa00';
-                        onlineEl.textContent = '?';
-                        maxEl.textContent = '?';
-                        versionEl.textContent = '?';
+                        console.warn('⚠️ Ошибка mcsrvstat, пробуем резервный API:', error);
+                        // Если основной API не работает, пробуем резервный
+                        fetch(API_URL_2)
+                            .then(response => {
+                                if (!response.ok) throw new Error('HTTP ' + response.status);
+                                return response.json();
+                            })
+                            .then(data => {
+                                console.log('📡 Данные с minetools:', data);
+                                // Конвертируем данные из minetools в формат mcsrvstat
+                                const converted = {
+                                    online: data.online || false,
+                                    players: {
+                                        online: data.players ? data.players.online : 0,
+                                        max: data.players ? data.players.max : 0
+                                    },
+                                    version: data.version ? data.version.name : '1.21.11'
+                                };
+                                processServerData(converted);
+                            })
+                            .catch(err => {
+                                console.error('❌ Все API недоступны:', err);
+                                statusText.textContent = '⚠️ Ошибка соединения';
+                                statusDot.style.background = '#ffaa00';
+                                onlineEl.textContent = '?';
+                                maxEl.textContent = '?';
+                                versionEl.textContent = '?';
+                            });
                     });
+            }
+
+            function processServerData(data) {
+                if (data.online === false) {
+                    statusText.textContent = '❌ Сервер офлайн';
+                    statusDot.style.background = '#ff4444';
+                    onlineEl.textContent = '0';
+                    maxEl.textContent = '0';
+                    versionEl.textContent = '?';
+                    return;
+                }
+
+                statusText.textContent = '✅ Сервер онлайн · 24/7';
+                statusDot.style.background = '#3aff6a';
+
+                const online = data.players ? data.players.online : 0;
+                if (online !== lastOnline) {
+                    onlineEl.classList.remove('pulse');
+                    void onlineEl.offsetWidth;
+                    onlineEl.classList.add('pulse');
+                    lastOnline = online;
+                }
+                onlineEl.textContent = online;
+
+                maxEl.textContent = data.players ? data.players.max : '?';
+                versionEl.textContent = data.version || '1.21.11';
             }
 
             // ============================================================
@@ -1604,17 +1625,13 @@
             // ============================================================
 
             function initCopyIp() {
-                var copyBtn = document.getElementById('copyBtn');
+                var copyBtn = document.getElementById('copyIpBtn');
                 if (!copyBtn) return;
-
-                var newBtn = copyBtn.cloneNode(true);
-                copyBtn.parentNode.replaceChild(newBtn, copyBtn);
-                copyBtn = newBtn;
 
                 copyBtn.addEventListener('click', function(e) {
                     e.preventDefault();
 
-                    // Создаём эффект ряби
+                    // === ЭФФЕКТ РЯБИ ===
                     const ripple = document.createElement('span');
                     ripple.className = 'ripple';
                     const rect = this.getBoundingClientRect();
@@ -1625,11 +1642,10 @@
                     this.appendChild(ripple);
                     setTimeout(() => ripple.remove(), 600);
 
-                    // Меняем иконку и текст
+                    // === МЕНЯЕМ ИКОНКУ И ТЕКСТ ===
                     const icon = this.querySelector('.copy-icon');
                     const text = this.querySelector('.copy-text');
 
-                    // Анимация: 📋 → ⏳ → ✅
                     icon.textContent = '⏳';
                     text.textContent = 'Копирование...';
                     this.style.borderColor = '#ffd700';
@@ -1946,7 +1962,7 @@
             function init() {
                 console.log('⛏️ JustSMP — Классический SMP сервер!');
                 console.log('📌 IP: ' + DISPLAY_IP);
-                console.log('📡 Онлайн проверяется по IP: ' + SERVER_IP_FOR_API);
+                console.log('📡 Онлайн проверяется по IP: ' + SERVER_HOST);
                 console.log('💬 Присоединяйся к нам!');
                 console.log('🔄 Обновление каждые 5 секунд');
 
