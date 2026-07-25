@@ -776,6 +776,118 @@
         }
 
         /* ============================================================ */
+        /* ====================== CLICKER ============================== */
+        /* ============================================================ */
+        .clicker {
+            background: #0f0f08;
+        }
+        .clicker-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .clicker-gold {
+            width: 180px;
+            height: 180px;
+            background: url('https://cdn.discordapp.com/attachments/1527277871180283904/1530465470178918470/i-no-bg-preview_carve.photos.png?ex=6a65ac8a&is=6a645b0a&hm=9bf312dc7131e196a40f3b89280538e944e2967487152d3d1c2a7fd19b82ebea&') no-repeat center center;
+            background-size: contain;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.2));
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .clicker-gold:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 60px rgba(255, 215, 0, 0.4));
+        }
+        .clicker-gold:active {
+            transform: scale(0.92);
+            filter: drop-shadow(0 0 80px rgba(255, 215, 0, 0.6));
+        }
+        .clicker-gold .click-effect {
+            position: absolute;
+            color: #ffd700;
+            font-weight: 700;
+            font-size: 24px;
+            pointer-events: none;
+            animation: floatUp 0.8s ease forwards;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-60px) scale(1.3); }
+        }
+        .clicker-stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .clicker-stat {
+            text-align: center;
+            background: #111108;
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: 1px solid #2a2a1a;
+            min-width: 120px;
+        }
+        .clicker-stat .number {
+            font-family: 'Orbitron', 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #ffd700;
+            display: block;
+        }
+        .clicker-stat .label {
+            font-size: 13px;
+            color: #6a5a3a;
+        }
+        .clicker-shop {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+        .clicker-shop button {
+            background: #1a1a0a;
+            border: 1px solid #3a3a2a;
+            color: #e8e0c8;
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 140px;
+            font-size: 14px;
+        }
+        .clicker-shop button:hover {
+            background: #2a2a1a;
+            border-color: #ffd700;
+            transform: translateY(-2px);
+        }
+        .clicker-shop button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .clicker-shop button .price {
+            color: #ffd700;
+            font-weight: 700;
+        }
+        .clicker-cookie-notice {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #4a3a2a;
+            text-align: center;
+        }
+
+        /* ============================================================ */
         /* ====================== CONTACTS ============================= */
         /* ============================================================ */
         .contacts {
@@ -1072,50 +1184,6 @@
         body.theme-default .logo .gold-ingot {
             filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.6));
         }
-        body.theme-default .ip-copy-btn {
-            border-color: #4a4a3a;
-        }
-        body.theme-default .ip-copy-btn:hover {
-            border-color: #ffd700;
-        }
-        body.theme-default .ip-box {
-            border-color: #3a3a2a;
-        }
-        body.theme-default .about-card:hover {
-            border-color: #ffd70044;
-        }
-        body.theme-default .feature-item:hover {
-            border-color: #ffd70044;
-        }
-        body.theme-default .news-card:hover {
-            border-color: #ffd70044;
-        }
-        body.theme-default .team-card:hover {
-            border-color: #ffd70044;
-        }
-        body.theme-default .contact-card:hover {
-            border-color: #ffd70044;
-        }
-        body.theme-default .footer-social:hover {
-            color: #ffd700;
-            background: rgba(255, 215, 0, 0.08);
-        }
-        body.theme-default .footer-links a:hover {
-            color: #ffd700;
-        }
-        body.theme-default .rules-list li::before {
-            color: #ffd700;
-        }
-        body.theme-default .btn-archive:hover {
-            background: rgba(255, 215, 0, 0.05);
-            border-color: #ffd70044;
-        }
-        body.theme-default .contact-link {
-            color: #ffd700;
-        }
-        body.theme-default .contact-link:hover {
-            background: rgba(255, 215, 0, 0.08);
-        }
 
         /* ----- Тема 2: Зелёная ----- */
         body.theme-green .hero {
@@ -1170,52 +1238,8 @@
         body.theme-green .logo .gold-ingot {
             filter: drop-shadow(0 0 16px rgba(58, 255, 106, 0.6));
         }
-        body.theme-green .ip-copy-btn {
-            border-color: #2a4a2a;
-        }
-        body.theme-green .ip-copy-btn:hover {
-            border-color: #3aff6a;
-        }
-        body.theme-green .ip-box {
-            border-color: #2a3a2a;
-        }
-        body.theme-green .about-card:hover {
-            border-color: #3aff6a44;
-        }
-        body.theme-green .feature-item:hover {
-            border-color: #3aff6a44;
-        }
-        body.theme-green .news-card:hover {
-            border-color: #3aff6a44;
-        }
-        body.theme-green .team-card:hover {
-            border-color: #3aff6a44;
-        }
-        body.theme-green .contact-card:hover {
-            border-color: #3aff6a44;
-        }
-        body.theme-green .footer-social:hover {
-            color: #3aff6a;
-            background: rgba(58, 255, 106, 0.08);
-        }
-        body.theme-green .footer-links a:hover {
-            color: #3aff6a;
-        }
-        body.theme-green .rules-list li::before {
-            color: #3aff6a;
-        }
-        body.theme-green .btn-archive:hover {
-            background: rgba(58, 255, 106, 0.05);
-            border-color: #3aff6a44;
-        }
-        body.theme-green .contact-link {
-            color: #3aff6a;
-        }
-        body.theme-green .contact-link:hover {
-            background: rgba(58, 255, 106, 0.08);
-        }
 
-        /* ----- Тема 3: Красная (Кока-Кола) ----- */
+        /* ----- Тема 3: Красная ----- */
         body.theme-coca .hero {
             background: radial-gradient(ellipse at 30% 20%, #1a0a0a, #080505);
         }
@@ -1267,50 +1291,6 @@
         }
         body.theme-coca .logo .gold-ingot {
             filter: drop-shadow(0 0 16px rgba(255, 0, 0, 0.6));
-        }
-        body.theme-coca .ip-copy-btn {
-            border-color: #4a2a2a;
-        }
-        body.theme-coca .ip-copy-btn:hover {
-            border-color: #ff1a1a;
-        }
-        body.theme-coca .ip-box {
-            border-color: #3a2a2a;
-        }
-        body.theme-coca .about-card:hover {
-            border-color: #ff1a1a44;
-        }
-        body.theme-coca .feature-item:hover {
-            border-color: #ff1a1a44;
-        }
-        body.theme-coca .news-card:hover {
-            border-color: #ff1a1a44;
-        }
-        body.theme-coca .team-card:hover {
-            border-color: #ff1a1a44;
-        }
-        body.theme-coca .contact-card:hover {
-            border-color: #ff1a1a44;
-        }
-        body.theme-coca .footer-social:hover {
-            color: #ff1a1a;
-            background: rgba(255, 0, 0, 0.08);
-        }
-        body.theme-coca .footer-links a:hover {
-            color: #ff1a1a;
-        }
-        body.theme-coca .rules-list li::before {
-            color: #ff1a1a;
-        }
-        body.theme-coca .btn-archive:hover {
-            background: rgba(255, 0, 0, 0.05);
-            border-color: #ff1a1a44;
-        }
-        body.theme-coca .contact-link {
-            color: #ff1a1a;
-        }
-        body.theme-coca .contact-link:hover {
-            background: rgba(255, 0, 0, 0.08);
         }
 
         /* ----- Тема 4: Анимированная ----- */
@@ -1365,50 +1345,6 @@
         }
         body.theme-animated .logo .gold-ingot {
             filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.6));
-        }
-        body.theme-animated .ip-copy-btn {
-            border-color: #3a2a4a;
-        }
-        body.theme-animated .ip-copy-btn:hover {
-            border-color: #a855f7;
-        }
-        body.theme-animated .ip-box {
-            border-color: #2a2a3a;
-        }
-        body.theme-animated .about-card:hover {
-            border-color: #a855f744;
-        }
-        body.theme-animated .feature-item:hover {
-            border-color: #a855f744;
-        }
-        body.theme-animated .news-card:hover {
-            border-color: #a855f744;
-        }
-        body.theme-animated .team-card:hover {
-            border-color: #a855f744;
-        }
-        body.theme-animated .contact-card:hover {
-            border-color: #a855f744;
-        }
-        body.theme-animated .footer-social:hover {
-            color: #a855f7;
-            background: rgba(168, 85, 247, 0.08);
-        }
-        body.theme-animated .footer-links a:hover {
-            color: #a855f7;
-        }
-        body.theme-animated .rules-list li::before {
-            color: #a855f7;
-        }
-        body.theme-animated .btn-archive:hover {
-            background: rgba(168, 85, 247, 0.05);
-            border-color: #a855f744;
-        }
-        body.theme-animated .contact-link {
-            color: #a855f7;
-        }
-        body.theme-animated .contact-link:hover {
-            background: rgba(168, 85, 247, 0.08);
         }
 
         /* ============================================================ */
@@ -1512,6 +1448,7 @@
             .hero-container { gap: 30px; }
             .hero-image { flex: 0 0 200px; }
             .hero-image .big-gold { width: 180px; height: 180px; }
+            .clicker-gold { width: 140px; height: 140px; }
         }
         @media (max-width: 768px) {
             .nav { display: none; }
@@ -1539,6 +1476,8 @@
             .team-grid { grid-template-columns: 1fr 1fr; }
             .contacts-grid { grid-template-columns: 1fr; }
             .theme-toggle { bottom: 90px; }
+            .clicker-gold { width: 120px; height: 120px; }
+            .clicker-shop button { min-width: 100px; font-size: 12px; padding: 10px 14px; }
         }
         @media (max-width: 480px) {
             .container { padding: 0 14px; }
@@ -1559,6 +1498,10 @@
             .news-card-body h4 { font-size: 16px; }
             .team-avatar { width: 60px; height: 60px; }
             .theme-panel { min-width: 140px; right: -10px; }
+            .clicker-gold { width: 100px; height: 100px; }
+            .clicker-stats { gap: 12px; }
+            .clicker-stat { padding: 8px 14px; min-width: 80px; }
+            .clicker-stat .number { font-size: 20px; }
         }
     </style>
 
@@ -1596,6 +1539,7 @@
                     <li><a href="#rules" class="nav-link">Правила</a></li>
                     <li><a href="#bans" class="nav-link">Баны</a></li>
                     <li><a href="#team" class="nav-link">Команда</a></li>
+                    <li><a href="#clicker" class="nav-link">🪙 Clicker</a></li>
                     <li><a href="#contacts" class="nav-link">Контакты</a></li>
                 </ul>
             </nav>
@@ -1639,7 +1583,7 @@
                         <span class="stat-label">Максимум</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" id="serverVersion">--</span>
+                        <span class="stat-number" id="serverVersion">1.21.11</span>
                         <span class="stat-label">Версия</span>
                     </div>
                 </div>
@@ -1917,7 +1861,53 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 9: КОНТАКТЫ ==================== -->
+    <!-- ==================== СЕКЦИЯ 9: CLICKER ===================== -->
+    <!-- ============================================================ -->
+    <section class="clicker" id="clicker">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">🪙 Кликер</span>
+                <h2 class="section-title">Золотой <span>кликер</span></h2>
+                <p class="section-desc">Кликай по слитку, зарабатывай монеты и прокачивайся!</p>
+            </div>
+            <div class="clicker-container">
+                <div class="clicker-gold" id="clickerGold"></div>
+
+                <div class="clicker-stats">
+                    <div class="clicker-stat">
+                        <span class="number" id="clickerCoins">0</span>
+                        <span class="label">💰 Монет</span>
+                    </div>
+                    <div class="clicker-stat">
+                        <span class="number" id="clickerPerClick">1</span>
+                        <span class="label">⚡ За клик</span>
+                    </div>
+                    <div class="clicker-stat">
+                        <span class="number" id="clickerPerSecond">0</span>
+                        <span class="label">🔄 В секунду</span>
+                    </div>
+                </div>
+
+                <div class="clicker-shop">
+                    <button id="upgradeClick">
+                        ⚡ Сила клика<br />
+                        <span class="price">100</span> 🪙
+                    </button>
+                    <button id="upgradeAuto">
+                        🤖 Автоклик<br />
+                        <span class="price">50</span> 🪙
+                    </button>
+                </div>
+
+                <div class="clicker-cookie-notice">
+                    Наш сайт JustSMP использует cookie для сохранения прогресса.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ==================== СЕКЦИЯ 10: КОНТАКТЫ =================== -->
     <!-- ============================================================ -->
     <section class="contacts" id="contacts">
         <div class="container">
@@ -1966,6 +1956,7 @@
                         <li><a href="#rules">Правила</a></li>
                         <li><a href="#bans">Баны</a></li>
                         <li><a href="#team">Команда</a></li>
+                        <li><a href="#clicker">🪙 Clicker</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </div>
@@ -2033,92 +2024,67 @@
             // ============== РЕАЛЬНЫЙ ОНЛАЙН ЧЕРЕЗ API ===================
             // ============================================================
 
-            const SERVER_HOST = '185.9.145.86';
+            // ===== ИСПРАВЛЕНО: используем домен JustSMP.minerent.io =====
+            const SERVER_HOST = 'JustSMP.minerent.io';
             const SERVER_PORT = 31048;
             const DISPLAY_IP = 'JustSMP.minerent.io:31048';
+            const FIXED_VERSION = '1.21.11';
 
-            // Основной API (mcsrvstat)
-            const API_URL_1 = 'https://api.mcsrvstat.us/2/' + SERVER_HOST + '/' + SERVER_PORT;
-            // Резервный API (minetools)
-            const API_URL_2 = 'https://api.minetools.eu/ping/' + SERVER_HOST + '/' + SERVER_PORT;
+            const API_URL = 'https://api.mcsrvstat.us/2/' + SERVER_HOST + '/' + SERVER_PORT;
 
             const statusText = document.getElementById('statusText');
             const statusDot = document.getElementById('statusDot');
             const onlineEl = document.getElementById('onlineCount');
             const maxEl = document.getElementById('maxPlayers');
             const versionEl = document.getElementById('serverVersion');
+
+            // Фиксируем версию
+            if (versionEl) versionEl.textContent = FIXED_VERSION;
+
             let lastOnline = 0;
 
             function fetchServerData() {
                 statusText.textContent = '🔄 Проверка сервера...';
                 statusDot.style.background = '#ffaa00';
 
-                // Пробуем основной API
-                fetch(API_URL_1)
+                fetch(API_URL)
                     .then(response => {
                         if (!response.ok) throw new Error('HTTP ' + response.status);
                         return response.json();
                     })
                     .then(data => {
-                        console.log('📡 Данные с mcsrvstat:', data);
-                        processServerData(data);
+                        console.log('📡 Данные с сервера:', data);
+
+                        if (data.online === false) {
+                            statusText.textContent = '❌ Сервер офлайн';
+                            statusDot.style.background = '#ff4444';
+                            onlineEl.textContent = '0';
+                            maxEl.textContent = '0';
+                            return;
+                        }
+
+                        statusText.textContent = '✅ Сервер онлайн · 24/7';
+                        statusDot.style.background = '#3aff6a';
+
+                        const online = data.players ? data.players.online : 0;
+                        if (online !== lastOnline) {
+                            onlineEl.classList.remove('pulse');
+                            void onlineEl.offsetWidth;
+                            onlineEl.classList.add('pulse');
+                            lastOnline = online;
+                        }
+                        onlineEl.textContent = online;
+
+                        maxEl.textContent = data.players ? data.players.max : '?';
+
                     })
                     .catch(error => {
-                        console.warn('⚠️ Ошибка mcsrvstat, пробуем резервный API:', error);
-                        // Если основной API не работает, пробуем резервный
-                        fetch(API_URL_2)
-                            .then(response => {
-                                if (!response.ok) throw new Error('HTTP ' + response.status);
-                                return response.json();
-                            })
-                            .then(data => {
-                                console.log('📡 Данные с minetools:', data);
-                                // Конвертируем данные из minetools в формат mcsrvstat
-                                const converted = {
-                                    online: data.online || false,
-                                    players: {
-                                        online: data.players ? data.players.online : 0,
-                                        max: data.players ? data.players.max : 0
-                                    },
-                                    version: data.version ? data.version.name : '1.21.11'
-                                };
-                                processServerData(converted);
-                            })
-                            .catch(err => {
-                                console.error('❌ Все API недоступны:', err);
-                                statusText.textContent = '⚠️ Ошибка соединения';
-                                statusDot.style.background = '#ffaa00';
-                                onlineEl.textContent = '?';
-                                maxEl.textContent = '?';
-                                versionEl.textContent = '?';
-                            });
+                        console.error('❌ Ошибка:', error);
+                        statusText.textContent = '⚠️ Ошибка соединения';
+                        statusDot.style.background = '#ffaa00';
+                        onlineEl.textContent = '?';
+                        maxEl.textContent = '?';
                     });
-            }
-
-            function processServerData(data) {
-                if (data.online === false) {
-                    statusText.textContent = '❌ Сервер офлайн';
-                    statusDot.style.background = '#ff4444';
-                    onlineEl.textContent = '0';
-                    maxEl.textContent = '0';
-                    versionEl.textContent = '?';
-                    return;
-                }
-
-                statusText.textContent = '✅ Сервер онлайн · 24/7';
-                statusDot.style.background = '#3aff6a';
-
-                const online = data.players ? data.players.online : 0;
-                if (online !== lastOnline) {
-                    onlineEl.classList.remove('pulse');
-                    void onlineEl.offsetWidth;
-                    onlineEl.classList.add('pulse');
-                    lastOnline = online;
-                }
-                onlineEl.textContent = online;
-
-                maxEl.textContent = data.players ? data.players.max : '?';
-                versionEl.textContent = data.version || '1.21.11';
             }
 
             // ============================================================
@@ -2196,6 +2162,102 @@
                     console.error('Ошибка копирования:', err);
                     alert('Не удалось скопировать IP. Скопируйте вручную: ' + DISPLAY_IP);
                 }
+            }
+
+            // ============================================================
+            // ============== CLICKER =====================================
+            // ============================================================
+
+            function initClicker() {
+                // Загрузка сохранения
+                let coins = parseInt(getCookie('clicker_coins')) || 0;
+                let clickPower = parseInt(getCookie('clicker_power')) || 1;
+                let autoClickers = parseInt(getCookie('clicker_auto')) || 0;
+
+                // Цены
+                let clickPrice = 100;
+                let autoPrice = 50;
+
+                const coinsEl = document.getElementById('clickerCoins');
+                const perClickEl = document.getElementById('clickerPerClick');
+                const perSecondEl = document.getElementById('clickerPerSecond');
+                const goldEl = document.getElementById('clickerGold');
+                const upgradeClickBtn = document.getElementById('upgradeClick');
+                const upgradeAutoBtn = document.getElementById('upgradeAuto');
+
+                function save() {
+                    document.cookie = 'clicker_coins=' + coins + ';path=/;max-age=31536000';
+                    document.cookie = 'clicker_power=' + clickPower + ';path=/;max-age=31536000';
+                    document.cookie = 'clicker_auto=' + autoClickers + ';path=/;max-age=31536000';
+                }
+
+                function updateUI() {
+                    coinsEl.textContent = Math.floor(coins);
+                    perClickEl.textContent = clickPower;
+                    perSecondEl.textContent = autoClickers;
+                    upgradeClickBtn.innerHTML =
+                        '⚡ Сила клика<br /><span class="price">' + clickPrice + '</span> 🪙';
+                    upgradeAutoBtn.innerHTML =
+                        '🤖 Автоклик<br /><span class="price">' + autoPrice + '</span> 🪙';
+                    upgradeClickBtn.disabled = coins < clickPrice;
+                    upgradeAutoBtn.disabled = coins < autoPrice;
+                    save();
+                }
+
+                function getCookie(name) {
+                    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+                    return match ? match[2] : null;
+                }
+
+                // Клик по слитку
+                goldEl.addEventListener('click', function(e) {
+                    coins += clickPower;
+                    updateUI();
+
+                    // Эффект "+X"
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const effect = document.createElement('div');
+                    effect.className = 'click-effect';
+                    effect.textContent = '+' + clickPower;
+                    effect.style.left = x + 'px';
+                    effect.style.top = y + 'px';
+                    effect.style.position = 'absolute';
+                    this.style.position = 'relative';
+                    this.appendChild(effect);
+                    setTimeout(() => effect.remove(), 800);
+                });
+
+                // Upgrade силы клика
+                upgradeClickBtn.addEventListener('click', function() {
+                    if (coins >= clickPrice) {
+                        coins -= clickPrice;
+                        clickPower++;
+                        clickPrice = Math.floor(clickPrice * 1.5);
+                        updateUI();
+                    }
+                });
+
+                // Upgrade автоклика
+                upgradeAutoBtn.addEventListener('click', function() {
+                    if (coins >= autoPrice) {
+                        coins -= autoPrice;
+                        autoClickers++;
+                        autoPrice = Math.floor(autoPrice * 1.8);
+                        updateUI();
+                    }
+                });
+
+                // Автоклик
+                setInterval(function() {
+                    if (autoClickers > 0) {
+                        coins += autoClickers;
+                        updateUI();
+                    }
+                }, 1000);
+
+                updateUI();
             }
 
             // ============================================================
@@ -2463,7 +2525,7 @@
             function init() {
                 console.log('⛏️ JustSMP — Классический SMP сервер!');
                 console.log('📌 IP: ' + DISPLAY_IP);
-                console.log('📡 Онлайн проверяется по IP: ' + SERVER_HOST);
+                console.log('📡 Онлайн проверяется по домену: ' + SERVER_HOST);
                 console.log('💬 Присоединяйся к нам!');
                 console.log('🔄 Обновление каждые 5 секунд');
 
@@ -2477,6 +2539,7 @@
                 initFooterYear();
                 initMobileFixes();
                 initThemes();
+                initClicker();
 
                 fetchServerData();
                 setInterval(fetchServerData, 5000);
