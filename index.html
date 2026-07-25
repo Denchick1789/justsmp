@@ -211,15 +211,8 @@
             animation: pulse 2s ease-in-out infinite;
         }
         @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.4;
-                transform: scale(0.7);
-            }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
         }
         .hero-title {
             font-family: 'Orbitron', 'Inter', sans-serif;
@@ -298,16 +291,9 @@
             animation: numberPulse 0.5s ease;
         }
         @keyframes numberPulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.25);
-                color: #ffaa00;
-            }
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.25); color: #ffaa00; }
+            100% { transform: scale(1); }
         }
         .stat-label {
             font-size: 13px;
@@ -328,12 +314,8 @@
             animation: spin 20s linear infinite;
         }
         @keyframes spin {
-            0% {
-                transform: rotateY(0deg);
-            }
-            100% {
-                transform: rotateY(360deg);
-            }
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
         }
         .cube-face {
             position: absolute;
@@ -353,24 +335,12 @@
             height: 60px;
             filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8));
         }
-        .cube-face.front {
-            transform: translateZ(60px);
-        }
-        .cube-face.back {
-            transform: rotateY(180deg) translateZ(60px);
-        }
-        .cube-face.right {
-            transform: rotateY(90deg) translateZ(60px);
-        }
-        .cube-face.left {
-            transform: rotateY(-90deg) translateZ(60px);
-        }
-        .cube-face.top {
-            transform: rotateX(90deg) translateZ(60px);
-        }
-        .cube-face.bottom {
-            transform: rotateX(-90deg) translateZ(60px);
-        }
+        .cube-face.front { transform: translateZ(60px); }
+        .cube-face.back { transform: rotateY(180deg) translateZ(60px); }
+        .cube-face.right { transform: rotateY(90deg) translateZ(60px); }
+        .cube-face.left { transform: rotateY(-90deg) translateZ(60px); }
+        .cube-face.top { transform: rotateX(90deg) translateZ(60px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(60px); }
 
         /* ============================================================ */
         /* ====================== СЕКЦИЯ: IP =========================== */
@@ -870,7 +840,7 @@
         }
 
         /* ============================================================ */
-        /* ====================== ПОДВАЛ / FOOTER ====================== */
+        /* ====================== ПОДВАЛ / ФУТЕР ====================== */
         /* ============================================================ */
         .footer {
             background: #040408;
@@ -1324,250 +1294,85 @@
         }
 
         @keyframes floatCircle {
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-                opacity: 0.3;
-            }
-            25% {
-                transform: translate(50px, -30px) scale(1.05);
-                opacity: 0.6;
-            }
-            50% {
-                transform: translate(-20px, 40px) scale(0.95);
-                opacity: 0.2;
-            }
-            75% {
-                transform: translate(30px, -20px) scale(1.1);
-                opacity: 0.5;
-            }
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            25% { transform: translate(50px, -30px) scale(1.05); opacity: 0.6; }
+            50% { transform: translate(-20px, 40px) scale(0.95); opacity: 0.2; }
+            75% { transform: translate(30px, -20px) scale(1.1); opacity: 0.5; }
         }
 
         /* ============================================================ */
         /* ====================== АДАПТАЦИЯ ============================ */
         /* ============================================================ */
         @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 40px;
-            }
-            .hero-container {
-                gap: 30px;
-            }
-            .hero-image {
-                flex: 0 0 200px;
-            }
-            .hero-cube {
-                width: 180px;
-                height: 180px;
-            }
-            .cube-face {
-                width: 90px;
-                height: 90px;
-                font-size: 36px;
-            }
-            .cube-face .gold-ingot {
-                width: 45px;
-                height: 45px;
-            }
-            .cube-face.front {
-                transform: translateZ(45px);
-            }
-            .cube-face.back {
-                transform: rotateY(180deg) translateZ(45px);
-            }
-            .cube-face.right {
-                transform: rotateY(90deg) translateZ(45px);
-            }
-            .cube-face.left {
-                transform: rotateY(-90deg) translateZ(45px);
-            }
-            .cube-face.top {
-                transform: rotateX(90deg) translateZ(45px);
-            }
-            .cube-face.bottom {
-                transform: rotateX(-90deg) translateZ(45px);
-            }
+            .hero-title { font-size: 40px; }
+            .hero-container { gap: 30px; }
+            .hero-image { flex: 0 0 200px; }
+            .hero-cube { width: 180px; height: 180px; }
+            .cube-face { width: 90px; height: 90px; font-size: 36px; }
+            .cube-face .gold-ingot { width: 45px; height: 45px; }
+            .cube-face.front { transform: translateZ(45px); }
+            .cube-face.back { transform: rotateY(180deg) translateZ(45px); }
+            .cube-face.right { transform: rotateY(90deg) translateZ(45px); }
+            .cube-face.left { transform: rotateY(-90deg) translateZ(45px); }
+            .cube-face.top { transform: rotateX(90deg) translateZ(45px); }
+            .cube-face.bottom { transform: rotateX(-90deg) translateZ(45px); }
         }
 
         @media (max-width: 768px) {
-            .nav {
-                display: none;
-            }
-            .nav.open {
-                display: block;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(8, 8, 14, 0.98);
-                padding: 20px;
-                border-bottom: 1px solid #1a1a36;
-            }
-            .nav.open .nav-list {
-                flex-direction: column;
-                gap: 4px;
-            }
-            .nav.open .nav-link {
-                display: block;
-                padding: 10px 16px;
-            }
-            .burger {
-                display: flex;
-            }
-            .hero-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            .hero-desc {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .hero-actions {
-                justify-content: center;
-            }
-            .hero-stats {
-                justify-content: center;
-            }
-            .hero-image {
-                flex: 0 0 auto;
-            }
-            .hero-title {
-                font-size: 32px;
-            }
-            .hero-cube {
-                width: 140px;
-                height: 140px;
-            }
-            .cube-face {
-                width: 70px;
-                height: 70px;
-                font-size: 28px;
-            }
-            .cube-face .gold-ingot {
-                width: 35px;
-                height: 35px;
-            }
-            .cube-face.front {
-                transform: translateZ(35px);
-            }
-            .cube-face.back {
-                transform: rotateY(180deg) translateZ(35px);
-            }
-            .cube-face.right {
-                transform: rotateY(90deg) translateZ(35px);
-            }
-            .cube-face.left {
-                transform: rotateY(-90deg) translateZ(35px);
-            }
-            .cube-face.top {
-                transform: rotateX(90deg) translateZ(35px);
-            }
-            .cube-face.bottom {
-                transform: rotateX(-90deg) translateZ(35px);
-            }
-            .ip-box {
-                flex-direction: column;
-                text-align: center;
-            }
-            .ip-address {
-                font-size: 22px;
-            }
-            .news-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 30px;
-            }
-            section {
-                padding: 50px 0;
-            }
-            .section-title {
-                font-size: 28px;
-            }
-            .about-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            .rules-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .bans-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .team-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .contacts-grid {
-                grid-template-columns: 1fr;
-            }
-            .theme-toggle {
-                bottom: 90px;
-            }
+            .nav { display: none; }
+            .nav.open { display: block; position: absolute; top: 100%; left: 0; right: 0; background: rgba(8, 8, 14, 0.98); padding: 20px; border-bottom: 1px solid #1a1a36; }
+            .nav.open .nav-list { flex-direction: column; gap: 4px; }
+            .nav.open .nav-link { display: block; padding: 10px 16px; }
+            .burger { display: flex; }
+            .hero-container { flex-direction: column; text-align: center; }
+            .hero-desc { margin-left: auto; margin-right: auto; }
+            .hero-actions { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-image { flex: 0 0 auto; }
+            .hero-title { font-size: 32px; }
+            .hero-cube { width: 140px; height: 140px; }
+            .cube-face { width: 70px; height: 70px; font-size: 28px; }
+            .cube-face .gold-ingot { width: 35px; height: 35px; }
+            .cube-face.front { transform: translateZ(35px); }
+            .cube-face.back { transform: rotateY(180deg) translateZ(35px); }
+            .cube-face.right { transform: rotateY(90deg) translateZ(35px); }
+            .cube-face.left { transform: rotateY(-90deg) translateZ(35px); }
+            .cube-face.top { transform: rotateX(90deg) translateZ(35px); }
+            .cube-face.bottom { transform: rotateX(-90deg) translateZ(35px); }
+            .ip-box { flex-direction: column; text-align: center; }
+            .ip-address { font-size: 22px; }
+            .news-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+            section { padding: 50px 0; }
+            .section-title { font-size: 28px; }
+            .about-grid { grid-template-columns: 1fr 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .rules-grid { grid-template-columns: 1fr 1fr; }
+            .bans-grid { grid-template-columns: 1fr 1fr; }
+            .team-grid { grid-template-columns: 1fr 1fr; }
+            .contacts-grid { grid-template-columns: 1fr; }
+            .theme-toggle { bottom: 90px; }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 0 14px;
-            }
-            .hero-title {
-                font-size: 26px;
-            }
-            .hero-stats {
-                flex-wrap: wrap;
-                gap: 20px;
-            }
-            .stat-number {
-                font-size: 24px;
-            }
-            .ip-address {
-                font-size: 18px;
-            }
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            .rules-grid {
-                grid-template-columns: 1fr;
-            }
-            .bans-grid {
-                grid-template-columns: 1fr;
-            }
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-            .contacts-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-            .btn {
-                padding: 12px 24px;
-                font-size: 14px;
-            }
-            .section-title {
-                font-size: 24px;
-            }
-            .news-card-body h3 {
-                font-size: 18px;
-            }
-            .news-card-body h4 {
-                font-size: 16px;
-            }
-            .team-avatar {
-                width: 60px;
-                height: 60px;
-            }
-            .theme-panel {
-                min-width: 140px;
-                right: -10px;
-            }
+            .container { padding: 0 14px; }
+            .hero-title { font-size: 26px; }
+            .hero-stats { flex-wrap: wrap; gap: 20px; }
+            .stat-number { font-size: 24px; }
+            .ip-address { font-size: 18px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .rules-grid { grid-template-columns: 1fr; }
+            .bans-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; }
+            .contacts-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .btn { padding: 12px 24px; font-size: 14px; }
+            .section-title { font-size: 24px; }
+            .news-card-body h3 { font-size: 18px; }
+            .news-card-body h4 { font-size: 16px; }
+            .team-avatar { width: 60px; height: 60px; }
+            .theme-panel { min-width: 140px; right: -10px; }
         }
     </style>
 
@@ -2070,9 +1875,11 @@
             // ============== РЕАЛЬНЫЙ ОНЛАЙН ЧЕРЕЗ API ===================
             // ============================================================
 
-            const SERVER_HOST = 'JustSMP.minerent.io';
+            // ===== ОНЛАЙН ПРОВЕРЯЕТСЯ ПО ЦИФРОВОМУ IP =====
+            // ===== ИГРОКАМ ПОКАЗЫВАЕТСЯ ДОМЕН =====
+            const SERVER_IP_FOR_API = '185.9.145.86';
             const SERVER_PORT = 31048;
-            const API_URL = 'https://api.mcsrvstat.us/2/' + SERVER_HOST + '/' + SERVER_PORT;
+            const API_URL = 'https://api.mcsrvstat.us/2/' + SERVER_IP_FOR_API + '/' + SERVER_PORT;
 
             const statusText = document.getElementById('statusText');
             const statusDot = document.getElementById('statusDot');
@@ -2142,6 +1949,7 @@
 
                 copyBtn.addEventListener('click', function(e) {
                     e.preventDefault();
+                    // ===== КОПИРУЕТСЯ ДОМЕН =====
                     const ip = 'JustSMP.minerent.io:31048';
 
                     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -2451,8 +2259,8 @@
 
             function init() {
                 console.log('⛏️ JustSMP — Лучший SMP сервер Minecraft 1.21.11!');
-                console.log('📌 IP: JustSMP.minerent.io:31048');
-                console.log('📡 API: ' + API_URL);
+                console.log('📌 IP для игроков: JustSMP.minerent.io:31048');
+                console.log('📡 Онлайн проверяется по IP: 185.9.145.86:' + SERVER_PORT);
                 console.log('💬 Присоединяйся к нам!');
                 console.log('🔄 Обновление каждые 5 секунд');
 
