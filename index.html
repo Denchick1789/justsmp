@@ -336,15 +336,12 @@
             border-radius: 16px;
             padding: 20px 28px;
             flex-wrap: wrap;
-            position: relative;
-            overflow: visible;
         }
         .ip-icon {
             font-size: 32px;
         }
         .ip-content {
             flex: 1;
-            position: relative;
         }
         .ip-label {
             display: block;
@@ -359,19 +356,6 @@
             font-weight: 700;
             color: #ffd700;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        .ip-address.scrambling {
-            animation: scrambleText 0.4s steps(5) forwards;
-        }
-        @keyframes scrambleText {
-            0% { letter-spacing: 0px; opacity: 1; }
-            20% { letter-spacing: 8px; opacity: 0.6; }
-            40% { letter-spacing: -4px; opacity: 0.8; }
-            60% { letter-spacing: 6px; opacity: 0.5; }
-            80% { letter-spacing: -2px; opacity: 0.9; }
-            100% { letter-spacing: 1px; opacity: 1; }
         }
         .ip-copy-btn {
             display: flex;
@@ -388,7 +372,6 @@
             font-size: 15px;
             position: relative;
             overflow: hidden;
-            z-index: 2;
         }
         .ip-copy-btn:hover {
             background: #3a3a2a;
@@ -409,52 +392,6 @@
         }
         @keyframes rippleAnim {
             to { transform: scale(4); opacity: 0; }
-        }
-
-        /* Toast уведомление */
-        .copy-toast {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            background: rgba(0, 0, 0, 0.92);
-            border: 2px solid #ffd700;
-            border-radius: 16px;
-            padding: 30px 50px;
-            z-index: 9999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            text-align: center;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 0 80px rgba(255, 215, 0, 0.15);
-        }
-        .copy-toast.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translate(-50%, -50%) scale(1);
-        }
-        .copy-toast .toast-icon {
-            font-size: 48px;
-            display: block;
-            margin-bottom: 10px;
-            animation: toastPop 0.5s ease;
-        }
-        @keyframes toastPop {
-            0% { transform: scale(0) rotate(-20deg); }
-            60% { transform: scale(1.3) rotate(5deg); }
-            100% { transform: scale(1) rotate(0deg); }
-        }
-        .copy-toast .toast-text {
-            font-size: 24px;
-            font-weight: 700;
-            color: #ffd700;
-            letter-spacing: 2px;
-        }
-        .copy-toast .toast-sub {
-            font-size: 14px;
-            color: #6a5a3a;
-            margin-top: 6px;
         }
 
         /* ============================================================ */
@@ -502,11 +439,290 @@
         }
 
         /* ============================================================ */
+        /* ====================== ABOUT ================================ */
+        /* ============================================================ */
+        .about {
+            background: #0f0f08;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .about-card {
+            background: linear-gradient(145deg, #111108, #0a0a0a);
+            border: 1px solid #2a2a1a;
+            border-radius: 16px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .about-card:hover {
+            transform: translateY(-6px);
+            border-color: #ffd70044;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+        .about-icon {
+            font-size: 44px;
+            display: block;
+            margin-bottom: 16px;
+        }
+        .about-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e8e0c8;
+            margin-bottom: 10px;
+        }
+        .about-card p {
+            font-size: 15px;
+            color: #8a7a5a;
+            line-height: 1.6;
+        }
+
+        /* ============================================================ */
+        /* ====================== FEATURES ============================= */
+        /* ============================================================ */
+        .features {
+            background: #0a0a0a;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        .feature-item {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            padding: 18px 22px;
+            background: rgba(10, 10, 6, 0.5);
+            border-radius: 14px;
+            border: 1px solid #1a1a0a;
+            transition: all 0.3s ease;
+        }
+        .feature-item:hover {
+            border-color: #ffd70044;
+            background: rgba(10, 10, 6, 0.8);
+        }
+        .feature-icon {
+            font-size: 30px;
+            flex-shrink: 0;
+        }
+        .feature-content h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #e8e0c8;
+            margin-bottom: 4px;
+        }
+        .feature-content p {
+            font-size: 14px;
+            color: #8a7a5a;
+            line-height: 1.5;
+        }
+
+        /* ============================================================ */
+        /* ====================== NEWS ================================= */
+        /* ============================================================ */
+        .news {
+            background: #0f0f08;
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .news-card {
+            background: linear-gradient(145deg, #111108, #0a0a0a);
+            border: 1px solid #2a2a1a;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .news-card:hover {
+            border-color: #ffd70044;
+            transform: translateY(-4px);
+        }
+        .news-card.featured {
+            grid-column: 1 / -1;
+        }
+        .news-card-image {
+            background: linear-gradient(135deg, #1a1a0a, #0a0a0a);
+            padding: 30px 24px 20px;
+            position: relative;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .news-date {
+            font-size: 13px;
+            color: #6a5a3a;
+        }
+        .news-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #f0a500);
+            color: #1a1a0a;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 14px;
+            border-radius: 20px;
+            align-self: flex-start;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .news-card-body {
+            padding: 20px 24px 24px;
+        }
+        .news-card-body h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #e8e0c8;
+            margin-bottom: 10px;
+        }
+        .news-card-body h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #e8e0c8;
+            margin-bottom: 6px;
+        }
+        .news-card-body p {
+            font-size: 15px;
+            color: #8a7a5a;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .news-card-date {
+            font-size: 13px;
+            color: #6a5a3a;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .news-archive {
+            text-align: center;
+            margin-top: 32px;
+        }
+        .btn-archive {
+            background: transparent;
+            border: 1px solid #3a3a2a;
+            color: #b0a080;
+            padding: 12px 36px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-archive:hover {
+            background: rgba(255, 215, 0, 0.05);
+            border-color: #ffd70044;
+        }
+
+        /* ============================================================ */
+        /* ====================== RULES ================================ */
+        /* ============================================================ */
+        .rules {
+            background: #0a0a0a;
+        }
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .rules-category {
+            background: linear-gradient(145deg, #111108, #0a0a0a);
+            border: 1px solid #2a2a1a;
+            border-radius: 14px;
+            padding: 24px 22px;
+        }
+        .rules-category-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #e8e0c8;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #2a2a1a;
+        }
+        .rules-list li {
+            padding: 6px 0;
+            padding-left: 22px;
+            position: relative;
+            font-size: 14px;
+            color: #8a7a5a;
+            line-height: 1.5;
+        }
+        .rules-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+        }
+
+        /* ============================================================ */
+        /* ====================== BANS ================================= */
+        /* ============================================================ */
+        .bans {
+            background: #0f0f08;
+        }
+        .bans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .ban-card {
+            background: linear-gradient(145deg, #111108, #0a0a0a);
+            border: 1px solid #2a2a1a;
+            border-radius: 16px;
+            padding: 24px 22px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .ban-card:hover {
+            transform: translateY(-4px);
+            border-color: #ff444444;
+            box-shadow: 0 8px 30px rgba(255, 68, 68, 0.05);
+        }
+        .ban-card .ban-icon {
+            font-size: 36px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .ban-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #e8e0c8;
+            margin-bottom: 6px;
+        }
+        .ban-card .ban-punishment {
+            display: inline-block;
+            background: rgba(255, 68, 68, 0.15);
+            color: #ff6666;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 68, 68, 0.20);
+        }
+        .ban-card .ban-desc {
+            font-size: 14px;
+            color: #8a7a5a;
+            line-height: 1.5;
+        }
+        .ban-card.allowed {
+            border-color: #3aff6a44;
+        }
+        .ban-card.allowed .ban-punishment {
+            background: rgba(58, 255, 106, 0.15);
+            color: #6aff9a;
+            border-color: rgba(58, 255, 106, 0.20);
+        }
+
+        /* ============================================================ */
         /* ====================== TEAM ================================= */
         /* ============================================================ */
         .team {
             background: #0a0a0a;
-            perspective: 800px;
         }
         .team-grid {
             display: grid;
@@ -519,46 +735,17 @@
             border-radius: 16px;
             padding: 24px 20px;
             text-align: center;
-            transition: transform 0.15s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            transform-style: preserve-3d;
-            will-change: transform;
-            cursor: default;
-            position: relative;
-            perspective: 600px;
+            transition: all 0.3s ease;
         }
-        .team-card .card-inner {
-            transform-style: preserve-3d;
-            transition: transform 0.15s ease;
-            backface-visibility: visible;
-            position: relative;
-            z-index: 2;
-        }
-        .team-card::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 18px;
-            padding: 2px;
-            background: transparent;
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            transition: background 0.3s ease;
-            pointer-events: none;
-            z-index: 1;
+        .team-card:hover {
+            transform: translateY(-4px);
+            border-color: #ffd70044;
         }
         .team-card.owner {
             border-color: #ffd70044;
         }
         .team-card.owner .team-role {
             color: #ffd700;
-        }
-        .team-card:hover {
-            border-color: #ffd70066;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-        .team-card:hover::before {
-            background: linear-gradient(135deg, #ffd70088, #ffd70022);
         }
         .team-avatar {
             display: block;
@@ -569,35 +756,23 @@
             border: 2px solid #ffd70044;
             object-fit: cover;
             background: #0a0a0a;
-            transform: translateZ(25px);
-            position: relative;
-            z-index: 3;
         }
         .team-card h4 {
             font-size: 18px;
             font-weight: 700;
             color: #e8e0c8;
-            transform: translateZ(20px);
-            position: relative;
-            z-index: 3;
         }
         .team-role {
             display: block;
             font-size: 13px;
             color: #6a5a3a;
             margin: 4px 0 10px;
-            transform: translateZ(15px);
-            position: relative;
-            z-index: 3;
         }
         .team-bio {
             font-size: 14px;
             color: #8a7a5a;
             line-height: 1.5;
             margin-bottom: 14px;
-            transform: translateZ(10px);
-            position: relative;
-            z-index: 3;
         }
 
         /* ============================================================ */
@@ -1328,20 +1503,11 @@
             .clicker-stats { gap: 12px; }
             .clicker-stat { padding: 8px 14px; min-width: 80px; }
             .clicker-stat .number { font-size: 20px; }
-            .copy-toast { padding: 20px 30px; }
-            .copy-toast .toast-text { font-size: 18px; }
-            .copy-toast .toast-icon { font-size: 36px; }
         }
     </style>
 
 </head>
 <body>
-    <!-- ===== TOAST УВЕДОМЛЕНИЕ ДЛЯ КОПИРОВАНИЯ ===== -->
-    <div class="copy-toast" id="copyToast">
-        <span class="toast-icon">✅</span>
-        <div class="toast-text">IP Успешно скопирован</div>
-        <div class="toast-sub">JustSMP.minerent.io:31048</div>
-    </div>
 
     <!-- ============================================================ -->
     <!-- ====================== АНИМИРОВАННЫЙ ФОН ==================== -->
@@ -1427,7 +1593,9 @@
                 <div class="big-gold"></div>
             </div>
         </div>
-    </section>    <!-- ============================================================ -->
+    </section>
+
+    <!-- ============================================================ -->
     <!-- ==================== СЕКЦИЯ 2: IP-АДРЕС ==================== -->
     <!-- ============================================================ -->
     <section class="ip-section" id="ip">
@@ -1444,7 +1612,9 @@
                 </button>
             </div>
         </div>
-    </section>    <!-- ============================================================ -->
+    </section>
+
+    <!-- ============================================================ -->
     <!-- ==================== СЕКЦИЯ 3: О СЕРВЕРЕ =================== -->
     <!-- ============================================================ -->
     <section class="about" id="about">
@@ -1651,7 +1821,9 @@
                 </div>
             </div>
         </div>
-    </section>    <!-- ============================================================ -->
+    </section>
+
+    <!-- ============================================================ -->
     <!-- ==================== СЕКЦИЯ 8: КОМАНДА ===================== -->
     <!-- ============================================================ -->
     <section class="team" id="team">
@@ -1663,37 +1835,33 @@
             </div>
             <div class="team-grid">
                 <!-- Drun_777 - Владелец -->
-                <div class="team-card owner" data-tilt>
-                    <div class="card-inner">
-                        <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566612070174832/cvs3NAAAABklEQVQDANcw1lycNXCYAAAAAElFTkSuQmCC.png?ex=6a660abc&is=6a64b93c&hm=e1e6c8d6dd83a799aabc592ad67121cf6fc3269a275a0f50ba6c7433104e4e94&" alt="Drun_777" />
-                        <h4>Drun_777</h4>
-                        <span class="team-role">👑 Владелец</span>
-                        <p class="team-bio">Основатель сервера и просто друнчик.</p>
-                    </div>
+                <div class="team-card owner">
+                    <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566612070174832/cvs3NAAAABklEQVQDANcw1lycNXCYAAAAAElFTkSuQmCC.png?ex=6a660abc&is=6a64b93c&hm=e1e6c8d6dd83a799aabc592ad67121cf6fc3269a275a0f50ba6c7433104e4e94&" alt="Drun_777" />
+                    <h4>Drun_777</h4>
+                    <span class="team-role">👑 Владелец</span>
+                    <p class="team-bio">Основатель сервера и просто друнчик.</p>
                 </div>
 
                 <!-- Denchick1789 - Администратор -->
-                <div class="team-card admin" data-tilt>
-                    <div class="card-inner">
-                        <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566936214241503/UO2uLQAAAAZJREFUAwBl0nTDfamiQAAAABJRU5ErkJggg.png?ex=6a660b0a&is=6a64b98a&hm=5fe0e44afa5412e3bbb02721fb0beec5cb6522f18322ffa2b26dc68c4d9d04b5&" alt="Denchick1789" />
-                        <h4>Denchick1789</h4>
-                        <span class="team-role">⚙️ Администратор</span>
-                        <p class="team-bio">Технический администратор, отвечает за стабильность сервера.</p>
-                    </div>
+                <div class="team-card admin">
+                    <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566936214241503/UO2uLQAAAAZJREFUAwBl0nTDfamiQAAAABJRU5ErkJggg.png?ex=6a660b0a&is=6a64b98a&hm=5fe0e44afa5412e3bbb02721fb0beec5cb6522f18322ffa2b26dc68c4d9d04b5&" alt="Denchick1789" />
+                    <h4>Denchick1789</h4>
+                    <span class="team-role">⚙️ Администратор</span>
+                    <p class="team-bio">Технический администратор, отвечает за стабильность сервера.</p>
                 </div>
 
                 <!-- Lait_TIM - Хелпер -->
-                <div class="team-card moderator" data-tilt>
-                    <div class="card-inner">
-                        <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566831264497856/8osJVMAAAABklEQVQDAAr0FvG9MCdbAAAAAElFTkSuQmCC.png?ex=6a660af1&is=6a64b971&hm=a805b8c169bd3aeca7a4f83517280cf73d9f90dbcc9455300b426a8f4eb4560d&" alt="Lait_TIM" />
-                        <h4>Lait_TIM</h4>
-                        <span class="team-role">🛡️ Хелпер</span>
-                        <p class="team-bio">Помогает игрокам и следит за порядком на сервере.</p>
-                    </div>
+                <div class="team-card moderator">
+                    <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566831264497856/8osJVMAAAABklEQVQDAAr0FvG9MCdbAAAAAElFTkSuQmCC.png?ex=6a660af1&is=6a64b971&hm=a805b8c169bd3aeca7a4f83517280cf73d9f90dbcc9455300b426a8f4eb4560d&" alt="Lait_TIM" />
+                    <h4>Lait_TIM</h4>
+                    <span class="team-role">🛡️ Хелпер</span>
+                    <p class="team-bio">Помогает игрокам и следит за порядком на сервере.</p>
                 </div>
             </div>
         </div>
-    </section>    <!-- ============================================================ -->
+    </section>
+
+    <!-- ============================================================ -->
     <!-- ==================== СЕКЦИЯ 9: CLICKER ===================== -->
     <!-- ============================================================ -->
     <section class="clicker" id="clicker">
@@ -1854,46 +2022,13 @@
             'use strict';
 
             // ============================================================
-            // ============== 3D ВРАЩЕНИЕ КАРТОЧЕК КОМАНДЫ ===============
-            // ============================================================
-
-            function initTiltCards() {
-                const cards = document.querySelectorAll('.team-card[data-tilt]');
-
-                cards.forEach(card => {
-                    const inner = card.querySelector('.card-inner');
-                    if (!inner) return;
-
-                    card.addEventListener('mousemove', function(e) {
-                        const rect = this.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-
-                        const centerX = rect.width / 2;
-                        const centerY = rect.height / 2;
-
-                        const rotateX = ((y - centerY) / centerY) * -15;
-                        const rotateY = ((x - centerX) / centerX) * 15;
-
-                        inner.style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
-                    });
-
-                    card.addEventListener('mouseleave', function() {
-                        inner.style.transform = 'rotateX(0deg) rotateY(0deg)';
-                    });
-                });
-            }
-
-            // ============================================================
-            // ============== РЕАЛЬНЫЙ ОНЛАЙН ЧЕРЕЗ API ===================
+            // ============== РЕАЛЬНЫЙ ОНЛАЙН (3 API) ====================
             // ============================================================
 
             const SERVER_HOST = 'JustSMP.minerent.io';
             const SERVER_PORT = 31048;
             const DISPLAY_IP = 'JustSMP.minerent.io:31048';
             const FIXED_VERSION = '1.21.11';
-
-            const API_URL = 'https://api.mcsrvstat.us/2/' + SERVER_HOST + '/' + SERVER_PORT;
 
             const statusText = document.getElementById('statusText');
             const statusDot = document.getElementById('statusDot');
@@ -1904,87 +2039,129 @@
             if (versionEl) versionEl.textContent = FIXED_VERSION;
 
             let lastOnline = 0;
+            let apiAttempts = 0;
+
+            // ===== СПИСОК API ДЛЯ ПРОВЕРКИ =====
+            const APIS = [
+                {
+                    url: 'https://api.minetools.eu/ping/' + SERVER_HOST + '/' + SERVER_PORT,
+                    parser: function(data) {
+                        if (!data || data.online === false) return null;
+                        return {
+                            online: data.online,
+                            players: data.players ? data.players.online : 0,
+                            max: data.players ? data.players.max : 0,
+                            version: data.version ? data.version.name : '1.21.11'
+                        };
+                    }
+                },
+                {
+                    url: 'https://api.mcsrvstat.us/2/' + SERVER_HOST + '/' + SERVER_PORT,
+                    parser: function(data) {
+                        if (!data || data.online === false) return null;
+                        return {
+                            online: data.online,
+                            players: data.players ? data.players.online : 0,
+                            max: data.players ? data.players.max : 0,
+                            version: data.version || '1.21.11'
+                        };
+                    }
+                },
+                {
+                    url: 'https://mcapi.us/server/status?ip=' + SERVER_HOST + '&port=' + SERVER_PORT,
+                    parser: function(data) {
+                        if (!data || data.online === false) return null;
+                        return {
+                            online: data.online,
+                            players: data.players ? data.players.now : 0,
+                            max: data.players ? data.players.max : 0,
+                            version: '1.21.11'
+                        };
+                    }
+                }
+            ];
 
             function fetchServerData() {
                 statusText.textContent = '🔄 Проверка сервера...';
                 statusDot.style.background = '#ffaa00';
+                apiAttempts = 0;
+                tryNextApi();
+            }
 
-                fetch(API_URL)
-                    .then(response => {
-                        if (!response.ok) throw new Error('HTTP ' + response.status);
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('📡 Данные с сервера:', data);
+            function tryNextApi() {
+                if (apiAttempts >= APIS.length) {
+                    statusText.textContent = '⚠️ Сервер не отвечает';
+                    statusDot.style.background = '#ffaa00';
+                    onlineEl.textContent = '?';
+                    maxEl.textContent = '?';
+                    return;
+                }
 
-                        if (data.online === false) {
-                            statusText.textContent = '❌ Сервер офлайн';
-                            statusDot.style.background = '#ff4444';
-                            onlineEl.textContent = '0';
-                            maxEl.textContent = '0';
-                            return;
-                        }
+                const api = APIS[apiAttempts];
+                apiAttempts++;
 
-                        statusText.textContent = '✅ Сервер онлайн · 24/7';
-                        statusDot.style.background = '#3aff6a';
+                fetch(api.url, {
+                    method: 'GET',
+                    headers: { 'Accept': 'application/json' }
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('HTTP ' + response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('📡 API #' + apiAttempts + ' ответ:', data);
+                    const parsed = api.parser(data);
+                    if (parsed && parsed.online === true) {
+                        processServerData(parsed);
+                        return;
+                    }
+                    tryNextApi();
+                })
+                .catch(error => {
+                    console.warn('⚠️ API #' + apiAttempts + ' ошибка:', error);
+                    tryNextApi();
+                });
+            }
 
-                        const online = data.players ? data.players.online : 0;
-                        if (online !== lastOnline) {
-                            onlineEl.classList.remove('pulse');
-                            void onlineEl.offsetWidth;
-                            onlineEl.classList.add('pulse');
-                            lastOnline = online;
-                        }
-                        onlineEl.textContent = online;
+            function processServerData(data) {
+                if (data.online === false) {
+                    statusText.textContent = '❌ Сервер офлайн';
+                    statusDot.style.background = '#ff4444';
+                    onlineEl.textContent = '0';
+                    maxEl.textContent = '0';
+                    return;
+                }
 
-                        maxEl.textContent = data.players ? data.players.max : '?';
+                statusText.textContent = '✅ Сервер онлайн · 24/7';
+                statusDot.style.background = '#3aff6a';
 
-                    })
-                    .catch(error => {
-                        console.error('❌ Ошибка:', error);
-                        statusText.textContent = '⚠️ Ошибка соединения';
-                        statusDot.style.background = '#ffaa00';
-                        onlineEl.textContent = '?';
-                        maxEl.textContent = '?';
-                    });
+                const online = data.players || 0;
+                if (online !== lastOnline) {
+                    onlineEl.classList.remove('pulse');
+                    void onlineEl.offsetWidth;
+                    onlineEl.classList.add('pulse');
+                    lastOnline = online;
+                }
+                onlineEl.textContent = online;
+
+                maxEl.textContent = data.max || '?';
+
+                if (data.version && data.version !== '1.21.11') {
+                    versionEl.textContent = data.version;
+                }
             }
 
             // ============================================================
-            // ============== КОПИРОВАНИЕ IP С АНИМАЦИЕЙ ==================
+            // ============== КОПИРОВАНИЕ IP ==============================
             // ============================================================
 
             function initCopyIp() {
                 var copyBtn = document.getElementById('copyIpBtn');
-                var ipEl = document.getElementById('serverIp');
-                var toast = document.getElementById('copyToast');
-                if (!copyBtn || !ipEl) return;
-
-                const originalIP = ipEl.textContent;
-
-                // Функция скрэмблинга (перемешивания букв)
-                function scrambleText(text, callback) {
-                    const chars = text.split('');
-                    let iterations = 0;
-                    const maxIterations = 15;
-                    const interval = setInterval(() => {
-                        const scrambled = chars.map((char, i) => {
-                            if (i < iterations) return char;
-                            const randomIndex = Math.floor(Math.random() * chars.length);
-                            return chars[randomIndex];
-                        }).join('');
-                        ipEl.textContent = scrambled;
-                        iterations++;
-                        if (iterations > maxIterations) {
-                            clearInterval(interval);
-                            callback();
-                        }
-                    }, 40);
-                }
+                if (!copyBtn) return;
 
                 copyBtn.addEventListener('click', function(e) {
                     e.preventDefault();
 
-                    // Эффект ряби
                     const ripple = document.createElement('span');
                     ripple.className = 'ripple';
                     const rect = this.getBoundingClientRect();
@@ -1995,23 +2172,16 @@
                     this.appendChild(ripple);
                     setTimeout(() => ripple.remove(), 600);
 
-                    // Меняем кнопку
                     const icon = this.querySelector('.copy-icon');
                     const text = this.querySelector('.copy-text');
+
                     icon.textContent = '⏳';
                     text.textContent = 'Копирование...';
                     this.style.borderColor = '#ffd700';
-                    this.disabled = true;
 
-                    // Копируем IP
                     if (navigator.clipboard && navigator.clipboard.writeText) {
                         navigator.clipboard.writeText(DISPLAY_IP).then(function() {
-                            // Успешно скопировано — показываем скрэмблинг
-                            scrambleText(originalIP, function() {
-                                ipEl.textContent = originalIP;
-                                showToast();
-                                showCopiedFeedback(copyBtn);
-                            });
+                            showCopiedFeedback(copyBtn);
                         }).catch(function() {
                             fallbackCopy(copyBtn);
                         });
@@ -2019,53 +2189,40 @@
                         fallbackCopy(copyBtn);
                     }
                 });
+            }
 
-                function showToast() {
-                    toast.classList.add('show');
-                    setTimeout(() => {
-                        toast.classList.remove('show');
-                    }, 700);
-                }
+            function showCopiedFeedback(btn) {
+                const icon = btn.querySelector('.copy-icon');
+                const text = btn.querySelector('.copy-text');
+                btn.classList.add('copied');
+                icon.textContent = '✅';
+                text.textContent = 'Скопировано!';
+                btn.style.borderColor = '#3aff6a';
 
-                function showCopiedFeedback(btn) {
-                    const icon = btn.querySelector('.copy-icon');
-                    const text = btn.querySelector('.copy-text');
-                    btn.classList.add('copied');
-                    icon.textContent = '✅';
-                    text.textContent = 'Скопировано!';
-                    btn.style.borderColor = '#3aff6a';
-                    btn.disabled = false;
+                setTimeout(function() {
+                    btn.classList.remove('copied');
+                    icon.textContent = '📋';
+                    text.textContent = 'Копировать';
+                    btn.style.borderColor = '';
+                }, 3000);
+            }
 
-                    setTimeout(function() {
-                        btn.classList.remove('copied');
-                        icon.textContent = '📋';
-                        text.textContent = 'Копировать';
-                        btn.style.borderColor = '';
-                    }, 3000);
-                }
-
-                function fallbackCopy(btn) {
-                    try {
-                        var textarea = document.createElement('textarea');
-                        textarea.value = DISPLAY_IP;
-                        textarea.style.position = 'fixed';
-                        textarea.style.opacity = '0';
-                        textarea.style.left = '-9999px';
-                        textarea.style.top = '-9999px';
-                        document.body.appendChild(textarea);
-                        textarea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(textarea);
-                        scrambleText(originalIP, function() {
-                            ipEl.textContent = originalIP;
-                            showToast();
-                            showCopiedFeedback(btn);
-                        });
-                    } catch (err) {
-                        console.error('Ошибка копирования:', err);
-                        alert('Не удалось скопировать IP. Скопируйте вручную: ' + DISPLAY_IP);
-                        btn.disabled = false;
-                    }
+            function fallbackCopy(btn) {
+                try {
+                    var textarea = document.createElement('textarea');
+                    textarea.value = DISPLAY_IP;
+                    textarea.style.position = 'fixed';
+                    textarea.style.opacity = '0';
+                    textarea.style.left = '-9999px';
+                    textarea.style.top = '-9999px';
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    showCopiedFeedback(btn);
+                } catch (err) {
+                    console.error('Ошибка копирования:', err);
+                    alert('Не удалось скопировать IP. Скопируйте вручную: ' + DISPLAY_IP);
                 }
             }
 
@@ -2423,9 +2580,9 @@
             function init() {
                 console.log('⛏️ JustSMP — Классический SMP сервер!');
                 console.log('📌 IP: ' + DISPLAY_IP);
-                console.log('📡 Онлайн проверяется по домену: ' + SERVER_HOST);
+                console.log('📡 Онлайн проверяется через 3 API');
                 console.log('💬 Присоединяйся к нам!');
-                console.log('🔄 Обновление каждые 5 секунд');
+                console.log('🔄 Обновление каждые 10 секунд');
 
                 initCopyIp();
                 initActiveNavLink();
@@ -2438,10 +2595,9 @@
                 initMobileFixes();
                 initThemes();
                 initClicker();
-                initTiltCards();
 
                 fetchServerData();
-                setInterval(fetchServerData, 5000);
+                setInterval(fetchServerData, 10000);
             }
 
             if (document.readyState === 'loading') {
@@ -2451,7 +2607,7 @@
             }
 
             window.addEventListener('error', function(e) {
-                console.warn('⚠️ Поймана ошибка на сайте:', e.message);
+                console.warn('⚠️ Ошибка:', e.message);
             });
 
             window.addEventListener('unhandledrejection', function(e) {
