@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="JustSMP — лучший SMP сервер Minecraft с версией 1.21.11. Присоединяйся к нам!" />
+    <meta name="keywords" content="Minecraft, SMP, сервер, JustSMP, выживание, 1.21.11" />
+    <meta name="author" content="JustSMP Team" />
+    <meta property="og:title" content="JustSMP — SMP сервер Minecraft" />
+    <meta property="og:description" content="Присоединяйся к лучшему SMP серверу Minecraft!" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#6a3aff" />
+    <title>JustSMP · SMP сервер Minecraft 1.21.11</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================ */
+        /* ====================== ОБЩИЕ СТИЛИ ========================= */
+        /* ============================================================ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: #08080e;
+            color: #d0d0e8;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ============================================================ */
+        /* ============== ЗОЛОТОЙ СЛИТОК (ОБЩИЙ СТИЛЬ) =============== */
+        /* ============================================================ */
+
+        .gold-ingot {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: url('https://cdn.discordapp.com/attachments/1527277871180283904/1530465470178918470/i-no-bg-preview_carve.photos.png?ex=6a65ac8a&is=6a645b0a&hm=9bf312dc7131e196a40f3b89280538e944e2967487152d3d1c2a7fd19b82ebea&') no-repeat center center;
+            background-size: contain;
+            filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.5));
+        }
+
+        /* ============================================================ */
+        /* ====================== ШАПКА / HEADER ======================= */
+        /* ============================================================ */
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(8, 8, 14, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(42, 42, 72, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(8, 8, 14, 0.98);
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .logo .gold-ingot {
+            width: 34px;
+            height: 34px;
+            filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.6));
+        }
+
+        .logo-text {
+            color: #d0d0f0;
+        }
+
+        .logo-text span {
+            color: #ffd700;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #8a8ab0;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #d0d0f0;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .nav-link.active {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.08);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 30%;
+            width: 40%;
+            height: 2px;
+            background: #ffd700;
+            border-radius: 4px;
+        }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .burger span {
+            display: block;
+            width: 28px;
+            height: 2.5px;
+            background: #d0d0e8;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* ============================================================ */
+        /* ====================== СЕКЦИЯ: HERO ========================= */
+        /* ============================================================ */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 60px;
+            background: radial-gradient(ellipse at 30% 20%, #141425, #050508);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -30%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.05), transparent);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(58, 255, 106, 0.10);
+            border: 1px solid rgba(58, 255, 106, 0.20);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #8aff8a;
+            margin-bottom: 24px;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #3aff6a;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', 'Inter', sans-serif;
+            font-size: 52px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #e0e0f0;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: #8a8ab8;
+            max-width: 500px;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 44px;
+        }
+
+        .btn {
+            padding: 14px 36px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700, #f0a500);
+            color: #1a1a2a;
+            box-shadow: 0 4px 30px rgba(255, 215, 0, 0.30);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 50px rgba(255, 215, 0, 0.45);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            color: #b0b0d8;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: #ffd700;
+            line-height: 1.1;
+            transition: all 0.3s ease;
+        }
+
+        .stat-number.pulse {
+            animation: numberPulse 0.5s ease;
+        }
+
+        @keyframes numberPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.25); color: #ffaa00; }
+            100% { transform: scale(1); }
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #6a7a9a;
+            margin-top: 2px;
+        }
+
+        .hero-image {
+            flex: 0 0 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-cube {
+            width: 240px;
+            height: 240px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 215, 0, 0.08);
+            border: 2px solid rgba(255, 215, 0, 0.20);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            box-shadow: inset 0 0 40px rgba(255, 215, 0, 0.05);
+        }
+
+        .cube-face .gold-ingot {
+            width: 60px;
+            height: 60px;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8));
+        }
+
+        .cube-face.front { transform: translateZ(60px); }
+        .cube-face.back { transform: rotateY(180deg) translateZ(60px); }
+        .cube-face.right { transform: rotateY(90deg) translateZ(60px); }
+        .cube-face.left { transform: rotateY(-90deg) translateZ(60px); }
+        .cube-face.top { transform: rotateX(90deg) translateZ(60px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(60px); }
+
+        /* ============================================================ */
+        /* ====================== СЕКЦИЯ: IP =========================== */
+        /* ============================================================ */
+
+        .ip-section {
+            padding: 40px 0;
+            background: linear-gradient(180deg, #08080e, #0c0c1a);
+        }
+
+        .ip-box {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: linear-gradient(135deg, #111122, #0a0a18);
+            border: 1px solid #2a2a4a;
+            border-radius: 16px;
+            padding: 20px 28px;
+            flex-wrap: wrap;
+        }
+
+        .ip-icon {
+            font-size: 32px;
+        }
+
+        .ip-content {
+            flex: 1;
+        }
+
+        .ip-label {
+            display: block;
+            font-size: 12px;
+            color: #6a7a9a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .ip-address {
+            font-family: 'Orbitron', 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffd700;
+            letter-spacing: 1px;
+        }
+
+        .ip-copy-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #2a2a52;
+            border: 1px solid #3a3a6a;
+            color: #d0d0e8;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            font-size: 15px;
+        }
+
+        .ip-copy-btn:hover {
+            background: #3a3a6a;
+            border-color: #ffd700;
+        }
+
+        .ip-copy-btn.copied {
+            background: #1a3a1a;
+            border-color: #3aff6a;
+            color: #8aff8a;
+        }
+
+        /* ============================================================ */
+        /* ================== ОБЩИЕ СТИЛИ ДЛЯ СЕКЦИЙ =================== */
+        /* ============================================================ */
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.10);
+            padding: 4px 18px;
+            border-radius: 30px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', 'Inter', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: #e0e0f0;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-desc {
+            font-size: 17px;
+            color: #7a8aaa;
+            line-height: 1.7;
+        }
+
+        /* ============================================================ */
+        /* ====================== СЕКЦИЯ: ABOUT ======================== */
+        /* ============================================================ */
+
+        .about {
+            background: #0a0a16;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .about-card {
+            background: linear-gradient(145deg, #111122, #0a0a18);
+            border: 1px solid #1a1a36;
+            border-radius: 16px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-6px);
+            border-color: #ffd70044;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-icon {
+            font-size: 44px;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .about-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #d0d0e8;
+            margin-bottom: 10px;
+        }
+
+        .about-card p {
+            font-size: 15px;
+            color: #8a8ab0;
+            line-height: 1.6;
+        }
+
+        /* ============================================================ */
+        /* ====================== СЕКЦИЯ: FEATURES ===================== */
+        /* ============================================================ */
+
+        .features {
+            background: #08080e;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            padding: 18px 22px;
+            background: rgba(10, 10, 26, 0.5);
+            border-radius: 14px;
+            border: 1px solid #15152a;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            border-color: #ffd70044;
+            background: rgba(10, 10, 26, 0.8);
+        }
+
+        .feature-icon {
+            font-size: 30px;
+            flex-shrink: 0;
+        }
+
+        .feature-content h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #d0d0e8;
+            margin-bottom: 4px;
+        }
+
+        .feature-content p {
+            font-size: 14px;
+            color: #8a8ab0;
+            line-height: 1.5;
+        }
+
+        /* ============================================================ */
+        /* ====================== СЕКЦИЯ: NEWS ========================= */
+        /* ============================================================ */
+
+        .news {
+            background: #0a0a16;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .news-card {
+            background: linear-gradient(145deg, #111122, #0a0a18);
+            border: 1px solid #1a1a36;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            border-color: #ffd70044;
+            transform: translateY(-4px);
+        }
+
+        .news-card.featured {
+            grid-column: 1 / -1;
+        }
+
+        .news-card-image {
+            background: linear-gradient(135deg, #1a1a3a, #0a0a1a);
+            padding: 30px 24px 20px;
+            position: relative;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .news-date {
+            font-size: 13px;
+            color: #6a7a9a;
+        }
+
+        .news-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #f0a500);
+            color: #1a1a2a;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 14px;
+            border-radius: 20px;
+            align-self: flex-start;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .news-card-body {
+            padding: 20px 24px 24px;
+        }
+
+        .news-card-body h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #d0d0e8;
+            margin-bottom: 10px;
+        }
+
+        .news-card-body h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #d0d0e8;
+            margin-bottom: 6px;
+        }
+
+        .news-card-body p {
+            font-size: 15px;
+            color: #8a8ab0;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .news-card-date {
+            font-size: 13px;
+            color: #6a7a9a;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .news-archive {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .btn-archive {
+            background: transparent;
+            border: 1px solid #2a2a4a;
+            color: #b0b0d8;
+            padding: 12px 36px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-archive:hover {
+            background: rgba(255, 215, 0, 0.05);
+            border-color: #ffd70044;
+        }
+
+        /* ============================================================ */
+        /* ====================== СЕКЦИЯ: RULES ======================== */
+        /* ============================================================ */
+
+        .rules {
+            background: #08080e;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .rules-category {
+            background: linear-gradient(145deg, #111122, #0a0a18);
+            border: 1px solid #1a1a36;
+            border-radius: 14px;
+            padding: 24px 22px;
+        }
+
+        .rules-category-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #d0d0e8;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #1a1a36;
+        }
+
+        .rules-list li {
+            padding: 6px 0;
+            padding-left: 22px;
+            position: relative;
+            font-size: 14px;
+            color: #a0a0c0;
+            line-height: 1.5;
+        }
+
+        .rules-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+        }
+
+        /* ============================================================ */
+        /* ====================== СЕКЦИЯ: BANS ========================= */
+        /* ============================================================ */
+
+        .bans {
+            background: #0a0a16;
+        }
+
+        .bans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .ban-card {
+            background: linear-gradient(145deg, #111122, #0a0a18);
+            border: 1px solid #1a1a36;
+            border-radius: 16px;
+            padding: 24px 22px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .ban-card:hover {
+            transform: translateY(-4px);
+            border-color: #ff444444;
+            box-shadow: 0 8px 30px rgba(255, 68, 68, 0.05);
+        }
+
+        .ban-card .ban-icon {
+            font-size: 36px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .ban-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #d0d0e8;
+            margin-bottom: 6px;
+        }
+
+        .ban-card .ban-punishment {
+            display: inline-block;
+            background: rgba(255, 68, 68, 0.15);
+            color: #ff6666;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 68, 68, 0.20);
+        }
+
+        .ban-card .ban-desc {
+            font-size: 14px;
+            color: #8a8ab0;
+            line-height: 1.5;
+        }
+
+        .ban-card.allowed {
+            border-color: #3aff6a44;
+        }
+
+        .ban-card.allowed .ban-punishment {
+            background: rgba(58, 255, 106, 0.15);
+            color: #6aff9a;
+            border-color: rgba(58, 255, 106, 0.20);
+        }
+
+        /* ============================================================ */
+        /* ====================== СЕКЦИЯ: TEAM ========================= */
+        /* ============================================================ */
+
+        .team {
+            background: #08080e;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 24px;
+        }
+
+        .team-card {
+            background: linear-gradient(145deg, #111122, #0a0a18);
+            border: 1px solid #1a1a36;
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-4px);
+            border-color: #ffd70044;
+        }
+
+        .team-card.owner {
+            border-color: #ffd70044;
+        }
+
+        .team-card.owner .team-role {
+            color: #ffd700;
+        }
+
+        .team-avatar {
+            display: block;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            border: 2px solid #ffd70044;
+            object-fit: cover;
+            background: #0a0a1a;
+        }
+
+        .team-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #d0d0e8;
+        }
+
+        .team-role {
+            display: block;
+            font-size: 13px;
+            color: #6a7a9a;
+            margin: 4px 0 10px;
+        }
+
+        .team-bio {
+            font-size: 14px;
+            color: #8a8ab0;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+
+        /* ============================================================ */
+        /* ====================== СЕКЦИЯ: CONTACTS ===================== */
+        /* ============================================================ */
+
+        .contacts {
+            background: #08080e;
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 400px;
+            margin: 0 auto;
+            gap: 24px;
+        }
+
+        .contact-card {
+            background: linear-gradient(145deg, #111122, #0a0a18);
+            border: 1px solid #1a1a36;
+            border-radius: 16px;
+            padding: 28px 22px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: #ffd70044;
+            transform: translateY(-4px);
+        }
+
+        .contact-icon {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .contact-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #d0d0e8;
+            margin-bottom: 4px;
+        }
+
+        .contact-card p {
+            font-size: 14px;
+            color: #8a8ab0;
+            margin-bottom: 14px;
+        }
+
+        .contact-link {
+            display: inline-block;
+            color: #ffd700;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        .contact-link:hover {
+            background: rgba(255, 215, 0, 0.08);
+        }
+
+        /* ============================================================ */
+        /* ====================== ПОДВАЛ / FOOTER ====================== */
+        /* ============================================================ */
+
+        .footer {
+            background: #040408;
+            border-top: 1px solid #12122a;
+            padding: 50px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col .logo {
+            font-size: 22px;
+            margin-bottom: 14px;
+        }
+
+        .footer-col .logo .gold-ingot {
+            width: 30px;
+            height: 30px;
+        }
+
+        .footer-desc {
+            font-size: 14px;
+            color: #6a7a9a;
+            line-height: 1.7;
+            max-width: 300px;
+            margin-bottom: 16px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-social {
+            font-size: 20px;
+            color: #6a7a9a;
+            transition: all 0.3s ease;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .footer-social:hover {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.08);
+        }
+
+        .footer-col h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #d0d0e8;
+            margin-bottom: 16px;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            color: #7a8aaa;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+
+        .footer-contacts li {
+            font-size: 14px;
+            color: #7a8aaa;
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #12122a;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: #3a3a5a;
+        }
+
+        /* ============================================================ */
+        /* ==================== КНОПКА НАВЕРХ ========================== */
+        /* ============================================================ */
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffd700, #f0a500);
+            color: #1a1a2a;
+            border: none;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 30px rgba(255, 215, 0, 0.30);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 50px rgba(255, 215, 0, 0.45);
+        }
+
+        /* ============================================================ */
+        /* ====================== АДАПТАЦИЯ ============================ */
+        /* ============================================================ */
+
+        @media (max-width: 1024px) {
+            .hero-title { font-size: 40px; }
+            .hero-container { gap: 30px; }
+            .hero-image { flex: 0 0 200px; }
+            .hero-cube { width: 180px; height: 180px; }
+            .cube-face { width: 90px; height: 90px; font-size: 36px; }
+            .cube-face .gold-ingot { width: 45px; height: 45px; }
+            .cube-face.front { transform: translateZ(45px); }
+            .cube-face.back { transform: rotateY(180deg) translateZ(45px); }
+            .cube-face.right { transform: rotateY(90deg) translateZ(45px); }
+            .cube-face.left { transform: rotateY(-90deg) translateZ(45px); }
+            .cube-face.top { transform: rotateX(90deg) translateZ(45px); }
+            .cube-face.bottom { transform: rotateX(-90deg) translateZ(45px); }
+        }
+
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .nav.open { display: block; position: absolute; top: 100%; left: 0; right: 0; background: rgba(8, 8, 14, 0.98); padding: 20px; border-bottom: 1px solid #1a1a36; }
+            .nav.open .nav-list { flex-direction: column; gap: 4px; }
+            .nav.open .nav-link { display: block; padding: 10px 16px; }
+            .burger { display: flex; }
+
+            .hero-container { flex-direction: column; text-align: center; }
+            .hero-desc { margin-left: auto; margin-right: auto; }
+            .hero-actions { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-image { flex: 0 0 auto; }
+            .hero-title { font-size: 32px; }
+            .hero-cube { width: 140px; height: 140px; }
+            .cube-face { width: 70px; height: 70px; font-size: 28px; }
+            .cube-face .gold-ingot { width: 35px; height: 35px; }
+            .cube-face.front { transform: translateZ(35px); }
+            .cube-face.back { transform: rotateY(180deg) translateZ(35px); }
+            .cube-face.right { transform: rotateY(90deg) translateZ(35px); }
+            .cube-face.left { transform: rotateY(-90deg) translateZ(35px); }
+            .cube-face.top { transform: rotateX(90deg) translateZ(35px); }
+            .cube-face.bottom { transform: rotateX(-90deg) translateZ(35px); }
+
+            .ip-box { flex-direction: column; text-align: center; }
+            .ip-address { font-size: 22px; }
+
+            .news-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+
+            section { padding: 50px 0; }
+            .section-title { font-size: 28px; }
+            .about-grid { grid-template-columns: 1fr 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .rules-grid { grid-template-columns: 1fr 1fr; }
+            .bans-grid { grid-template-columns: 1fr 1fr; }
+            .team-grid { grid-template-columns: 1fr 1fr; }
+            .contacts-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 14px; }
+            .hero-title { font-size: 26px; }
+            .hero-stats { flex-wrap: wrap; gap: 20px; }
+            .stat-number { font-size: 24px; }
+            .ip-address { font-size: 18px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .rules-grid { grid-template-columns: 1fr; }
+            .bans-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; }
+            .contacts-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .btn { padding: 12px 24px; font-size: 14px; }
+            .section-title { font-size: 24px; }
+            .news-card-body h3 { font-size: 18px; }
+            .news-card-body h4 { font-size: 16px; }
+            .team-avatar { width: 60px; height: 60px; }
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- ==================== ШАПКА / НАВИГАЦИЯ ===================== -->
+    <!-- ============================================================ -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <span class="gold-ingot"></span>
+                <span class="logo-text">Just<span>SMP</span></span>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Главная</a></li>
+                    <li><a href="#about" class="nav-link">О сервере</a></li>
+                    <li><a href="#features" class="nav-link">Особенности</a></li>
+                    <li><a href="#news" class="nav-link">Новости</a></li>
+                    <li><a href="#rules" class="nav-link">Правила</a></li>
+                    <li><a href="#bans" class="nav-link">Баны</a></li>
+                    <li><a href="#team" class="nav-link">Команда</a></li>
+                    <li><a href="#contacts" class="nav-link">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="burger" id="burgerBtn" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- ====================== СЕКЦИЯ 1: HERO ====================== -->
+    <!-- ============================================================ -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge" id="serverStatus">
+                    <span class="badge-dot" id="statusDot"></span>
+                    <span id="statusText">🔄 Проверка сервера...</span>
+                </div>
+                <h1 class="hero-title">
+                    Добро пожаловать на<br />
+                    <span class="hero-highlight">JustSMP</span>
+                </h1>
+                <p class="hero-desc" id="heroDesc">
+                    Лучший SMP сервер Minecraft с версией 1.21.11, дружным комьюнити
+                    и уникальной атмосферой. Присоединяйся к нам прямо сейчас!
+                </p>
+                <div class="hero-actions">
+                    <a href="#ip" class="btn btn-primary">▶ Подключиться</a>
+                    <a href="#about" class="btn btn-secondary">Узнать больше</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="onlineCount">--</span>
+                        <span class="stat-label">Игроков онлайн</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="maxPlayers">--</span>
+                        <span class="stat-label">Максимум</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="serverVersion">--</span>
+                        <span class="stat-label">Версия</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-cube">
+                    <div class="cube-face front"><span class="gold-ingot"></span></div>
+                    <div class="cube-face back"><span class="gold-ingot"></span></div>
+                    <div class="cube-face right"><span class="gold-ingot"></span></div>
+                    <div class="cube-face left"><span class="gold-ingot"></span></div>
+                    <div class="cube-face top"><span class="gold-ingot"></span></div>
+                    <div class="cube-face bottom"><span class="gold-ingot"></span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ==================== СЕКЦИЯ 2: IP-АДРЕС ==================== -->
+    <!-- ============================================================ -->
+    <section class="ip-section" id="ip">
+        <div class="container">
+            <div class="ip-box">
+                <div class="ip-icon">📌</div>
+                <div class="ip-content">
+                    <span class="ip-label">IP-адрес сервера</span>
+                    <span class="ip-address" id="serverIp">JustSMP.minerent.io:31048</span>
+                </div>
+                <button class="ip-copy-btn" id="copyIpBtn">
+                    <span class="copy-icon">📋</span>
+                    <span class="copy-text">Копировать</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ==================== СЕКЦИЯ 3: О СЕРВЕРЕ =================== -->
+    <!-- ============================================================ -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">📖 О нас</span>
+                <h2 class="section-title">Что такое <span>JustSMP</span>?</h2>
+                <p class="section-desc">
+                    JustSMP — это уникальный SMP сервер Minecraft версии 1.21.11,
+                    где каждый игрок может найти себе занятие по душе.
+                </p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <span class="about-icon">🏗️</span>
+                    <h3>Чистое выживание</h3>
+                    <p>Классический режим выживания без доната и приватов. Только честная игра и дружелюбное сообщество.</p>
+                </div>
+                <div class="about-card">
+                    <span class="about-icon">🤝</span>
+                    <h3>Сообщество</h3>
+                    <p>Дружелюбное и отзывчивое комьюнити, всегда готовое помочь новым игрокам освоиться на сервере.</p>
+                </div>
+                <div class="about-card">
+                    <span class="about-icon">⚔️</span>
+                    <h3>Свободный PvP</h3>
+                    <p>Полная свобода действий. Хочешь воевать? Или строить? Или торговать? Выбор за тобой!</p>
+                </div>
+                <div class="about-card">
+                    <span class="about-icon">🎉</span>
+                    <h3>Ивенты</h3>
+                    <p>Регулярные ивенты и конкурсы с крутыми призами для всех игроков сервера.</p>
+                </div>
+                <div class="about-card">
+                    <span class="about-icon">🔄</span>
+                    <h3>Актуальная версия</h3>
+                    <p>Сервер работает на последней стабильной версии Minecraft 1.21.11 — все новые блоки и механики доступны!</p>
+                </div>
+                <div class="about-card">
+                    <span class="about-icon">🛡️</span>
+                    <h3>Честная игра</h3>
+                    <p>Никаких читов и привилегий. У всех равные условия — только твой скилл и смекалка!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ================== СЕКЦИЯ 4: ОСОБЕННОСТИ =================== -->
+    <!-- ============================================================ -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">⭐ Особенности</span>
+                <h2 class="section-title">Почему выбирают <span>JustSMP</span>?</h2>
+                <p class="section-desc">Мы создали сервер, на котором приятно играть каждому.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span class="feature-icon">🔄</span>
+                    <div class="feature-content">
+                        <h4>Актуальная версия</h4>
+                        <p>Сервер работает на Minecraft 1.21.11 со всеми новыми блоками, мобами и механиками.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🛡️</span>
+                    <div class="feature-content">
+                        <h4>Анти-чит</h4>
+                        <p>Современная система защиты от читеров и нечестной игры.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📊</span>
+                    <div class="feature-content">
+                        <h4>Статистика</h4>
+                        <p>Детальная статистика каждого игрока: время, достижения, PvP.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🎨</span>
+                    <div class="feature-content">
+                        <h4>Кастомизация</h4>
+                        <p>Большой выбор скинов, косметических предметов и эффектов.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🌙</span>
+                    <div class="feature-content">
+                        <h4>Динамический мир</h4>
+                        <p>Мир меняется в зависимости от действий игроков и времени года.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🎵</span>
+                    <div class="feature-content">
+                        <h4>Музыкальные ресурспаки</h4>
+                        <p>Уникальные звуки и музыкальное сопровождение для полного погружения.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ==================== СЕКЦИЯ 5: НОВОСТИ ===================== -->
+    <!-- ============================================================ -->
+    <section class="news" id="news">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">📰 Новости</span>
+                <h2 class="section-title">Последние <span>новости</span></h2>
+                <p class="section-desc">Всегда будь в курсе событий нашего сервера.</p>
+            </div>
+            <div class="news-grid">
+                <article class="news-card featured">
+                    <div class="news-card-image">
+                        <span class="news-date">04 апреля 2026</span>
+                        <span class="news-badge">🚀 Запуск</span>
+                    </div>
+                    <div class="news-card-body">
+                        <h3>Запуск сервера JustSMP!</h3>
+                        <p>Мы рады объявить о запуске нашего SMP сервера! Присоединяйся к нам и стань частью истории!</p>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-card-body">
+                        <span class="news-card-date">25 июля 2026</span>
+                        <h4>Обновление до версии 1.21.11!</h4>
+                        <p>Сервер JustSMP успешно обновлён до последней версии Minecraft 1.21.11. Все новые блоки, предметы и механики уже доступны для игры.</p>
+                    </div>
+                </article>
+            </div>
+            <div class="news-archive">
+                <button class="btn-archive">📚 Все новости</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ==================== СЕКЦИЯ 6: ПРАВИЛА ===================== -->
+    <!-- ============================================================ -->
+    <section class="rules" id="rules">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">📋 Правила</span>
+                <h2 class="section-title">Правила <span>сервера</span></h2>
+                <p class="section-desc">Краткий свод правил для комфортной игры всех участников.</p>
+            </div>
+            <div class="rules-grid">
+                <div class="rules-category">
+                    <h3 class="rules-category-title">👥 Общение</h3>
+                    <ul class="rules-list">
+                        <li>Не флудите в чат</li>
+                        <li>Не обсуждайте политику</li>
+                    </ul>
+                </div>
+
+                <div class="rules-category">
+                    <h3 class="rules-category-title">⚔️ PvP</h3>
+                    <ul class="rules-list">
+                        <li>PvP разрешён везде, включая спавн</li>
+                        <li>Не используйте читы в PvP</li>
+                        <li>Новичков можно убивать</li>
+                        <li>Клановые войны по согласованию</li>
+                    </ul>
+                </div>
+
+                <div class="rules-category">
+                    <h3 class="rules-category-title">🏗️ Гриферство</h3>
+                    <ul class="rules-list">
+                        <li>Гриферство разрешено</li>
+                        <li>Ломайте и стройте где хотите</li>
+                    </ul>
+                </div>
+
+                <div class="rules-category">
+                    <h3 class="rules-category-title">🚫 Запрещено</h3>
+                    <ul class="rules-list">
+                        <li>Использование читов и хаков</li>
+                        <li>Дюпы и эксплойты</li>
+                        <li>Мультиаккаунтинг</li>
+                        <li>Обход банов</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ==================== СЕКЦИЯ 7: БАНЫ ======================== -->
+    <!-- ============================================================ -->
+    <section class="bans" id="bans">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">🔨 Система банов</span>
+                <h2 class="section-title">Наказания за <span>нарушения</span></h2>
+                <p class="section-desc">Список нарушений и соответствующие им наказания.</p>
+            </div>
+            <div class="bans-grid">
+                <div class="ban-card">
+                    <span class="ban-icon">🪨</span>
+                    <h4>X-Ray</h4>
+                    <span class="ban-punishment">⚠️ Предупреждение + очистка руд</span>
+                    <p class="ban-desc">При обнаружении использования X-Ray текстурпаков все добытые руды будут удалены, выдаётся предупреждение.</p>
+                </div>
+
+                <div class="ban-card">
+                    <span class="ban-icon">👁️</span>
+                    <h4>ESP (WallHack)</h4>
+                    <span class="ban-punishment">🔨 Бан на 7 дней</span>
+                    <p class="ban-desc">Использование ESP / WallHack для просмотра игроков сквозь стены карается временным баном.</p>
+                </div>
+
+                <div class="ban-card allowed">
+                    <span class="ban-icon">🏗️</span>
+                    <h4>Гриферство</h4>
+                    <span class="ban-punishment">✅ РАЗРЕШЕНО</span>
+                    <p class="ban-desc">Гриферство на сервере полностью разрешено. Ломайте и стройте где хотите — это часть игры!</p>
+                </div>
+
+                <div class="ban-card allowed">
+                    <span class="ban-icon">🗡️</span>
+                    <h4>Убийство новичков</h4>
+                    <span class="ban-punishment">✅ РАЗРЕШЕНО</span>
+                    <p class="ban-desc">Новичков можно убивать. Это SMP сервер — выживание без ограничений!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ==================== СЕКЦИЯ 8: КОМАНДА ===================== -->
+    <!-- ============================================================ -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">👑 Команда</span>
+                <h2 class="section-title">Наша <span>команда</span></h2>
+                <p class="section-desc">Люди, которые делают JustSMP лучшим сервером.</p>
+            </div>
+            <div class="team-grid">
+                <!-- Drun_777 - Владелец -->
+                <div class="team-card owner">
+                    <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566612070174832/cvs3NAAAABklEQVQDANcw1lycNXCYAAAAAElFTkSuQmCC.png?ex=6a660abc&is=6a64b93c&hm=e1e6c8d6dd83a799aabc592ad67121cf6fc3269a275a0f50ba6c7433104e4e94&" alt="Drun_777" />
+                    <h4>Drun_777</h4>
+                    <span class="team-role">👑 Владелец</span>
+                    <p class="team-bio">Основатель сервера и просто друнчик.</p>
+                </div>
+
+                <!-- Denchick1789 - Администратор -->
+                <div class="team-card admin">
+                    <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566936214241503/UO2uLQAAAAZJREFUAwBl0nTDfamiQAAAABJRU5ErkJggg.png?ex=6a660b0a&is=6a64b98a&hm=5fe0e44afa5412e3bbb02721fb0beec5cb6522f18322ffa2b26dc68c4d9d04b5&" alt="Denchick1789" />
+                    <h4>Denchick1789</h4>
+                    <span class="team-role">⚙️ Администратор</span>
+                    <p class="team-bio">Технический администратор, отвечает за стабильность сервера.</p>
+                </div>
+
+                <!-- Lait_TIM - Хелпер -->
+                <div class="team-card moderator">
+                    <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566831264497856/8osJVMAAAABklEQVQDAAr0FvG9MCdbAAAAAElFTkSuQmCC.png?ex=6a660af1&is=6a64b971&hm=a805b8c169bd3aeca7a4f83517280cf73d9f90dbcc9455300b426a8f4eb4560d&" alt="Lait_TIM" />
+                    <h4>Lait_TIM</h4>
+                    <span class="team-role">🛡️ Хелпер</span>
+                    <p class="team-bio">Помогает игрокам и следит за порядком на сервере.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ==================== СЕКЦИЯ 9: КОНТАКТЫ ==================== -->
+    <!-- ============================================================ -->
+    <section class="contacts" id="contacts">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">📞 Контакты</span>
+                <h2 class="section-title">Связь с <span>нами</span></h2>
+                <p class="section-desc">Присоединяйся к нашему Discord сообществу!</p>
+            </div>
+            <div class="contacts-grid">
+                <div class="contact-card">
+                    <span class="contact-icon">💬</span>
+                    <h4>Discord</h4>
+                    <p>Главный канал общения и новостей</p>
+                    <a href="https://discord.gg/ME5n8Csame" target="_blank" class="contact-link">Присоединиться →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ====================== ПОДВАЛ / ФУТЕР ====================== -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <span class="gold-ingot"></span>
+                        <span class="logo-text">Just<span>SMP</span></span>
+                    </div>
+                    <p class="footer-desc">
+                        Лучший SMP сервер Minecraft версии 1.21.11 с дружелюбным
+                        комьюнити и уникальной атмосферой.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="https://discord.gg/ME5n8Csame" target="_blank" class="footer-social">💬</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#about">О сервере</a></li>
+                        <li><a href="#features">Особенности</a></li>
+                        <li><a href="#news">Новости</a></li>
+                        <li><a href="#rules">Правила</a></li>
+                        <li><a href="#bans">Баны</a></li>
+                        <li><a href="#team">Команда</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Быстрые ссылки</h4>
+                    <ul class="footer-links">
+                        <li><a href="#ip">IP-адрес</a></li>
+                        <li><a href="https://discord.gg/ME5n8Csame" target="_blank">Discord</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul class="footer-contacts">
+                        <li>💬 Discord: <a href="https://discord.gg/ME5n8Csame" target="_blank" style="color:#ffd700;">Присоединиться</a></li>
+                        <li>📌 IP: JustSMP.minerent.io:31048</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 JustSMP · Все права защищены</span>
+                <span>Сделано с ❤️ командой JustSMP</span>
+                <span>Версия 2.0 · Реальный онлайн</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- ====================== КНОПКА НАВЕРХ ======================= -->
+    <!-- ============================================================ -->
+    <button class="scroll-top" id="scrollTopBtn" aria-label="Наверх">↑</button>
+
+    <!-- ============================================================ -->
+    <!-- ====================== ВЕСЬ JAVASCRIPT ===================== -->
+    <!-- ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // ============== НАСТРОЙКИ ===================================
+            // ============================================================
+
+            const SERVER_HOST = 'JustSMP.minerent.io';
+            const SERVER_PORT = 31048;
+            const SERVER_IP = SERVER_HOST + ':' + SERVER_PORT;
+            const API_URL = 'https://api.mcsrvstat.us/2/' + SERVER_HOST + '/' + SERVER_PORT;
+            const UPDATE_INTERVAL = 5000;
+
+            // ============================================================
+            // ============== DOM ЭЛЕМЕНТЫ ================================
+            // ============================================================
+
+            const statusText = document.getElementById('statusText');
+            const statusDot = document.getElementById('statusDot');
+            const onlineEl = document.getElementById('onlineCount');
+            const maxEl = document.getElementById('maxPlayers');
+            const versionEl = document.getElementById('serverVersion');
+            let lastOnline = 0;
+
+            // ============================================================
+            // ============== ФУНКЦИЯ ПОЛУЧЕНИЯ ДАННЫХ ====================
+            // ============================================================
+
+            function fetchServerData() {
+                statusText.textContent = '🔄 Проверка сервера...';
+                statusDot.style.background = '#ffaa00';
+
+                fetch(API_URL)
+                    .then(response => {
+                        if (!response.ok) throw new Error('HTTP ' + response.status);
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('📡 Данные получены:', data);
+
+                        if (data.online === false) {
+                            statusText.textContent = '❌ Сервер офлайн';
+                            statusDot.style.background = '#ff4444';
+                            onlineEl.textContent = '0';
+                            maxEl.textContent = '0';
+                            versionEl.textContent = '?';
+                            return;
+                        }
+
+                        statusText.textContent = '✅ Сервер онлайн · 24/7';
+                        statusDot.style.background = '#3aff6a';
+
+                        const online = data.players ? data.players.online : 0;
+                        if (online !== lastOnline) {
+                            onlineEl.classList.remove('pulse');
+                            void onlineEl.offsetWidth;
+                            onlineEl.classList.add('pulse');
+                            lastOnline = online;
+                        }
+                        onlineEl.textContent = online;
+
+                        maxEl.textContent = data.players ? data.players.max : '?';
+                        versionEl.textContent = data.version || '1.21.11';
+
+                    })
+                    .catch(error => {
+                        console.error('❌ Ошибка:', error);
+                        statusText.textContent = '⚠️ Ошибка соединения';
+                        statusDot.style.background = '#ffaa00';
+                        onlineEl.textContent = '?';
+                        maxEl.textContent = '?';
+                        versionEl.textContent = '?';
+                    });
+            }
+
+            // ============================================================
+            // ============== КОПИРОВАНИЕ IP ==============================
+            // ============================================================
+
+            function initCopyIp() {
+                var copyBtn = document.getElementById('copyIpBtn');
+                if (!copyBtn) return;
+
+                var newBtn = copyBtn.cloneNode(true);
+                copyBtn.parentNode.replaceChild(newBtn, copyBtn);
+                copyBtn = newBtn;
+
+                copyBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(SERVER_IP).then(function() {
+                            showCopiedFeedback(copyBtn);
+                        }).catch(function() {
+                            fallbackCopy(copyBtn);
+                        });
+                    } else {
+                        fallbackCopy(copyBtn);
+                    }
+                });
+            }
+
+            function showCopiedFeedback(btn) {
+                btn.classList.add('copied');
+                btn.querySelector('.copy-text').textContent = '✅ Скопировано!';
+                btn.querySelector('.copy-icon').textContent = '✅';
+
+                setTimeout(function() {
+                    btn.classList.remove('copied');
+                    btn.querySelector('.copy-text').textContent = 'Копировать';
+                    btn.querySelector('.copy-icon').textContent = '📋';
+                }, 3000);
+            }
+
+            function fallbackCopy(btn) {
+                try {
+                    var textarea = document.createElement('textarea');
+                    textarea.value = SERVER_IP;
+                    textarea.style.position = 'fixed';
+                    textarea.style.opacity = '0';
+                    textarea.style.left = '-9999px';
+                    textarea.style.top = '-9999px';
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    showCopiedFeedback(btn);
+                } catch (err) {
+                    console.error('Ошибка копирования:', err);
+                    alert('Не удалось скопировать IP. Скопируйте вручную: ' + SERVER_IP);
+                }
+            }
+
+            // ============================================================
+            // ============== ОСТАЛЬНЫЕ ФУНКЦИИ ==========================
+            // ============================================================
+
+            function initActiveNavLink() {
+                var sections = document.querySelectorAll('section[id]');
+                var navLinks = document.querySelectorAll('.nav-link');
+
+                if (!sections.length || !navLinks.length) return;
+
+                function updateActiveLink() {
+                    var scrollPos = window.pageYOffset + 120;
+                    var currentId = '';
+
+                    sections.forEach(function(section) {
+                        var sectionTop = section.offsetTop;
+                        var sectionHeight = section.offsetHeight;
+                        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                            currentId = section.getAttribute('id');
+                        }
+                    });
+
+                    navLinks.forEach(function(link) {
+                        link.classList.remove('active');
+                        var href = link.getAttribute('href');
+                        if (href && href === '#' + currentId) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+
+                var ticking = false;
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        window.requestAnimationFrame(function() {
+                            updateActiveLink();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+
+                setTimeout(updateActiveLink, 100);
+            }
+
+            function initHeaderScroll() {
+                var header = document.querySelector('.header');
+                if (!header) return;
+
+                function handleScroll() {
+                    if (window.pageYOffset > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                }
+
+                window.addEventListener('scroll', handleScroll);
+                handleScroll();
+            }
+
+            function initScrollTopButton() {
+                var scrollBtn = document.getElementById('scrollTopBtn');
+                if (!scrollBtn) return;
+
+                function handleScroll() {
+                    if (window.pageYOffset > 500) {
+                        scrollBtn.classList.add('visible');
+                    } else {
+                        scrollBtn.classList.remove('visible');
+                    }
+                }
+
+                window.addEventListener('scroll', handleScroll);
+                handleScroll();
+
+                scrollBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            function initBurgerMenu() {
+                var burgerBtn = document.getElementById('burgerBtn');
+                var nav = document.querySelector('.nav');
+                var navLinks = document.querySelectorAll('.nav-link');
+
+                if (!burgerBtn || !nav) return;
+
+                var newBurger = burgerBtn.cloneNode(true);
+                burgerBtn.parentNode.replaceChild(newBurger, burgerBtn);
+                burgerBtn = newBurger;
+
+                function toggleMenu(e) {
+                    if (e) e.preventDefault();
+                    burgerBtn.classList.toggle('active');
+                    nav.classList.toggle('open');
+                }
+
+                burgerBtn.addEventListener('click', toggleMenu);
+
+                navLinks.forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        burgerBtn.classList.remove('active');
+                        nav.classList.remove('open');
+                    });
+                });
+
+                document.addEventListener('click', function(e) {
+                    var target = e.target;
+                    if (!target.closest('.header')) {
+                        burgerBtn.classList.remove('active');
+                        nav.classList.remove('open');
+                    }
+                });
+
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) {
+                        burgerBtn.classList.remove('active');
+                        nav.classList.remove('open');
+                    }
+                });
+            }
+
+            function initAnimations() {
+                var elements = document.querySelectorAll(
+                    '.about-card, .feature-item, .news-card, .rules-category, .ban-card, .team-card, .contact-card'
+                );
+
+                if (!elements.length) return;
+
+                if (!('IntersectionObserver' in window)) {
+                    elements.forEach(function(el) {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    });
+                    return;
+                }
+
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry, index) {
+                        if (entry.isIntersecting) {
+                            setTimeout(function() {
+                                entry.target.style.opacity = '1';
+                                entry.target.style.transform = 'translateY(0)';
+                            }, index * 80);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+
+                elements.forEach(function(el, index) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    el.style.transitionDelay = (index * 80) + 'ms';
+                    observer.observe(el);
+                });
+            }
+
+            function initSmoothScroll() {
+                var links = document.querySelectorAll('a[href^="#"]');
+                var header = document.querySelector('.header');
+
+                links.forEach(function(link) {
+                    var href = link.getAttribute('href');
+                    if (href === '#') return;
+
+                    link.addEventListener('click', function(e) {
+                        var targetId = this.getAttribute('href');
+                        if (!targetId || targetId === '#') return;
+
+                        var target = document.querySelector(targetId);
+                        if (!target) return;
+
+                        e.preventDefault();
+
+                        var headerHeight = header ? header.offsetHeight : 70;
+                        var targetPosition = target.getBoundingClientRect().top + window.pageYOffset -
+                            headerHeight - 10;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    });
+                });
+            }
+
+            function initFooterYear() {
+                var yearSpans = document.querySelectorAll('.footer-bottom span:first-child');
+                var currentYear = new Date().getFullYear();
+
+                yearSpans.forEach(function(el) {
+                    var text = el.textContent;
+                    if (text && text.indexOf('2026') !== -1) {
+                        el.textContent = text.replace('2026', currentYear);
+                    }
+                });
+            }
+
+            function initMobileFixes() {
+                var vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', vh + 'px');
+
+                window.addEventListener('resize', function() {
+                    var vh = window.innerHeight * 0.01;
+                    document.documentElement.style.setProperty('--vh', vh + 'px');
+                });
+
+                var nav = document.querySelector('.nav');
+                if (nav) {
+                    var observer = new MutationObserver(function() {
+                        if (nav.classList.contains('open')) {
+                            document.body.style.overflow = 'hidden';
+                        } else {
+                            document.body.style.overflow = '';
+                        }
+                    });
+                    observer.observe(nav, { attributes: true, attributeFilter: ['class'] });
+                }
+            }
+
+            // ============================================================
+            // ============== ЗАПУСК ======================================
+            // ============================================================
+
+            function init() {
+                console.log('⛏️ JustSMP — Лучший SMP сервер Minecraft 1.21.11!');
+                console.log('📌 IP: ' + SERVER_IP);
+                console.log('📡 API: ' + API_URL);
+                console.log('💬 Присоединяйся к нам!');
+                console.log('🔄 Обновление каждые 5 секунд');
+
+                initCopyIp();
+                initActiveNavLink();
+                initHeaderScroll();
+                initScrollTopButton();
+                initBurgerMenu();
+                initAnimations();
+                initSmoothScroll();
+                initFooterYear();
+                initMobileFixes();
+
+                fetchServerData();
+                setInterval(fetchServerData, UPDATE_INTERVAL);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+            window.addEventListener('error', function(e) {
+                console.warn('⚠️ Поймана ошибка на сайте:', e.message);
+            });
+
+            window.addEventListener('unhandledrejection', function(e) {
+                console.warn('⚠️ Необработанный Promise:', e.reason);
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
