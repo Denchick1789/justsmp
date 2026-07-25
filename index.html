@@ -723,6 +723,7 @@
         /* ============================================================ */
         .team {
             background: #0a0a0a;
+            perspective: 800px;
         }
         .team-grid {
             display: grid;
@@ -735,17 +736,25 @@
             border-radius: 16px;
             padding: 24px 20px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: transform 0.1s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transform-style: preserve-3d;
+            will-change: transform;
+            cursor: default;
+            position: relative;
         }
         .team-card:hover {
-            transform: translateY(-4px);
             border-color: #ffd70044;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
         .team-card.owner {
             border-color: #ffd70044;
         }
         .team-card.owner .team-role {
             color: #ffd700;
+        }
+        .team-card .card-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease;
         }
         .team-avatar {
             display: block;
@@ -756,23 +765,27 @@
             border: 2px solid #ffd70044;
             object-fit: cover;
             background: #0a0a0a;
+            transform: translateZ(20px);
         }
         .team-card h4 {
             font-size: 18px;
             font-weight: 700;
             color: #e8e0c8;
+            transform: translateZ(15px);
         }
         .team-role {
             display: block;
             font-size: 13px;
             color: #6a5a3a;
             margin: 4px 0 10px;
+            transform: translateZ(10px);
         }
         .team-bio {
             font-size: 14px;
             color: #8a7a5a;
             line-height: 1.5;
             margin-bottom: 14px;
+            transform: translateZ(5px);
         }
 
         /* ============================================================ */
@@ -799,6 +812,7 @@
             filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.2));
             user-select: none;
             -webkit-user-select: none;
+            position: relative;
         }
         .clicker-gold:hover {
             transform: scale(1.05);
@@ -1834,27 +1848,33 @@
             </div>
             <div class="team-grid">
                 <!-- Drun_777 - Владелец -->
-                <div class="team-card owner">
-                    <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566612070174832/cvs3NAAAABklEQVQDANcw1lycNXCYAAAAAElFTkSuQmCC.png?ex=6a660abc&is=6a64b93c&hm=e1e6c8d6dd83a799aabc592ad67121cf6fc3269a275a0f50ba6c7433104e4e94&" alt="Drun_777" />
-                    <h4>Drun_777</h4>
-                    <span class="team-role">👑 Владелец</span>
-                    <p class="team-bio">Основатель сервера и просто друнчик.</p>
+                <div class="team-card owner" data-tilt>
+                    <div class="card-inner">
+                        <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566612070174832/cvs3NAAAABklEQVQDANcw1lycNXCYAAAAAElFTkSuQmCC.png?ex=6a660abc&is=6a64b93c&hm=e1e6c8d6dd83a799aabc592ad67121cf6fc3269a275a0f50ba6c7433104e4e94&" alt="Drun_777" />
+                        <h4>Drun_777</h4>
+                        <span class="team-role">👑 Владелец</span>
+                        <p class="team-bio">Основатель сервера и просто друнчик.</p>
+                    </div>
                 </div>
 
                 <!-- Denchick1789 - Администратор -->
-                <div class="team-card admin">
-                    <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566936214241503/UO2uLQAAAAZJREFUAwBl0nTDfamiQAAAABJRU5ErkJggg.png?ex=6a660b0a&is=6a64b98a&hm=5fe0e44afa5412e3bbb02721fb0beec5cb6522f18322ffa2b26dc68c4d9d04b5&" alt="Denchick1789" />
-                    <h4>Denchick1789</h4>
-                    <span class="team-role">⚙️ Администратор</span>
-                    <p class="team-bio">Технический администратор, отвечает за стабильность сервера.</p>
+                <div class="team-card admin" data-tilt>
+                    <div class="card-inner">
+                        <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566936214241503/UO2uLQAAAAZJREFUAwBl0nTDfamiQAAAABJRU5ErkJggg.png?ex=6a660b0a&is=6a64b98a&hm=5fe0e44afa5412e3bbb02721fb0beec5cb6522f18322ffa2b26dc68c4d9d04b5&" alt="Denchick1789" />
+                        <h4>Denchick1789</h4>
+                        <span class="team-role">⚙️ Администратор</span>
+                        <p class="team-bio">Технический администратор, отвечает за стабильность сервера.</p>
+                    </div>
                 </div>
 
                 <!-- Lait_TIM - Хелпер -->
-                <div class="team-card moderator">
-                    <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566831264497856/8osJVMAAAABklEQVQDAAr0FvG9MCdbAAAAAElFTkSuQmCC.png?ex=6a660af1&is=6a64b971&hm=a805b8c169bd3aeca7a4f83517280cf73d9f90dbcc9455300b426a8f4eb4560d&" alt="Lait_TIM" />
-                    <h4>Lait_TIM</h4>
-                    <span class="team-role">🛡️ Хелпер</span>
-                    <p class="team-bio">Помогает игрокам и следит за порядком на сервере.</p>
+                <div class="team-card moderator" data-tilt>
+                    <div class="card-inner">
+                        <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566831264497856/8osJVMAAAABklEQVQDAAr0FvG9MCdbAAAAAElFTkSuQmCC.png?ex=6a660af1&is=6a64b971&hm=a805b8c169bd3aeca7a4f83517280cf73d9f90dbcc9455300b426a8f4eb4560d&" alt="Lait_TIM" />
+                        <h4>Lait_TIM</h4>
+                        <span class="team-role">🛡️ Хелпер</span>
+                        <p class="team-bio">Помогает игрокам и следит за порядком на сервере.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2021,10 +2041,40 @@
             'use strict';
 
             // ============================================================
+            // ============== 3D ВРАЩЕНИЕ КАРТОЧЕК КОМАНДЫ ===============
+            // ============================================================
+
+            function initTiltCards() {
+                const cards = document.querySelectorAll('.team-card[data-tilt]');
+
+                cards.forEach(card => {
+                    const inner = card.querySelector('.card-inner');
+                    if (!inner) return;
+
+                    card.addEventListener('mousemove', function(e) {
+                        const rect = this.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+
+                        const rotateX = ((y - centerY) / centerY) * -15;
+                        const rotateY = ((x - centerX) / centerX) * 15;
+
+                        inner.style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+                    });
+
+                    card.addEventListener('mouseleave', function() {
+                        inner.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                    });
+                });
+            }
+
+            // ============================================================
             // ============== РЕАЛЬНЫЙ ОНЛАЙН ЧЕРЕЗ API ===================
             // ============================================================
 
-            // ===== ИСПРАВЛЕНО: используем домен JustSMP.minerent.io =====
             const SERVER_HOST = 'JustSMP.minerent.io';
             const SERVER_PORT = 31048;
             const DISPLAY_IP = 'JustSMP.minerent.io:31048';
@@ -2038,7 +2088,6 @@
             const maxEl = document.getElementById('maxPlayers');
             const versionEl = document.getElementById('serverVersion');
 
-            // Фиксируем версию
             if (versionEl) versionEl.textContent = FIXED_VERSION;
 
             let lastOnline = 0;
@@ -2098,7 +2147,6 @@
                 copyBtn.addEventListener('click', function(e) {
                     e.preventDefault();
 
-                    // Эффект ряби
                     const ripple = document.createElement('span');
                     ripple.className = 'ripple';
                     const rect = this.getBoundingClientRect();
@@ -2109,7 +2157,6 @@
                     this.appendChild(ripple);
                     setTimeout(() => ripple.remove(), 600);
 
-                    // Меняем иконку и текст
                     const icon = this.querySelector('.copy-icon');
                     const text = this.querySelector('.copy-text');
 
@@ -2169,12 +2216,10 @@
             // ============================================================
 
             function initClicker() {
-                // Загрузка сохранения
                 let coins = parseInt(getCookie('clicker_coins')) || 0;
                 let clickPower = parseInt(getCookie('clicker_power')) || 1;
                 let autoClickers = parseInt(getCookie('clicker_auto')) || 0;
 
-                // Цены
                 let clickPrice = 100;
                 let autoPrice = 50;
 
@@ -2209,12 +2254,10 @@
                     return match ? match[2] : null;
                 }
 
-                // Клик по слитку
                 goldEl.addEventListener('click', function(e) {
                     coins += clickPower;
                     updateUI();
 
-                    // Эффект "+X"
                     const rect = this.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
@@ -2229,7 +2272,6 @@
                     setTimeout(() => effect.remove(), 800);
                 });
 
-                // Upgrade силы клика
                 upgradeClickBtn.addEventListener('click', function() {
                     if (coins >= clickPrice) {
                         coins -= clickPrice;
@@ -2239,7 +2281,6 @@
                     }
                 });
 
-                // Upgrade автоклика
                 upgradeAutoBtn.addEventListener('click', function() {
                     if (coins >= autoPrice) {
                         coins -= autoPrice;
@@ -2249,7 +2290,6 @@
                     }
                 });
 
-                // Автоклик
                 setInterval(function() {
                     if (autoClickers > 0) {
                         coins += autoClickers;
@@ -2540,6 +2580,7 @@
                 initMobileFixes();
                 initThemes();
                 initClicker();
+                initTiltCards();
 
                 fetchServerData();
                 setInterval(fetchServerData, 5000);
