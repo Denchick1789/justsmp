@@ -2022,85 +2022,35 @@
             'use strict';
 
             // ============================================================
-            // ============== РЕАЛЬНЫЙ ОНЛАЙН (3 API) ====================
+            // ============== РЕАЛЬНЫЙ ОНЛАЙН (ЦИФРОВОЙ IP) ==============
             // ============================================================
 
-            const SERVER_HOST = 'JustSMP.minerent.io';
+            // ===== ИСПОЛЬЗУЕМ ЦИФРОВОЙ IP ДЛЯ API =====
+            const SERVER_IP = '185.9.145.86';
             const SERVER_PORT = 31048;
             const DISPLAY_IP = 'JustSMP.minerent.io:31048';
             const FIXED_VERSION = '1.21.11';
 
+            // ===== API MINETOOLS (РАБОТАЕТ С НЕСТАНДАРТНЫМИ ПОРТАМИ) =====
+            const API_URL = 'https://api.minetools.eu/ping/' + SERVER_IP + '/' + SERVER_PORT;
+
             const statusText = document.getElementById('statusText');
             const statusDot = document.getElementById('statusDot');
+            const statusDisplay = document.getElementById('serverStatus');
             const onlineEl = document.getElementById('onlineCount');
             const maxEl = document.getElementById('maxPlayers');
             const versionEl = document.getElementById('serverVersion');
+            const updateTimeEl = document.getElementById('updateTime');
 
             if (versionEl) versionEl.textContent = FIXED_VERSION;
 
             let lastOnline = 0;
-            let apiAttempts = 0;
-
-            // ===== СПИСОК API ДЛЯ ПРОВЕРКИ =====
-            const APIS = [
-                {
-                    url: 'https://api.minetools.eu/ping/' + SERVER_HOST + '/' + SERVER_PORT,
-                    parser: function(data) {
-                        if (!data || data.online === false) return null;
-                        return {
-                            online: data.online,
-                            players: data.players ? data.players.online : 0,
-                            max: data.players ? data.players.max : 0,
-                            version: data.version ? data.version.name : '1.21.11'
-                        };
-                    }
-                },
-                {
-                    url: 'https://api.mcsrvstat.us/2/' + SERVER_HOST + '/' + SERVER_PORT,
-                    parser: function(data) {
-                        if (!data || data.online === false) return null;
-                        return {
-                            online: data.online,
-                            players: data.players ? data.players.online : 0,
-                            max: data.players ? data.players.max : 0,
-                            version: data.version || '1.21.11'
-                        };
-                    }
-                },
-                {
-                    url: 'https://mcapi.us/server/status?ip=' + SERVER_HOST + '&port=' + SERVER_PORT,
-                    parser: function(data) {
-                        if (!data || data.online === false) return null;
-                        return {
-                            online: data.online,
-                            players: data.players ? data.players.now : 0,
-                            max: data.players ? data.players.max : 0,
-                            version: '1.21.11'
-                        };
-                    }
-                }
-            ];
 
             function fetchServerData() {
                 statusText.textContent = '🔄 Проверка сервера...';
                 statusDot.style.background = '#ffaa00';
-                apiAttempts = 0;
-                tryNextApi();
-            }
 
-            function tryNextApi() {
-                if (apiAttempts >= APIS.length) {
-                    statusText.textContent = '⚠️ Сервер не отвечает';
-                    statusDot.style.background = '#ffaa00';
-                    onlineEl.textContent = '?';
-                    maxEl.textContent = '?';
-                    return;
-                }
-
-                const api = APIS[apiAttempts];
-                apiAttempts++;
-
-                fetch(api.url, {
+                fetch(API_URL, {
                     method: 'GET',
                     headers: { 'Accept': 'application/json' }
                 })
@@ -2109,46 +2059,54 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log('📡 API #' + apiAttempts + ' ответ:', data);
-                    const parsed = api.parser(data);
-                    if (parsed && parsed.online === true) {
-                        processServerData(parsed);
+                    console.log('📡 Данные получены:', data);
+
+                    const now = new Date();
+                    if (updateTimeEl) updateTimeEl.textContent = 'Обновлено: ' + now.toLocaleTimeString();
+
+                    if (data.online === false || !data.online) {
+                        statusText.textContent = '❌ Сервер офлайн';
+                        statusDot.style.background = '#ff4444';
+                        statusDisplay.style.borderColor = '#ff444444';
+                        onlineEl.textContent = '0';
+                        maxEl.textContent = '0';
                         return;
                     }
-                    tryNextApi();
+
+                    statusText.textContent = '✅ Сервер онлайн · 24/7';
+                    statusDot.style.background = '#3aff6a';
+                    statusDisplay.style.borderColor = '#3aff6a44';
+
+                    const online = data.players ? data.players.online : 0;
+                    if (online !== lastOnline) {
+                        onlineEl.classList.remove('pulse');
+                        void onlineEl.offsetWidth;
+                        onlineEl.classList.add('pulse');
+                        lastOnline = online;
+                    }
+                    onlineEl.textContent = online;
+
+                    const max = data.players ? data.players.max : '?';
+                    maxEl.textContent = max;
+
+                    if (data.version && data.version.name) {
+                        versionEl.textContent = data.version.name;
+                    }
+
+                    const onlineBox = document.getElementById('onlineBox');
+                    if (onlineBox) {
+                        onlineBox.classList.add('updated');
+                        setTimeout(() => onlineBox.classList.remove('updated'), 500);
+                    }
+
                 })
                 .catch(error => {
-                    console.warn('⚠️ API #' + apiAttempts + ' ошибка:', error);
-                    tryNextApi();
+                    console.error('❌ Ошибка:', error);
+                    statusText.textContent = '⚠️ Ошибка соединения';
+                    statusDot.style.background = '#ffaa00';
+                    onlineEl.textContent = '?';
+                    maxEl.textContent = '?';
                 });
-            }
-
-            function processServerData(data) {
-                if (data.online === false) {
-                    statusText.textContent = '❌ Сервер офлайн';
-                    statusDot.style.background = '#ff4444';
-                    onlineEl.textContent = '0';
-                    maxEl.textContent = '0';
-                    return;
-                }
-
-                statusText.textContent = '✅ Сервер онлайн · 24/7';
-                statusDot.style.background = '#3aff6a';
-
-                const online = data.players || 0;
-                if (online !== lastOnline) {
-                    onlineEl.classList.remove('pulse');
-                    void onlineEl.offsetWidth;
-                    onlineEl.classList.add('pulse');
-                    lastOnline = online;
-                }
-                onlineEl.textContent = online;
-
-                maxEl.textContent = data.max || '?';
-
-                if (data.version && data.version !== '1.21.11') {
-                    versionEl.textContent = data.version;
-                }
             }
 
             // ============================================================
@@ -2580,7 +2538,7 @@
             function init() {
                 console.log('⛏️ JustSMP — Классический SMP сервер!');
                 console.log('📌 IP: ' + DISPLAY_IP);
-                console.log('📡 Онлайн проверяется через 3 API');
+                console.log('📡 Онлайн проверяется по IP: ' + SERVER_IP + ':' + SERVER_PORT);
                 console.log('💬 Присоединяйся к нам!');
                 console.log('🔄 Обновление каждые 10 секунд');
 
