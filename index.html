@@ -42,18 +42,15 @@
             list-style: none;
         }
 
-        /* ===== ЗОЛОТОЙ СЛИТОК (SVG) ===== */
+        /* ===== ЗОЛОТОЙ СЛИТОК (из файла gold_gold.png) ===== */
         .gold-ingot {
             display: inline-block;
             width: 40px;
             height: 40px;
             flex-shrink: 0;
+            background: url('gold_gold.png') no-repeat center center;
+            background-size: contain;
             filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.5));
-        }
-        .gold-ingot svg {
-            width: 100%;
-            height: 100%;
-            display: block;
         }
 
         /* ============================================================ */
@@ -135,7 +132,6 @@
             background: #ffd700;
             border-radius: 4px;
         }
-        /* Разделители между пунктами */
         .nav-divider {
             color: #2a2a1a;
             font-size: 12px;
@@ -325,13 +321,10 @@
         .hero-image .big-gold {
             width: 240px;
             height: 240px;
+            background: url('gold_gold.png') no-repeat center center;
+            background-size: contain;
             filter: drop-shadow(0 0 60px rgba(255, 215, 0, 0.3));
             animation: floatGold 6s ease-in-out infinite;
-        }
-        .hero-image .big-gold svg {
-            width: 100%;
-            height: 100%;
-            display: block;
         }
         @keyframes floatGold {
             0%, 100% { transform: translateY(0px) scale(1); }
@@ -1890,23 +1883,7 @@
     <header class="header" id="header">
         <div class="container header-container">
             <div class="logo">
-                <span class="gold-ingot">
-                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="6" y="14" width="52" height="36" rx="4" ry="4" fill="#ffd700" stroke="#b8860b" stroke-width="2"/>
-                        <rect x="8" y="16" width="48" height="32" rx="3" ry="3" fill="#f0a500" stroke="#b8860b" stroke-width="1.5"/>
-                        <rect x="12" y="20" width="40" height="24" rx="2" ry="2" fill="url(#goldGrad)" stroke="none"/>
-                        <line x1="14" y1="28" x2="50" y2="28" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
-                        <line x1="14" y1="36" x2="50" y2="36" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
-                        <rect x="12" y="20" width="40" height="6" rx="2" ry="2" fill="rgba(255,255,255,0.15)" stroke="none"/>
-                        <defs>
-                            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#ffd700"/>
-                                <stop offset="50%" stop-color="#f0a500"/>
-                                <stop offset="100%" stop-color="#cc8800"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </span>
+                <span class="gold-ingot"></span>
                 <span class="logo-text">Just<span>SMP</span></span>
             </div>
             <nav class="nav">
@@ -1978,23 +1955,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="big-gold">
-                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="6" y="14" width="52" height="36" rx="4" ry="4" fill="#ffd700" stroke="#b8860b" stroke-width="2"/>
-                        <rect x="8" y="16" width="48" height="32" rx="3" ry="3" fill="#f0a500" stroke="#b8860b" stroke-width="1.5"/>
-                        <rect x="12" y="20" width="40" height="24" rx="2" ry="2" fill="url(#goldGradBig)" stroke="none"/>
-                        <line x1="14" y1="28" x2="50" y2="28" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
-                        <line x1="14" y1="36" x2="50" y2="36" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
-                        <rect x="12" y="20" width="40" height="6" rx="2" ry="2" fill="rgba(255,255,255,0.15)" stroke="none"/>
-                        <defs>
-                            <linearGradient id="goldGradBig" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#ffd700"/>
-                                <stop offset="50%" stop-color="#f0a500"/>
-                                <stop offset="100%" stop-color="#cc8800"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
+                <div class="big-gold"></div>
             </div>
         </div>
     </section>
@@ -2243,7 +2204,7 @@
                         <div class="popup-title">👑 Drun_777</div>
                         <div class="popup-desc">Основатель и душа сервера</div>
                     </div>
-                    <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566612070174832/cvs3NAAAABklEQVQDANcw1lycNXCYAAAAAElFTkSuQmCC.png?ex=6a660abc&is=6a64b93c&hm=e1e6c8d6dd83a799aabc592ad67121cf6fc3269a275a0f50ba6c7433104e4e94&" alt="Drun_777" />
+                    <img class="team-avatar" src="drun777.png" alt="Drun_777" />
                     <h4>Drun_777</h4>
                     <span class="team-role">👑 Владелец</span>
                     <p class="team-bio">Основатель сервера и просто друнчик.</p>
@@ -2254,7 +2215,7 @@
                         <div class="popup-title">⚙️ Denchick1789</div>
                         <div class="popup-desc">Технический гений</div>
                     </div>
-                    <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566936214241503/UO2uLQAAAAZJREFUAwBl0nTDfamiQAAAABJRU5ErkJggg.png?ex=6a660b0a&is=6a64b98a&hm=5fe0e44afa5412e3bbb02721fb0beec5cb6522f18322ffa2b26dc68c4d9d04b5&" alt="Denchick1789" />
+                    <img class="team-avatar" src="denchick1789.png" alt="Denchick1789" />
                     <h4>Denchick1789</h4>
                     <span class="team-role">⚙️ Администратор</span>
                     <p class="team-bio">Технический администратор, отвечает за стабильность сервера.</p>
@@ -2265,7 +2226,7 @@
                         <div class="popup-title">🛡️ Lait_TIM</div>
                         <div class="popup-desc">Страж порядка</div>
                     </div>
-                    <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566831264497856/8osJVMAAAABklEQVQDAAr0FvG9MCdbAAAAAElFTkSuQmCC.png?ex=6a660af1&is=6a64b971&hm=a805b8c169bd3aeca7a4f83517280cf73d9f90dbcc9455300b426a8f4eb4560d&" alt="Lait_TIM" />
+                    <img class="team-avatar" src="lait_tim.png" alt="Lait_TIM" />
                     <h4>Lait_TIM</h4>
                     <span class="team-role">🛡️ Хелпер</span>
                     <p class="team-bio">Помогает игрокам и следит за порядком на сервере.</p>
@@ -2348,23 +2309,7 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="logo">
-                        <span class="gold-ingot">
-                            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="6" y="14" width="52" height="36" rx="4" ry="4" fill="#ffd700" stroke="#b8860b" stroke-width="2"/>
-                                <rect x="8" y="16" width="48" height="32" rx="3" ry="3" fill="#f0a500" stroke="#b8860b" stroke-width="1.5"/>
-                                <rect x="12" y="20" width="40" height="24" rx="2" ry="2" fill="url(#goldGradFooter)" stroke="none"/>
-                                <line x1="14" y1="28" x2="50" y2="28" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
-                                <line x1="14" y1="36" x2="50" y2="36" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
-                                <rect x="12" y="20" width="40" height="6" rx="2" ry="2" fill="rgba(255,255,255,0.15)" stroke="none"/>
-                                <defs>
-                                    <linearGradient id="goldGradFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#ffd700"/>
-                                        <stop offset="50%" stop-color="#f0a500"/>
-                                        <stop offset="100%" stop-color="#cc8800"/>
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </span>
+                        <span class="gold-ingot"></span>
                         <span class="logo-text">Just<span>SMP</span></span>
                     </div>
                     <p class="footer-desc">
