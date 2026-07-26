@@ -777,7 +777,7 @@
             line-height: 1.5;
             margin-bottom: 14px;
         }
-        /* ===== ВСПЛЫВАЮЩЕЕ ОКНО ДЛЯ КАРТОЧЕК (ИСПРАВЛЕНО) ===== */
+        /* ===== ВСПЛЫВАЮЩЕЕ ОКНО ДЛЯ КАРТОЧЕК ===== */
         .team-card .card-popup {
             position: absolute;
             bottom: calc(100% + 16px);
@@ -824,6 +824,79 @@
             visibility: visible;
             transform: translateX(-50%) scale(1);
             pointer-events: auto;
+        }
+
+        /* ============================================================ */
+        /* ====================== PLAYERS LIST ========================= */
+        /* ============================================================ */
+        .players-section {
+            background: #0f0f08;
+            padding: 30px 0 40px;
+            border-top: 1px solid #1a1a0a;
+            border-bottom: 1px solid #1a1a0a;
+        }
+        .players-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .players-icon {
+            font-size: 28px;
+        }
+        .players-title {
+            font-family: 'Orbitron', 'Inter', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #e8e0c8;
+        }
+        .players-title span {
+            color: #ffd700;
+        }
+        .players-sub {
+            text-align: center;
+            color: #6a5a3a;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .player-list {
+            text-align: center;
+            font-size: 15px;
+            color: #8a7a5a;
+            padding: 10px;
+            min-height: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .player-list .player-name {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.08);
+            padding: 6px 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.12);
+            font-size: 14px;
+            color: #d0d0e8;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .player-list .player-name:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: #ffd70066;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.05);
+        }
+        .player-list .empty {
+            color: #4a3a2a;
+        }
+        .player-list .loading-text {
+            color: #4a3a2a;
+        }
+        .player-list .offline-text {
+            color: #ff4444;
         }
 
         /* ============================================================ */
@@ -1275,6 +1348,17 @@
         body.theme-default .news-card:hover {
             border-color: #ffd70044;
         }
+        body.theme-default .players-section {
+            border-color: #1a1a0a;
+        }
+        body.theme-default .player-list .player-name {
+            background: rgba(255, 215, 0, 0.08);
+            border-color: rgba(255, 215, 0, 0.12);
+        }
+        body.theme-default .player-list .player-name:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: #ffd70066;
+        }
 
         /* ----- Тема 2: Зелёная ----- */
         body.theme-green .hero {
@@ -1367,6 +1451,17 @@
         }
         body.theme-green .news-card:hover {
             border-color: #3aff6a44;
+        }
+        body.theme-green .players-section {
+            border-color: #1a1a0a;
+        }
+        body.theme-green .player-list .player-name {
+            background: rgba(58, 255, 106, 0.08);
+            border-color: rgba(58, 255, 106, 0.12);
+        }
+        body.theme-green .player-list .player-name:hover {
+            background: rgba(58, 255, 106, 0.15);
+            border-color: #3aff6a66;
         }
 
         /* ----- Тема 3: Красная ----- */
@@ -1461,6 +1556,17 @@
         body.theme-coca .news-card:hover {
             border-color: #ff1a1a44;
         }
+        body.theme-coca .players-section {
+            border-color: #1a1a0a;
+        }
+        body.theme-coca .player-list .player-name {
+            background: rgba(255, 0, 0, 0.08);
+            border-color: rgba(255, 0, 0, 0.12);
+        }
+        body.theme-coca .player-list .player-name:hover {
+            background: rgba(255, 0, 0, 0.15);
+            border-color: #ff1a1a66;
+        }
 
         /* ----- Тема 4: Анимированная ----- */
         body.theme-animated .hero {
@@ -1553,6 +1659,17 @@
         }
         body.theme-animated .news-card:hover {
             border-color: #a855f744;
+        }
+        body.theme-animated .players-section {
+            border-color: #1a1a0a;
+        }
+        body.theme-animated .player-list .player-name {
+            background: rgba(168, 85, 247, 0.08);
+            border-color: rgba(168, 85, 247, 0.12);
+        }
+        body.theme-animated .player-list .player-name:hover {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: #a855f766;
         }
 
         /* ============================================================ */
@@ -1692,6 +1809,8 @@
                 font-size: 12px;
                 bottom: calc(100% + 12px);
             }
+            .players-title { font-size: 18px; }
+            .player-list .player-name { font-size: 13px; padding: 5px 14px; }
         }
         @media (max-width: 480px) {
             .container { padding: 0 14px; }
@@ -1722,6 +1841,9 @@
                 font-size: 11px;
                 bottom: calc(100% + 8px);
             }
+            .players-title { font-size: 16px; }
+            .player-list .player-name { font-size: 12px; padding: 4px 12px; }
+            .players-icon { font-size: 22px; }
         }
     </style>
 
@@ -1759,6 +1881,7 @@
                     <li><a href="#rules" class="nav-link">Правила</a></li>
                     <li><a href="#bans" class="nav-link">Баны</a></li>
                     <li><a href="#team" class="nav-link">Команда</a></li>
+                    <li><a href="#players" class="nav-link">👥 Игроки</a></li>
                     <li><a href="#clicker" class="nav-link">🪙 Clicker</a></li>
                     <li><a href="#contacts" class="nav-link">Контакты</a></li>
                 </ul>
@@ -2093,7 +2216,25 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 9: CLICKER ===================== -->
+    <!-- ==================== СЕКЦИЯ 9: PLAYERS LIST ================ -->
+    <!-- ============================================================ -->
+    <section class="players-section" id="players">
+        <div class="container">
+            <div class="players-header">
+                <span class="players-icon">👥</span>
+                <h3 class="players-title">Игроки <span>онлайн</span></h3>
+            </div>
+            <div class="players-sub">
+                Список игроков, которые сейчас на сервере
+            </div>
+            <div id="playerList" class="player-list">
+                <span class="loading-text">🔄 Загрузка игроков...</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ==================== СЕКЦИЯ 10: CLICKER ==================== -->
     <!-- ============================================================ -->
     <section class="clicker" id="clicker">
         <div class="container">
@@ -2139,7 +2280,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 10: КОНТАКТЫ =================== -->
+    <!-- ==================== СЕКЦИЯ 11: КОНТАКТЫ =================== -->
     <!-- ============================================================ -->
     <section class="contacts" id="contacts">
         <div class="container">
@@ -2188,6 +2329,7 @@
                         <li><a href="#rules">Правила</a></li>
                         <li><a href="#bans">Баны</a></li>
                         <li><a href="#team">Команда</a></li>
+                        <li><a href="#players">👥 Игроки</a></li>
                         <li><a href="#clicker">🪙 Clicker</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
@@ -2260,31 +2402,26 @@
                 cards.forEach(card => {
                     card.addEventListener('click', function(e) {
                         e.stopPropagation();
-                        // Закрываем все другие открытые карточки
                         cards.forEach(c => {
                             if (c !== this) c.classList.remove('active');
                         });
-                        // toggle на текущей
                         this.classList.toggle('active');
                     });
                 });
-                // Закрываем при клике вне карточек
                 document.addEventListener('click', function() {
                     cards.forEach(c => c.classList.remove('active'));
                 });
-                // Закрываем при скролле
                 document.addEventListener('scroll', function() {
                     cards.forEach(c => c.classList.remove('active'));
                 });
             }
 
             // ============================================================
-            // ============== РЕАЛЬНЫЙ ОНЛАЙН (МНОГО API) ================
+            // ============== РЕАЛЬНЫЙ ОНЛАЙН + СПИСОК ИГРОКОВ ==========
             // ============================================================
 
             const SERVER_HOST = 'JustSMP.minerent.io';
             const SERVER_PORT = 31048;
-            const SERVER_IP = '185.9.145.86';
             const DISPLAY_IP = 'JustSMP.minerent.io:31048';
             const FIXED_VERSION = '1.21.11';
 
@@ -2297,214 +2434,85 @@
             if (versionEl) versionEl.textContent = FIXED_VERSION;
 
             let lastOnline = 0;
-            let apiAttempts = 0;
             let isFetched = false;
 
-            // ===== МНОГО API ДЛЯ ПРОВЕРКИ (по домену и по IP) =====
-            const APIS = [
-                // 1. Minetools (домен)
-                {
-                    url: 'https://api.minetools.eu/ping/' + SERVER_HOST + '/' + SERVER_PORT,
-                    parser: function(data) {
-                        if (!data || data.online === false) return null;
-                        return {
-                            online: data.online,
-                            players: data.players ? data.players.online : 0,
-                            max: data.players ? data.players.max : 0,
-                            version: data.version ? data.version.name : '1.21.11'
-                        };
-                    }
-                },
-                // 2. Minetools (IP)
-                {
-                    url: 'https://api.minetools.eu/ping/' + SERVER_IP + '/' + SERVER_PORT,
-                    parser: function(data) {
-                        if (!data || data.online === false) return null;
-                        return {
-                            online: data.online,
-                            players: data.players ? data.players.online : 0,
-                            max: data.players ? data.players.max : 0,
-                            version: data.version ? data.version.name : '1.21.11'
-                        };
-                    }
-                },
-                // 3. MCSrvStat (домен)
-                {
-                    url: 'https://api.mcsrvstat.us/2/' + SERVER_HOST + '/' + SERVER_PORT,
-                    parser: function(data) {
-                        if (!data || data.online === false) return null;
-                        return {
-                            online: data.online,
-                            players: data.players ? data.players.online : 0,
-                            max: data.players ? data.players.max : 0,
-                            version: data.version || '1.21.11'
-                        };
-                    }
-                },
-                // 4. MCSrvStat (IP)
-                {
-                    url: 'https://api.mcsrvstat.us/2/' + SERVER_IP + '/' + SERVER_PORT,
-                    parser: function(data) {
-                        if (!data || data.online === false) return null;
-                        return {
-                            online: data.online,
-                            players: data.players ? data.players.online : 0,
-                            max: data.players ? data.players.max : 0,
-                            version: data.version || '1.21.11'
-                        };
-                    }
-                },
-                // 5. MCAPI (домен)
-                {
-                    url: 'https://mcapi.us/server/status?ip=' + SERVER_HOST + '&port=' + SERVER_PORT,
-                    parser: function(data) {
-                        if (!data || data.online === false) return null;
-                        return {
-                            online: data.online,
-                            players: data.players ? data.players.now : 0,
-                            max: data.players ? data.players.max : 0,
-                            version: '1.21.11'
-                        };
-                    }
-                },
-                // 6. MCAPI (IP)
-                {
-                    url: 'https://mcapi.us/server/status?ip=' + SERVER_IP + '&port=' + SERVER_PORT,
-                    parser: function(data) {
-                        if (!data || data.online === false) return null;
-                        return {
-                            online: data.online,
-                            players: data.players ? data.players.now : 0,
-                            max: data.players ? data.players.max : 0,
-                            version: '1.21.11'
-                        };
-                    }
-                },
-                // 7. MCPing (домен)
-                {
-                    url: 'https://mcping.xyz/api/ping/' + SERVER_HOST + '/' + SERVER_PORT,
-                    parser: function(data) {
-                        if (!data || data.online === false) return null;
-                        return {
-                            online: data.online,
-                            players: data.players ? data.players.online : 0,
-                            max: data.players ? data.players.max : 0,
-                            version: data.version || '1.21.11'
-                        };
-                    }
-                },
-                // 8. MCPing (IP)
-                {
-                    url: 'https://mcping.xyz/api/ping/' + SERVER_IP + '/' + SERVER_PORT,
-                    parser: function(data) {
-                        if (!data || data.online === false) return null;
-                        return {
-                            online: data.online,
-                            players: data.players ? data.players.online : 0,
-                            max: data.players ? data.players.max : 0,
-                            version: data.version || '1.21.11'
-                        };
-                    }
-                },
-                // 9. ServerStatus (домен)
-                {
-                    url: 'https://api.server-status.net/v1/ping/' + SERVER_HOST + '/' + SERVER_PORT,
-                    parser: function(data) {
-                        if (!data || data.online === false) return null;
-                        return {
-                            online: data.online,
-                            players: data.players ? data.players.online : 0,
-                            max: data.players ? data.players.max : 0,
-                            version: data.version || '1.21.11'
-                        };
-                    }
-                },
-                // 10. ServerStatus (IP)
-                {
-                    url: 'https://api.server-status.net/v1/ping/' + SERVER_IP + '/' + SERVER_PORT,
-                    parser: function(data) {
-                        if (!data || data.online === false) return null;
-                        return {
-                            online: data.online,
-                            players: data.players ? data.players.online : 0,
-                            max: data.players ? data.players.max : 0,
-                            version: data.version || '1.21.11'
-                        };
-                    }
-                }
-            ];
-
+            // ===== ФУНКЦИЯ ПОЛУЧЕНИЯ ДАННЫХ =====
             function fetchServerData() {
-                if (isFetched) return;
+                const url = 'https://mcapi.us/server/status?ip=' + SERVER_HOST + '&port=' + SERVER_PORT;
+                const playerListEl = document.getElementById('playerList');
+
                 statusText.textContent = '🔄 Проверка сервера...';
                 statusDot.style.background = '#ffaa00';
-                apiAttempts = 0;
-                tryNextApi();
-            }
 
-            function tryNextApi() {
-                if (apiAttempts >= APIS.length) {
-                    statusText.textContent = '⚠️ Сервер не отвечает';
-                    statusDot.style.background = '#ffaa00';
-                    onlineEl.textContent = '?';
-                    maxEl.textContent = '?';
-                    return;
+                if (playerListEl) {
+                    playerListEl.innerHTML = '<span class="loading-text">🔄 Загрузка игроков...</span>';
                 }
 
-                const api = APIS[apiAttempts];
-                apiAttempts++;
-
-                fetch(api.url, {
+                fetch(url, {
                     method: 'GET',
-                    headers: { 'Accept': 'application/json' },
-                    signal: AbortSignal.timeout(5000)
+                    headers: { 'Accept': 'application/json' }
                 })
                 .then(response => {
                     if (!response.ok) throw new Error('HTTP ' + response.status);
                     return response.json();
                 })
                 .then(data => {
-                    console.log('📡 API #' + apiAttempts + ' ответ:', data);
-                    const parsed = api.parser(data);
-                    if (parsed && parsed.online === true) {
-                        isFetched = true;
-                        processServerData(parsed);
+                    console.log('📡 Данные получены:', data);
+                    isFetched = true;
+
+                    if (data.online === false) {
+                        statusText.textContent = '❌ Сервер офлайн';
+                        statusDot.style.background = '#ff4444';
+                        onlineEl.textContent = '0';
+                        maxEl.textContent = '0';
+                        if (playerListEl) {
+                            playerListEl.innerHTML = '<span class="offline-text">❌ Сервер офлайн</span>';
+                        }
                         return;
                     }
-                    tryNextApi();
+
+                    statusText.textContent = '✅ Сервер онлайн · 24/7';
+                    statusDot.style.background = '#3aff6a';
+
+                    const online = data.players ? data.players.now : 0;
+                    if (online !== lastOnline) {
+                        onlineEl.classList.remove('pulse');
+                        void onlineEl.offsetWidth;
+                        onlineEl.classList.add('pulse');
+                        lastOnline = online;
+                    }
+                    onlineEl.textContent = online;
+
+                    const max = data.players ? data.players.max : '?';
+                    maxEl.textContent = max;
+
+                    // ==== СПИСОК ИГРОКОВ ====
+                    const players = data.players ? data.players.sample : [];
+
+                    if (playerListEl) {
+                        if (players.length === 0) {
+                            playerListEl.innerHTML = '<span class="empty">👥 На сервере никого нет 😴</span>';
+                        } else {
+                            let html = '';
+                            players.forEach((player) => {
+                                html += `<span class="player-name">${player.name}</span>`;
+                            });
+                            playerListEl.innerHTML = html;
+                        }
+                    }
+
                 })
                 .catch(error => {
-                    console.warn('⚠️ API #' + apiAttempts + ' ошибка:', error.message);
-                    tryNextApi();
+                    console.error('❌ Ошибка:', error);
+                    statusText.textContent = '⚠️ Ошибка соединения';
+                    statusDot.style.background = '#ffaa00';
+                    onlineEl.textContent = '?';
+                    maxEl.textContent = '?';
+                    const playerListEl = document.getElementById('playerList');
+                    if (playerListEl) {
+                        playerListEl.innerHTML = '<span class="offline-text">⚠️ Не удалось загрузить список игроков</span>';
+                    }
                 });
-            }
-
-            function processServerData(data) {
-                if (data.online === false) {
-                    statusText.textContent = '❌ Сервер офлайн';
-                    statusDot.style.background = '#ff4444';
-                    onlineEl.textContent = '0';
-                    maxEl.textContent = '0';
-                    return;
-                }
-
-                statusText.textContent = '✅ Сервер онлайн · 24/7';
-                statusDot.style.background = '#3aff6a';
-
-                const online = data.players || 0;
-                if (online !== lastOnline) {
-                    onlineEl.classList.remove('pulse');
-                    void onlineEl.offsetWidth;
-                    onlineEl.classList.add('pulse');
-                    lastOnline = online;
-                }
-                onlineEl.textContent = online;
-
-                maxEl.textContent = data.max || '?';
-
-                if (data.version && data.version !== '1.21.11') {
-                    versionEl.textContent = data.version;
-                }
             }
 
             // ============================================================
@@ -2936,9 +2944,9 @@
             function init() {
                 console.log('⛏️ JustSMP — Классический SMP сервер!');
                 console.log('📌 IP: ' + DISPLAY_IP);
-                console.log('📡 Проверка через 10 API (домен + IP)');
+                console.log('📡 Данные через MCAPI');
                 console.log('💬 Присоединяйся к нам!');
-                console.log('🔄 Повторная проверка каждые 30 секунд');
+                console.log('🔄 Обновление каждые 30 секунд');
 
                 initAdminCards();
                 initCopyIp();
@@ -2953,15 +2961,8 @@
                 initThemes();
                 initClicker();
 
-                // Запускаем проверку
                 fetchServerData();
-
-                // Повторная проверка каждые 30 секунд (если не было успеха)
-                setInterval(function() {
-                    if (!isFetched) {
-                        fetchServerData();
-                    }
-                }, 30000);
+                setInterval(fetchServerData, 30000);
             }
 
             if (document.readyState === 'loading') {
