@@ -736,6 +736,9 @@
             padding: 24px 20px;
             text-align: center;
             transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: visible;
         }
         .team-card:hover {
             transform: translateY(-4px);
@@ -773,6 +776,54 @@
             color: #8a7a5a;
             line-height: 1.5;
             margin-bottom: 14px;
+        }
+        /* ===== ВСПЛЫВАЮЩЕЕ ОКНО ДЛЯ КАРТОЧЕК (ИСПРАВЛЕНО) ===== */
+        .team-card .card-popup {
+            position: absolute;
+            bottom: calc(100% + 16px);
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: rgba(20, 20, 10, 0.95);
+            border: 1px solid #ffd70066;
+            border-radius: 14px;
+            padding: 16px 24px;
+            min-width: 180px;
+            color: #e8e0c8;
+            font-size: 14px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 50;
+            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.9);
+            text-align: center;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .team-card .card-popup::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 10px solid transparent;
+            border-top-color: rgba(20, 20, 10, 0.95);
+        }
+        .team-card .card-popup .popup-title {
+            font-weight: 700;
+            color: #ffd700;
+            font-size: 16px;
+        }
+        .team-card .card-popup .popup-desc {
+            color: #8a7a5a;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+        .team-card.active .card-popup {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+            pointer-events: auto;
         }
 
         /* ============================================================ */
@@ -1185,6 +1236,45 @@
         body.theme-default .logo .gold-ingot {
             filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.6));
         }
+        body.theme-default .ip-box {
+            border-color: #3a3a2a;
+        }
+        body.theme-default .ip-copy-btn {
+            border-color: #4a4a3a;
+        }
+        body.theme-default .ip-copy-btn:hover {
+            border-color: #ffd700;
+        }
+        body.theme-default .team-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-default .team-card:hover {
+            border-color: #ffd70044;
+        }
+        body.theme-default .contact-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-default .contact-card:hover {
+            border-color: #ffd70044;
+        }
+        body.theme-default .about-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-default .about-card:hover {
+            border-color: #ffd70044;
+        }
+        body.theme-default .feature-item {
+            border-color: #1a1a0a;
+        }
+        body.theme-default .feature-item:hover {
+            border-color: #ffd70044;
+        }
+        body.theme-default .news-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-default .news-card:hover {
+            border-color: #ffd70044;
+        }
 
         /* ----- Тема 2: Зелёная ----- */
         body.theme-green .hero {
@@ -1238,6 +1328,45 @@
         }
         body.theme-green .logo .gold-ingot {
             filter: drop-shadow(0 0 16px rgba(58, 255, 106, 0.6));
+        }
+        body.theme-green .ip-box {
+            border-color: #2a3a2a;
+        }
+        body.theme-green .ip-copy-btn {
+            border-color: #2a4a2a;
+        }
+        body.theme-green .ip-copy-btn:hover {
+            border-color: #3aff6a;
+        }
+        body.theme-green .team-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-green .team-card:hover {
+            border-color: #3aff6a44;
+        }
+        body.theme-green .contact-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-green .contact-card:hover {
+            border-color: #3aff6a44;
+        }
+        body.theme-green .about-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-green .about-card:hover {
+            border-color: #3aff6a44;
+        }
+        body.theme-green .feature-item {
+            border-color: #1a1a0a;
+        }
+        body.theme-green .feature-item:hover {
+            border-color: #3aff6a44;
+        }
+        body.theme-green .news-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-green .news-card:hover {
+            border-color: #3aff6a44;
         }
 
         /* ----- Тема 3: Красная ----- */
@@ -1293,6 +1422,45 @@
         body.theme-coca .logo .gold-ingot {
             filter: drop-shadow(0 0 16px rgba(255, 0, 0, 0.6));
         }
+        body.theme-coca .ip-box {
+            border-color: #3a2a2a;
+        }
+        body.theme-coca .ip-copy-btn {
+            border-color: #4a2a2a;
+        }
+        body.theme-coca .ip-copy-btn:hover {
+            border-color: #ff1a1a;
+        }
+        body.theme-coca .team-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-coca .team-card:hover {
+            border-color: #ff1a1a44;
+        }
+        body.theme-coca .contact-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-coca .contact-card:hover {
+            border-color: #ff1a1a44;
+        }
+        body.theme-coca .about-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-coca .about-card:hover {
+            border-color: #ff1a1a44;
+        }
+        body.theme-coca .feature-item {
+            border-color: #1a1a0a;
+        }
+        body.theme-coca .feature-item:hover {
+            border-color: #ff1a1a44;
+        }
+        body.theme-coca .news-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-coca .news-card:hover {
+            border-color: #ff1a1a44;
+        }
 
         /* ----- Тема 4: Анимированная ----- */
         body.theme-animated .hero {
@@ -1346,6 +1514,45 @@
         }
         body.theme-animated .logo .gold-ingot {
             filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.6));
+        }
+        body.theme-animated .ip-box {
+            border-color: #2a2a3a;
+        }
+        body.theme-animated .ip-copy-btn {
+            border-color: #3a2a4a;
+        }
+        body.theme-animated .ip-copy-btn:hover {
+            border-color: #a855f7;
+        }
+        body.theme-animated .team-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-animated .team-card:hover {
+            border-color: #a855f744;
+        }
+        body.theme-animated .contact-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-animated .contact-card:hover {
+            border-color: #a855f744;
+        }
+        body.theme-animated .about-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-animated .about-card:hover {
+            border-color: #a855f744;
+        }
+        body.theme-animated .feature-item {
+            border-color: #1a1a0a;
+        }
+        body.theme-animated .feature-item:hover {
+            border-color: #a855f744;
+        }
+        body.theme-animated .news-card {
+            border-color: #2a2a1a;
+        }
+        body.theme-animated .news-card:hover {
+            border-color: #a855f744;
         }
 
         /* ============================================================ */
@@ -1479,6 +1686,12 @@
             .theme-toggle { bottom: 90px; }
             .clicker-gold { width: 120px; height: 120px; }
             .clicker-shop button { min-width: 100px; font-size: 12px; padding: 10px 14px; }
+            .team-card .card-popup {
+                min-width: 140px;
+                padding: 12px 16px;
+                font-size: 12px;
+                bottom: calc(100% + 12px);
+            }
         }
         @media (max-width: 480px) {
             .container { padding: 0 14px; }
@@ -1503,6 +1716,12 @@
             .clicker-stats { gap: 12px; }
             .clicker-stat { padding: 8px 14px; min-width: 80px; }
             .clicker-stat .number { font-size: 20px; }
+            .team-card .card-popup {
+                min-width: 120px;
+                padding: 10px 12px;
+                font-size: 11px;
+                bottom: calc(100% + 8px);
+            }
         }
     </style>
 
@@ -1835,7 +2054,11 @@
             </div>
             <div class="team-grid">
                 <!-- Drun_777 - Владелец -->
-                <div class="team-card owner">
+                <div class="team-card owner" data-admin="Drun_777">
+                    <div class="card-popup">
+                        <div class="popup-title">👑 Drun_777</div>
+                        <div class="popup-desc">В разработке</div>
+                    </div>
                     <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566612070174832/cvs3NAAAABklEQVQDANcw1lycNXCYAAAAAElFTkSuQmCC.png?ex=6a660abc&is=6a64b93c&hm=e1e6c8d6dd83a799aabc592ad67121cf6fc3269a275a0f50ba6c7433104e4e94&" alt="Drun_777" />
                     <h4>Drun_777</h4>
                     <span class="team-role">👑 Владелец</span>
@@ -1843,7 +2066,11 @@
                 </div>
 
                 <!-- Denchick1789 - Администратор -->
-                <div class="team-card admin">
+                <div class="team-card admin" data-admin="Denchick1789">
+                    <div class="card-popup">
+                        <div class="popup-title">⚙️ Denchick1789</div>
+                        <div class="popup-desc">В разработке</div>
+                    </div>
                     <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566936214241503/UO2uLQAAAAZJREFUAwBl0nTDfamiQAAAABJRU5ErkJggg.png?ex=6a660b0a&is=6a64b98a&hm=5fe0e44afa5412e3bbb02721fb0beec5cb6522f18322ffa2b26dc68c4d9d04b5&" alt="Denchick1789" />
                     <h4>Denchick1789</h4>
                     <span class="team-role">⚙️ Администратор</span>
@@ -1851,7 +2078,11 @@
                 </div>
 
                 <!-- Lait_TIM - Хелпер -->
-                <div class="team-card moderator">
+                <div class="team-card moderator" data-admin="Lait_TIM">
+                    <div class="card-popup">
+                        <div class="popup-title">🛡️ Lait_TIM</div>
+                        <div class="popup-desc">В разработке</div>
+                    </div>
                     <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566831264497856/8osJVMAAAABklEQVQDAAr0FvG9MCdbAAAAAElFTkSuQmCC.png?ex=6a660af1&is=6a64b971&hm=a805b8c169bd3aeca7a4f83517280cf73d9f90dbcc9455300b426a8f4eb4560d&" alt="Lait_TIM" />
                     <h4>Lait_TIM</h4>
                     <span class="team-role">🛡️ Хелпер</span>
@@ -2022,17 +2253,40 @@
             'use strict';
 
             // ============================================================
-            // ============== РЕАЛЬНЫЙ ОНЛАЙН (ЦИФРОВОЙ IP) ==============
+            // ============== КЛИК ПО КАРТОЧКАМ АДМИНОВ ===================
+            // ============================================================
+            function initAdminCards() {
+                const cards = document.querySelectorAll('.team-card[data-admin]');
+                cards.forEach(card => {
+                    card.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Закрываем все другие открытые карточки
+                        cards.forEach(c => {
+                            if (c !== this) c.classList.remove('active');
+                        });
+                        // toggle на текущей
+                        this.classList.toggle('active');
+                    });
+                });
+                // Закрываем при клике вне карточек
+                document.addEventListener('click', function() {
+                    cards.forEach(c => c.classList.remove('active'));
+                });
+                // Закрываем при скролле
+                document.addEventListener('scroll', function() {
+                    cards.forEach(c => c.classList.remove('active'));
+                });
+            }
+
+            // ============================================================
+            // ============== РЕАЛЬНЫЙ ОНЛАЙН (МНОГО API) ================
             // ============================================================
 
-            // ===== ИСПРАВЛЕНО: ИСПОЛЬЗУЕМ ЦИФРОВОЙ IP ДЛЯ API =====
-            const SERVER_IP_FOR_API = '185.9.145.86';
+            const SERVER_HOST = 'JustSMP.minerent.io';
             const SERVER_PORT = 31048;
+            const SERVER_IP = '185.9.145.86';
             const DISPLAY_IP = 'JustSMP.minerent.io:31048';
             const FIXED_VERSION = '1.21.11';
-
-            // ===== ИСПРАВЛЕНО: ИСПОЛЬЗУЕМ MINETOOLS С ЦИФРОВЫМ IP =====
-            const API_URL = 'https://api.minetools.eu/ping/' + SERVER_IP_FOR_API + '/' + SERVER_PORT;
 
             const statusText = document.getElementById('statusText');
             const statusDot = document.getElementById('statusDot');
@@ -2043,62 +2297,214 @@
             if (versionEl) versionEl.textContent = FIXED_VERSION;
 
             let lastOnline = 0;
+            let apiAttempts = 0;
+            let isFetched = false;
+
+            // ===== МНОГО API ДЛЯ ПРОВЕРКИ (по домену и по IP) =====
+            const APIS = [
+                // 1. Minetools (домен)
+                {
+                    url: 'https://api.minetools.eu/ping/' + SERVER_HOST + '/' + SERVER_PORT,
+                    parser: function(data) {
+                        if (!data || data.online === false) return null;
+                        return {
+                            online: data.online,
+                            players: data.players ? data.players.online : 0,
+                            max: data.players ? data.players.max : 0,
+                            version: data.version ? data.version.name : '1.21.11'
+                        };
+                    }
+                },
+                // 2. Minetools (IP)
+                {
+                    url: 'https://api.minetools.eu/ping/' + SERVER_IP + '/' + SERVER_PORT,
+                    parser: function(data) {
+                        if (!data || data.online === false) return null;
+                        return {
+                            online: data.online,
+                            players: data.players ? data.players.online : 0,
+                            max: data.players ? data.players.max : 0,
+                            version: data.version ? data.version.name : '1.21.11'
+                        };
+                    }
+                },
+                // 3. MCSrvStat (домен)
+                {
+                    url: 'https://api.mcsrvstat.us/2/' + SERVER_HOST + '/' + SERVER_PORT,
+                    parser: function(data) {
+                        if (!data || data.online === false) return null;
+                        return {
+                            online: data.online,
+                            players: data.players ? data.players.online : 0,
+                            max: data.players ? data.players.max : 0,
+                            version: data.version || '1.21.11'
+                        };
+                    }
+                },
+                // 4. MCSrvStat (IP)
+                {
+                    url: 'https://api.mcsrvstat.us/2/' + SERVER_IP + '/' + SERVER_PORT,
+                    parser: function(data) {
+                        if (!data || data.online === false) return null;
+                        return {
+                            online: data.online,
+                            players: data.players ? data.players.online : 0,
+                            max: data.players ? data.players.max : 0,
+                            version: data.version || '1.21.11'
+                        };
+                    }
+                },
+                // 5. MCAPI (домен)
+                {
+                    url: 'https://mcapi.us/server/status?ip=' + SERVER_HOST + '&port=' + SERVER_PORT,
+                    parser: function(data) {
+                        if (!data || data.online === false) return null;
+                        return {
+                            online: data.online,
+                            players: data.players ? data.players.now : 0,
+                            max: data.players ? data.players.max : 0,
+                            version: '1.21.11'
+                        };
+                    }
+                },
+                // 6. MCAPI (IP)
+                {
+                    url: 'https://mcapi.us/server/status?ip=' + SERVER_IP + '&port=' + SERVER_PORT,
+                    parser: function(data) {
+                        if (!data || data.online === false) return null;
+                        return {
+                            online: data.online,
+                            players: data.players ? data.players.now : 0,
+                            max: data.players ? data.players.max : 0,
+                            version: '1.21.11'
+                        };
+                    }
+                },
+                // 7. MCPing (домен)
+                {
+                    url: 'https://mcping.xyz/api/ping/' + SERVER_HOST + '/' + SERVER_PORT,
+                    parser: function(data) {
+                        if (!data || data.online === false) return null;
+                        return {
+                            online: data.online,
+                            players: data.players ? data.players.online : 0,
+                            max: data.players ? data.players.max : 0,
+                            version: data.version || '1.21.11'
+                        };
+                    }
+                },
+                // 8. MCPing (IP)
+                {
+                    url: 'https://mcping.xyz/api/ping/' + SERVER_IP + '/' + SERVER_PORT,
+                    parser: function(data) {
+                        if (!data || data.online === false) return null;
+                        return {
+                            online: data.online,
+                            players: data.players ? data.players.online : 0,
+                            max: data.players ? data.players.max : 0,
+                            version: data.version || '1.21.11'
+                        };
+                    }
+                },
+                // 9. ServerStatus (домен)
+                {
+                    url: 'https://api.server-status.net/v1/ping/' + SERVER_HOST + '/' + SERVER_PORT,
+                    parser: function(data) {
+                        if (!data || data.online === false) return null;
+                        return {
+                            online: data.online,
+                            players: data.players ? data.players.online : 0,
+                            max: data.players ? data.players.max : 0,
+                            version: data.version || '1.21.11'
+                        };
+                    }
+                },
+                // 10. ServerStatus (IP)
+                {
+                    url: 'https://api.server-status.net/v1/ping/' + SERVER_IP + '/' + SERVER_PORT,
+                    parser: function(data) {
+                        if (!data || data.online === false) return null;
+                        return {
+                            online: data.online,
+                            players: data.players ? data.players.online : 0,
+                            max: data.players ? data.players.max : 0,
+                            version: data.version || '1.21.11'
+                        };
+                    }
+                }
+            ];
 
             function fetchServerData() {
+                if (isFetched) return;
                 statusText.textContent = '🔄 Проверка сервера...';
                 statusDot.style.background = '#ffaa00';
+                apiAttempts = 0;
+                tryNextApi();
+            }
 
-                fetch(API_URL, {
+            function tryNextApi() {
+                if (apiAttempts >= APIS.length) {
+                    statusText.textContent = '⚠️ Сервер не отвечает';
+                    statusDot.style.background = '#ffaa00';
+                    onlineEl.textContent = '?';
+                    maxEl.textContent = '?';
+                    return;
+                }
+
+                const api = APIS[apiAttempts];
+                apiAttempts++;
+
+                fetch(api.url, {
                     method: 'GET',
-                    headers: { 'Accept': 'application/json' }
+                    headers: { 'Accept': 'application/json' },
+                    signal: AbortSignal.timeout(5000)
                 })
                 .then(response => {
                     if (!response.ok) throw new Error('HTTP ' + response.status);
                     return response.json();
                 })
                 .then(data => {
-                    console.log('📡 Данные получены:', data);
-
-                    if (data.online === false || !data.online) {
-                        statusText.textContent = '❌ Сервер офлайн';
-                        statusDot.style.background = '#ff4444';
-                        onlineEl.textContent = '0';
-                        maxEl.textContent = '0';
+                    console.log('📡 API #' + apiAttempts + ' ответ:', data);
+                    const parsed = api.parser(data);
+                    if (parsed && parsed.online === true) {
+                        isFetched = true;
+                        processServerData(parsed);
                         return;
                     }
-
-                    statusText.textContent = '✅ Сервер онлайн · 24/7';
-                    statusDot.style.background = '#3aff6a';
-
-                    const online = data.players ? data.players.online : 0;
-                    if (online !== lastOnline) {
-                        onlineEl.classList.remove('pulse');
-                        void onlineEl.offsetWidth;
-                        onlineEl.classList.add('pulse');
-                        lastOnline = online;
-                    }
-                    onlineEl.textContent = online;
-
-                    maxEl.textContent = data.players ? data.players.max : '?';
-
-                    if (data.version && data.version.name) {
-                        versionEl.textContent = data.version.name;
-                    }
-
-                    const onlineBox = document.getElementById('onlineBox');
-                    if (onlineBox) {
-                        onlineBox.classList.add('updated');
-                        setTimeout(() => onlineBox.classList.remove('updated'), 500);
-                    }
-
+                    tryNextApi();
                 })
                 .catch(error => {
-                    console.error('❌ Ошибка:', error);
-                    statusText.textContent = '⚠️ Ошибка соединения';
-                    statusDot.style.background = '#ffaa00';
-                    onlineEl.textContent = '?';
-                    maxEl.textContent = '?';
+                    console.warn('⚠️ API #' + apiAttempts + ' ошибка:', error.message);
+                    tryNextApi();
                 });
+            }
+
+            function processServerData(data) {
+                if (data.online === false) {
+                    statusText.textContent = '❌ Сервер офлайн';
+                    statusDot.style.background = '#ff4444';
+                    onlineEl.textContent = '0';
+                    maxEl.textContent = '0';
+                    return;
+                }
+
+                statusText.textContent = '✅ Сервер онлайн · 24/7';
+                statusDot.style.background = '#3aff6a';
+
+                const online = data.players || 0;
+                if (online !== lastOnline) {
+                    onlineEl.classList.remove('pulse');
+                    void onlineEl.offsetWidth;
+                    onlineEl.classList.add('pulse');
+                    lastOnline = online;
+                }
+                onlineEl.textContent = online;
+
+                maxEl.textContent = data.max || '?';
+
+                if (data.version && data.version !== '1.21.11') {
+                    versionEl.textContent = data.version;
+                }
             }
 
             // ============================================================
@@ -2529,11 +2935,12 @@
 
             function init() {
                 console.log('⛏️ JustSMP — Классический SMP сервер!');
-                console.log('📌 IP для игроков: ' + DISPLAY_IP);
-                console.log('📡 Онлайн проверяется по IP: ' + SERVER_IP_FOR_API + ':' + SERVER_PORT);
+                console.log('📌 IP: ' + DISPLAY_IP);
+                console.log('📡 Проверка через 10 API (домен + IP)');
                 console.log('💬 Присоединяйся к нам!');
-                console.log('🔄 Обновление каждые 10 секунд');
+                console.log('🔄 Повторная проверка каждые 30 секунд');
 
+                initAdminCards();
                 initCopyIp();
                 initActiveNavLink();
                 initHeaderScroll();
@@ -2546,8 +2953,15 @@
                 initThemes();
                 initClicker();
 
+                // Запускаем проверку
                 fetchServerData();
-                setInterval(fetchServerData, 10000);
+
+                // Повторная проверка каждые 30 секунд (если не было успеха)
+                setInterval(function() {
+                    if (!isFetched) {
+                        fetchServerData();
+                    }
+                }, 30000);
             }
 
             if (document.readyState === 'loading') {
