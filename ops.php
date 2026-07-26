@@ -1,5 +1,5 @@
 <?php
-// ops.php — получает список игроков и операторов через RCON
+// ops.php — с отладкой, чтобы увидеть сырой ответ
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
@@ -9,7 +9,9 @@ $password = 'JustSrun777';
 
 $result = [
     'players' => [],
-    'operators' => []
+    'operators' => [],
+    'raw_list' => '',   // <-- для отладки
+    'raw_op' => ''      // <-- для отладки
 ];
 
 try {
@@ -32,9 +34,13 @@ try {
     $response = fread($socket, 4096);
     $response = substr($response, 8);
     $response = trim($response);
+    
+    $result['raw_list'] = $response; // сохраняем сырой ответ
 
-    // Парсим /list: "There are 5 of a max of 50 players online: Drun_777, Denchick1789, Steve, Alex, John"
+    // Парсим /list
     $players = [];
+    
+    // Вариант 1: "There are 2 of a max of 50 players online: Drun_777, Denchick1789"
     if (strpos($response, 'players online:') !== false) {
         $parts = explode('players online:', $response);
         if (isset($parts[1])) {
@@ -43,8 +49,9 @@ try {
                 $players = array_map('trim', explode(',', $list));
             }
         }
-    } elseif (strpos($response, 'online:') !== false) {
-        // Альтернативный формат
+    } 
+    // Вариант 2: "online: Drun_777, Denchick1789" (сокращённый)
+    elseif (strpos($response, 'online:') !== false) {
         $parts = explode('online:', $response);
         if (isset($parts[1])) {
             $list = trim($parts[1]);
@@ -52,6 +59,10 @@ try {
                 $players = array_map('trim', explode(',', $list));
             }
         }
+    }
+    // Вариант 3: "Drun_777, Denchick1789" (только имена)
+    elseif (strpos($response, ',') !== false) {
+        $players = array_map('trim', explode(',', $response));
     }
 
     $result['players'] = $players;
@@ -62,6 +73,8 @@ try {
     $response = fread($socket, 4096);
     $response = substr($response, 8);
     $response = trim($response);
+    
+    $result['raw_op'] = $response;
 
     $operators = [];
     if (strpos($response, 'Operators:') !== false) {
@@ -79,7 +92,7 @@ try {
     fclose($socket);
 
 } catch (Exception $e) {
-    $result = ['players' => [], 'operators' => []];
+    $result = ['players' => [], 'operators' => [], 'raw_list' => $e->getMessage(), 'raw_op' => ''];
 }
 
 echo json_encode($result);
