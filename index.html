@@ -2025,22 +2025,20 @@
             // ============== РЕАЛЬНЫЙ ОНЛАЙН (ЦИФРОВОЙ IP) ==============
             // ============================================================
 
-            // ===== ИСПОЛЬЗУЕМ ЦИФРОВОЙ IP ДЛЯ API =====
-            const SERVER_IP = '185.9.145.86';
+            // ===== ИСПРАВЛЕНО: ИСПОЛЬЗУЕМ ЦИФРОВОЙ IP ДЛЯ API =====
+            const SERVER_IP_FOR_API = '185.9.145.86';
             const SERVER_PORT = 31048;
             const DISPLAY_IP = 'JustSMP.minerent.io:31048';
             const FIXED_VERSION = '1.21.11';
 
-            // ===== API MINETOOLS (РАБОТАЕТ С НЕСТАНДАРТНЫМИ ПОРТАМИ) =====
-            const API_URL = 'https://api.minetools.eu/ping/' + SERVER_IP + '/' + SERVER_PORT;
+            // ===== ИСПРАВЛЕНО: ИСПОЛЬЗУЕМ MINETOOLS С ЦИФРОВЫМ IP =====
+            const API_URL = 'https://api.minetools.eu/ping/' + SERVER_IP_FOR_API + '/' + SERVER_PORT;
 
             const statusText = document.getElementById('statusText');
             const statusDot = document.getElementById('statusDot');
-            const statusDisplay = document.getElementById('serverStatus');
             const onlineEl = document.getElementById('onlineCount');
             const maxEl = document.getElementById('maxPlayers');
             const versionEl = document.getElementById('serverVersion');
-            const updateTimeEl = document.getElementById('updateTime');
 
             if (versionEl) versionEl.textContent = FIXED_VERSION;
 
@@ -2061,13 +2059,9 @@
                 .then(data => {
                     console.log('📡 Данные получены:', data);
 
-                    const now = new Date();
-                    if (updateTimeEl) updateTimeEl.textContent = 'Обновлено: ' + now.toLocaleTimeString();
-
                     if (data.online === false || !data.online) {
                         statusText.textContent = '❌ Сервер офлайн';
                         statusDot.style.background = '#ff4444';
-                        statusDisplay.style.borderColor = '#ff444444';
                         onlineEl.textContent = '0';
                         maxEl.textContent = '0';
                         return;
@@ -2075,7 +2069,6 @@
 
                     statusText.textContent = '✅ Сервер онлайн · 24/7';
                     statusDot.style.background = '#3aff6a';
-                    statusDisplay.style.borderColor = '#3aff6a44';
 
                     const online = data.players ? data.players.online : 0;
                     if (online !== lastOnline) {
@@ -2086,8 +2079,7 @@
                     }
                     onlineEl.textContent = online;
 
-                    const max = data.players ? data.players.max : '?';
-                    maxEl.textContent = max;
+                    maxEl.textContent = data.players ? data.players.max : '?';
 
                     if (data.version && data.version.name) {
                         versionEl.textContent = data.version.name;
@@ -2537,8 +2529,8 @@
 
             function init() {
                 console.log('⛏️ JustSMP — Классический SMP сервер!');
-                console.log('📌 IP: ' + DISPLAY_IP);
-                console.log('📡 Онлайн проверяется по IP: ' + SERVER_IP + ':' + SERVER_PORT);
+                console.log('📌 IP для игроков: ' + DISPLAY_IP);
+                console.log('📡 Онлайн проверяется по IP: ' + SERVER_IP_FOR_API + ':' + SERVER_PORT);
                 console.log('💬 Присоединяйся к нам!');
                 console.log('🔄 Обновление каждые 10 секунд');
 
