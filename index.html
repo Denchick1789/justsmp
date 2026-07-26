@@ -42,7 +42,7 @@
             list-style: none;
         }
 
-        /* ===== ЗОЛОТОЙ СЛИТОК (SVG) ===== */
+        /* ===== ЗОЛОТОЙ СЛИТОК (SVG — как в игре) ===== */
         .gold-ingot {
             display: inline-block;
             width: 40px;
@@ -1076,6 +1076,56 @@
         }
 
         /* ============================================================ */
+        /* ====================== DEVELOPERS =========================== */
+        /* ============================================================ */
+        .developers {
+            background: #0f0f08;
+        }
+        .developers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .developer-card {
+            background: linear-gradient(145deg, #111108, #0a0a0a);
+            border: 1px solid #2a2a1a;
+            border-radius: 16px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .developer-card:hover {
+            transform: translateY(-6px);
+            border-color: #ffd70044;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+        .developer-card .dev-icon {
+            font-size: 44px;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .developer-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #e8e0c8;
+            margin-bottom: 6px;
+        }
+        .developer-card .dev-role {
+            color: #ffd700;
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .developer-card p {
+            font-size: 15px;
+            color: #8a7a5a;
+            line-height: 1.6;
+        }
+
+        /* ============================================================ */
         /* ====================== FOOTER =============================== */
         /* ============================================================ */
         .footer {
@@ -1150,6 +1200,10 @@
             gap: 12px;
             font-size: 13px;
             color: #4a3a2a;
+        }
+        .footer-version {
+            color: #6a5a3a;
+            font-size: 12px;
         }
 
         /* ============================================================ */
@@ -1229,6 +1283,37 @@
         }
         .theme-panel.open {
             display: flex;
+        }
+        /* На телефоне — полная панель, на ПК — как обычно */
+        @media (max-width: 768px) {
+            .theme-panel {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                top: auto;
+                transform: none;
+                border-radius: 16px 16px 0 0;
+                min-width: unset;
+                width: 100%;
+                padding: 20px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                background: rgba(20, 20, 10, 0.98);
+                backdrop-filter: blur(16px);
+                border-top: 2px solid #ffd70044;
+            }
+            .theme-panel .theme-option {
+                flex: 0 0 auto;
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .theme-panel .theme-option .theme-dot {
+                width: 12px;
+                height: 12px;
+                margin-right: 6px;
+            }
         }
         .theme-panel .theme-option {
             padding: 8px 16px;
@@ -1847,6 +1932,7 @@
             .bans-grid { grid-template-columns: 1fr 1fr; }
             .team-grid { grid-template-columns: 1fr 1fr; }
             .contacts-grid { grid-template-columns: 1fr; }
+            .developers-grid { grid-template-columns: 1fr; }
             .theme-toggle { bottom: 90px; }
             .clicker-gold { width: 120px; height: 120px; }
             .clicker-shop button { min-width: 100px; font-size: 12px; padding: 10px 14px; }
@@ -1870,6 +1956,7 @@
             .bans-grid { grid-template-columns: 1fr; }
             .team-grid { grid-template-columns: 1fr; }
             .contacts-grid { grid-template-columns: 1fr; }
+            .developers-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; text-align: center; }
             .btn { padding: 12px 24px; font-size: 14px; }
@@ -1915,33 +2002,26 @@
     <header class="header" id="header">
         <div class="container header-container">
             <div class="logo">
-                <!-- ===== ВСТРОЕННЫЙ SVG СЛИТОК ===== -->
                 <span class="gold-ingot">
                     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Основа слитка как в Minecraft -->
+                        <rect x="6" y="14" width="52" height="36" rx="4" ry="4" fill="#ffd700" stroke="#b8860b" stroke-width="2"/>
+                        <!-- Тёмная рамка (как в игре) -->
+                        <rect x="8" y="16" width="48" height="32" rx="3" ry="3" fill="#f0a500" stroke="#b8860b" stroke-width="1.5"/>
+                        <!-- Внутренний блик -->
+                        <rect x="12" y="20" width="40" height="24" rx="2" ry="2" fill="url(#goldGrad)" stroke="none"/>
+                        <!-- Полоса (текстура слитка) -->
+                        <line x1="14" y1="28" x2="50" y2="28" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
+                        <line x1="14" y1="36" x2="50" y2="36" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
+                        <!-- Блик сверху -->
+                        <rect x="12" y="20" width="40" height="6" rx="2" ry="2" fill="rgba(255,255,255,0.15)" stroke="none"/>
                         <defs>
                             <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#ffd700"/>
                                 <stop offset="50%" stop-color="#f0a500"/>
-                                <stop offset="100%" stop-color="#b8860b"/>
-                            </linearGradient>
-                            <linearGradient id="goldShine" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
-                                <stop offset="50%" stop-color="rgba(255,255,255,0.0)"/>
-                                <stop offset="100%" stop-color="rgba(255,215,0,0.3)"/>
+                                <stop offset="100%" stop-color="#cc8800"/>
                             </linearGradient>
                         </defs>
-                        <!-- Основная форма слитка -->
-                        <rect x="8" y="16" width="48" height="32" rx="6" ry="6" fill="url(#goldGrad)" stroke="#b8860b" stroke-width="1.5"/>
-                        <!-- Верхняя грань (блик) -->
-                        <rect x="8" y="16" width="48" height="10" rx="6" ry="4" fill="url(#goldShine)" stroke="none"/>
-                        <!-- Блик в центре -->
-                        <ellipse cx="32" cy="30" rx="18" ry="8" fill="rgba(255,255,255,0.08)"/>
-                        <!-- Штрихи текстуры -->
-                        <line x1="16" y1="24" x2="48" y2="24" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
-                        <line x1="16" y1="32" x2="48" y2="32" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
-                        <line x1="16" y1="40" x2="48" y2="40" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
-                        <!-- Маленькая звезда (символ) -->
-                        <text x="32" y="38" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.3)" font-weight="bold">$</text>
                     </svg>
                 </span>
                 <span class="logo-text">Just<span>SMP</span></span>
@@ -1957,6 +2037,7 @@
                     <li><a href="#team" class="nav-link">Команда</a></li>
                     <li><a href="#players" class="nav-link">👥 Игроки</a></li>
                     <li><a href="#clicker" class="nav-link">🪙 Clicker</a></li>
+                    <li><a href="#developers" class="nav-link">💻 Разработчики</a></li>
                     <li><a href="#contacts" class="nav-link">Контакты</a></li>
                 </ul>
             </nav>
@@ -2008,25 +2089,19 @@
             <div class="hero-image">
                 <div class="big-gold">
                     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="6" y="14" width="52" height="36" rx="4" ry="4" fill="#ffd700" stroke="#b8860b" stroke-width="2"/>
+                        <rect x="8" y="16" width="48" height="32" rx="3" ry="3" fill="#f0a500" stroke="#b8860b" stroke-width="1.5"/>
+                        <rect x="12" y="20" width="40" height="24" rx="2" ry="2" fill="url(#goldGradBig)" stroke="none"/>
+                        <line x1="14" y1="28" x2="50" y2="28" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
+                        <line x1="14" y1="36" x2="50" y2="36" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
+                        <rect x="12" y="20" width="40" height="6" rx="2" ry="2" fill="rgba(255,255,255,0.15)" stroke="none"/>
                         <defs>
                             <linearGradient id="goldGradBig" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#ffd700"/>
                                 <stop offset="50%" stop-color="#f0a500"/>
-                                <stop offset="100%" stop-color="#b8860b"/>
-                            </linearGradient>
-                            <linearGradient id="goldShineBig" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
-                                <stop offset="50%" stop-color="rgba(255,255,255,0.0)"/>
-                                <stop offset="100%" stop-color="rgba(255,215,0,0.3)"/>
+                                <stop offset="100%" stop-color="#cc8800"/>
                             </linearGradient>
                         </defs>
-                        <rect x="8" y="16" width="48" height="32" rx="6" ry="6" fill="url(#goldGradBig)" stroke="#b8860b" stroke-width="1.5"/>
-                        <rect x="8" y="16" width="48" height="10" rx="6" ry="4" fill="url(#goldShineBig)" stroke="none"/>
-                        <ellipse cx="32" cy="30" rx="18" ry="8" fill="rgba(255,255,255,0.08)"/>
-                        <line x1="16" y1="24" x2="48" y2="24" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
-                        <line x1="16" y1="32" x2="48" y2="32" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
-                        <line x1="16" y1="40" x2="48" y2="40" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
-                        <text x="32" y="38" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.3)" font-weight="bold">$</text>
                     </svg>
                 </div>
             </div>
@@ -2339,25 +2414,19 @@
             <div class="clicker-container">
                 <div class="clicker-gold" id="clickerGold">
                     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="6" y="14" width="52" height="36" rx="4" ry="4" fill="#ffd700" stroke="#b8860b" stroke-width="2"/>
+                        <rect x="8" y="16" width="48" height="32" rx="3" ry="3" fill="#f0a500" stroke="#b8860b" stroke-width="1.5"/>
+                        <rect x="12" y="20" width="40" height="24" rx="2" ry="2" fill="url(#goldGradClick)" stroke="none"/>
+                        <line x1="14" y1="28" x2="50" y2="28" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
+                        <line x1="14" y1="36" x2="50" y2="36" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
+                        <rect x="12" y="20" width="40" height="6" rx="2" ry="2" fill="rgba(255,255,255,0.15)" stroke="none"/>
                         <defs>
                             <linearGradient id="goldGradClick" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#ffd700"/>
                                 <stop offset="50%" stop-color="#f0a500"/>
-                                <stop offset="100%" stop-color="#b8860b"/>
-                            </linearGradient>
-                            <linearGradient id="goldShineClick" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
-                                <stop offset="50%" stop-color="rgba(255,255,255,0.0)"/>
-                                <stop offset="100%" stop-color="rgba(255,215,0,0.3)"/>
+                                <stop offset="100%" stop-color="#cc8800"/>
                             </linearGradient>
                         </defs>
-                        <rect x="8" y="16" width="48" height="32" rx="6" ry="6" fill="url(#goldGradClick)" stroke="#b8860b" stroke-width="1.5"/>
-                        <rect x="8" y="16" width="48" height="10" rx="6" ry="4" fill="url(#goldShineClick)" stroke="none"/>
-                        <ellipse cx="32" cy="30" rx="18" ry="8" fill="rgba(255,255,255,0.08)"/>
-                        <line x1="16" y1="24" x2="48" y2="24" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
-                        <line x1="16" y1="32" x2="48" y2="32" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
-                        <line x1="16" y1="40" x2="48" y2="40" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
-                        <text x="32" y="38" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.3)" font-weight="bold">$</text>
                     </svg>
                 </div>
 
@@ -2395,7 +2464,34 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 11: КОНТАКТЫ =================== -->
+    <!-- ================ СЕКЦИЯ 11: РАЗРАБОТЧИКИ ================== -->
+    <!-- ============================================================ -->
+    <section class="developers" id="developers">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">💻 Разработчики</span>
+                <h2 class="section-title">Кто создал <span>JustSMP</span>?</h2>
+                <p class="section-desc">Команда разработчиков, благодаря которым этот сервер существует.</p>
+            </div>
+            <div class="developers-grid">
+                <div class="developer-card">
+                    <span class="dev-icon">🧑‍💻</span>
+                    <h3>JustZero</h3>
+                    <span class="dev-role">⭐ Ведущий разработчик</span>
+                    <p>Основатель и главный архитектор сервера. Отвечает за техническую часть и развитие проекта.</p>
+                </div>
+                <div class="developer-card">
+                    <span class="dev-icon">👨‍💻</span>
+                    <h3>Denchick1789</h3>
+                    <span class="dev-role">⚡ Разработчик</span>
+                    <p>Технический специалист, занимается оптимизацией и поддержкой серверной инфраструктуры.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ==================== СЕКЦИЯ 12: КОНТАКТЫ =================== -->
     <!-- ============================================================ -->
     <section class="contacts" id="contacts">
         <div class="container">
@@ -2425,10 +2521,19 @@
                     <div class="logo">
                         <span class="gold-ingot">
                             <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="8" y="16" width="48" height="32" rx="6" ry="6" fill="url(#goldGrad)" stroke="#b8860b" stroke-width="1.5"/>
-                                <rect x="8" y="16" width="48" height="10" rx="6" ry="4" fill="url(#goldShine)" stroke="none"/>
-                                <ellipse cx="32" cy="30" rx="18" ry="8" fill="rgba(255,255,255,0.08)"/>
-                                <text x="32" y="38" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.3)" font-weight="bold">$</text>
+                                <rect x="6" y="14" width="52" height="36" rx="4" ry="4" fill="#ffd700" stroke="#b8860b" stroke-width="2"/>
+                                <rect x="8" y="16" width="48" height="32" rx="3" ry="3" fill="#f0a500" stroke="#b8860b" stroke-width="1.5"/>
+                                <rect x="12" y="20" width="40" height="24" rx="2" ry="2" fill="url(#goldGradFooter)" stroke="none"/>
+                                <line x1="14" y1="28" x2="50" y2="28" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
+                                <line x1="14" y1="36" x2="50" y2="36" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
+                                <rect x="12" y="20" width="40" height="6" rx="2" ry="2" fill="rgba(255,255,255,0.15)" stroke="none"/>
+                                <defs>
+                                    <linearGradient id="goldGradFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#ffd700"/>
+                                        <stop offset="50%" stop-color="#f0a500"/>
+                                        <stop offset="100%" stop-color="#cc8800"/>
+                                    </linearGradient>
+                                </defs>
                             </svg>
                         </span>
                         <span class="logo-text">Just<span>SMP</span></span>
@@ -2453,6 +2558,7 @@
                         <li><a href="#team">Команда</a></li>
                         <li><a href="#players">👥 Игроки</a></li>
                         <li><a href="#clicker">🪙 Clicker</a></li>
+                        <li><a href="#developers">💻 Разработчики</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </div>
@@ -2474,7 +2580,7 @@
             <div class="footer-bottom">
                 <span>© 2026 JustSMP · Все права защищены</span>
                 <span>Сделано с ❤️ командой JustSMP</span>
-                <span>Версия 2.1 · 8 тем · Встроенный SVG</span>
+                <span class="footer-version">Версия 2.1</span>
             </div>
         </div>
     </footer>
@@ -2558,10 +2664,7 @@
             // ============== РЕАЛЬНЫЙ ОНЛАЙН 2026 (В 1 ФАЙЛЕ) ===========
             // ============================================================
             
-            // === СТРАТЕГИЯ 1: MCStatus.io (Прямой API) ===
             const API_URL = 'https://api.mcstatus.io/v2/status/java/JustSMP.minerent.io:31048';
-            
-            // === СТРАТЕГИЯ 2: Резервный (xDefcon) ===
             const BACKUP_API = 'https://mcapi.xdefcon.com/server/JustSMP.minerent.io:31048/status/json';
             
             let useBackup = false;
@@ -3002,7 +3105,7 @@
 
             function initAnimations() {
                 var elements = document.querySelectorAll(
-                    '.about-card, .feature-item, .news-card, .rules-category, .ban-card, .team-card, .contact-card'
+                    '.about-card, .feature-item, .news-card, .rules-category, .ban-card, .team-card, .developer-card, .contact-card'
                 );
                 if (!elements.length) return;
 
@@ -3109,6 +3212,7 @@
                 console.log('📌 IP: JustSMP.minerent.io:31048');
                 console.log('📡 Данные через MCStatus.io + xDefcon');
                 console.log('🎨 8 тем оформления');
+                console.log('💻 Разработчики: JustZero, Denchick1789');
                 console.log('💬 Присоединяйся к нам!');
                 console.log('🔄 Обновление каждые 15 секунд');
 
