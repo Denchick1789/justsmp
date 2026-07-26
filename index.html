@@ -42,7 +42,7 @@
             list-style: none;
         }
 
-        /* ===== ЗОЛОТОЙ СЛИТОК (SVG — как в игре) ===== */
+        /* ===== ЗОЛОТОЙ СЛИТОК (SVG) ===== */
         .gold-ingot {
             display: inline-block;
             width: 40px;
@@ -100,23 +100,26 @@
         .logo-text span {
             color: #ffd700;
         }
+
+        /* ===== НАВИГАЦИЯ (шрифт 13px) ===== */
         .nav-list {
             display: flex;
-            gap: 6px;
+            gap: 10px;
             align-items: center;
         }
         .nav-link {
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
             font-weight: 500;
             color: #9a8a6a;
             transition: all 0.25s ease;
             position: relative;
+            letter-spacing: 0.2px;
         }
         .nav-link:hover {
             color: #e8e0c8;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.06);
         }
         .nav-link.active {
             color: #ffd700;
@@ -125,13 +128,22 @@
         .nav-link.active::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: 2px;
             left: 30%;
             width: 40%;
             height: 2px;
             background: #ffd700;
             border-radius: 4px;
         }
+        /* Разделители между пунктами */
+        .nav-divider {
+            color: #2a2a1a;
+            font-size: 12px;
+            font-weight: 300;
+            user-select: none;
+        }
+
+        /* ===== БУРГЕР (для мобильных) ===== */
         .burger {
             display: none;
             flex-direction: column;
@@ -906,122 +918,6 @@
         }
 
         /* ============================================================ */
-        /* ====================== CLICKER ============================== */
-        /* ============================================================ */
-        .clicker {
-            background: #0f0f08;
-        }
-        .clicker-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .clicker-gold {
-            width: 180px;
-            height: 180px;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.2));
-            user-select: none;
-            -webkit-user-select: none;
-            position: relative;
-        }
-        .clicker-gold svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-        .clicker-gold:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 60px rgba(255, 215, 0, 0.4));
-        }
-        .clicker-gold:active {
-            transform: scale(0.92);
-            filter: drop-shadow(0 0 80px rgba(255, 215, 0, 0.6));
-        }
-        .clicker-gold .click-effect {
-            position: absolute;
-            color: #ffd700;
-            font-weight: 700;
-            font-size: 24px;
-            pointer-events: none;
-            animation: floatUp 0.8s ease forwards;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        @keyframes floatUp {
-            0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-60px) scale(1.3); }
-        }
-        .clicker-stats {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .clicker-stat {
-            text-align: center;
-            background: #111108;
-            padding: 12px 24px;
-            border-radius: 12px;
-            border: 1px solid #2a2a1a;
-            min-width: 120px;
-        }
-        .clicker-stat .number {
-            font-family: 'Orbitron', 'Inter', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            color: #ffd700;
-            display: block;
-        }
-        .clicker-stat .label {
-            font-size: 13px;
-            color: #6a5a3a;
-        }
-        .clicker-shop {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-        }
-        .clicker-shop button {
-            background: #1a1a0a;
-            border: 1px solid #3a3a2a;
-            color: #e8e0c8;
-            padding: 12px 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            flex: 1;
-            min-width: 140px;
-            font-size: 14px;
-        }
-        .clicker-shop button:hover {
-            background: #2a2a1a;
-            border-color: #ffd700;
-            transform: translateY(-2px);
-        }
-        .clicker-shop button:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .clicker-shop button .price {
-            color: #ffd700;
-            font-weight: 700;
-        }
-        .clicker-cookie-notice {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #4a3a2a;
-            text-align: center;
-        }
-
-        /* ============================================================ */
         /* ====================== CONTACTS ============================= */
         /* ============================================================ */
         .contacts {
@@ -1284,7 +1180,6 @@
         .theme-panel.open {
             display: flex;
         }
-        /* На телефоне — полная панель, на ПК — как обычно */
         @media (max-width: 768px) {
             .theme-panel {
                 position: fixed;
@@ -1905,7 +1800,6 @@
             .hero-container { gap: 30px; }
             .hero-image { flex: 0 0 200px; }
             .hero-image .big-gold { width: 180px; height: 180px; }
-            .clicker-gold { width: 140px; height: 140px; }
         }
         @media (max-width: 768px) {
             .nav { display: none; }
@@ -1934,8 +1828,6 @@
             .contacts-grid { grid-template-columns: 1fr; }
             .developers-grid { grid-template-columns: 1fr; }
             .theme-toggle { bottom: 90px; }
-            .clicker-gold { width: 120px; height: 120px; }
-            .clicker-shop button { min-width: 100px; font-size: 12px; padding: 10px 14px; }
             .team-card .card-popup {
                 min-width: 140px;
                 padding: 12px 16px;
@@ -1965,10 +1857,6 @@
             .news-card-body h4 { font-size: 16px; }
             .team-avatar { width: 60px; height: 60px; }
             .theme-panel { min-width: 140px; right: -10px; }
-            .clicker-gold { width: 100px; height: 100px; }
-            .clicker-stats { gap: 12px; }
-            .clicker-stat { padding: 8px 14px; min-width: 80px; }
-            .clicker-stat .number { font-size: 20px; }
             .team-card .card-popup {
                 min-width: 120px;
                 padding: 10px 12px;
@@ -2004,16 +1892,11 @@
             <div class="logo">
                 <span class="gold-ingot">
                     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Основа слитка как в Minecraft -->
                         <rect x="6" y="14" width="52" height="36" rx="4" ry="4" fill="#ffd700" stroke="#b8860b" stroke-width="2"/>
-                        <!-- Тёмная рамка (как в игре) -->
                         <rect x="8" y="16" width="48" height="32" rx="3" ry="3" fill="#f0a500" stroke="#b8860b" stroke-width="1.5"/>
-                        <!-- Внутренний блик -->
                         <rect x="12" y="20" width="40" height="24" rx="2" ry="2" fill="url(#goldGrad)" stroke="none"/>
-                        <!-- Полоса (текстура слитка) -->
                         <line x1="14" y1="28" x2="50" y2="28" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
                         <line x1="14" y1="36" x2="50" y2="36" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
-                        <!-- Блик сверху -->
                         <rect x="12" y="20" width="40" height="6" rx="2" ry="2" fill="rgba(255,255,255,0.15)" stroke="none"/>
                         <defs>
                             <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -2029,15 +1912,23 @@
             <nav class="nav">
                 <ul class="nav-list">
                     <li><a href="#home" class="nav-link active">Главная</a></li>
+                    <span class="nav-divider">|</span>
                     <li><a href="#about" class="nav-link">О сервере</a></li>
+                    <span class="nav-divider">|</span>
                     <li><a href="#features" class="nav-link">Особенности</a></li>
+                    <span class="nav-divider">|</span>
                     <li><a href="#news" class="nav-link">Новости</a></li>
+                    <span class="nav-divider">|</span>
                     <li><a href="#rules" class="nav-link">Правила</a></li>
+                    <span class="nav-divider">|</span>
                     <li><a href="#bans" class="nav-link">Баны</a></li>
+                    <span class="nav-divider">|</span>
                     <li><a href="#team" class="nav-link">Команда</a></li>
+                    <span class="nav-divider">|</span>
                     <li><a href="#players" class="nav-link">👥 Игроки</a></li>
-                    <li><a href="#clicker" class="nav-link">🪙 Clicker</a></li>
+                    <span class="nav-divider">|</span>
                     <li><a href="#developers" class="nav-link">💻 Разработчики</a></li>
+                    <span class="nav-divider">|</span>
                     <li><a href="#contacts" class="nav-link">Контакты</a></li>
                 </ul>
             </nav>
@@ -2402,69 +2293,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 10: CLICKER ==================== -->
-    <!-- ============================================================ -->
-    <section class="clicker" id="clicker">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">🪙 Кликер</span>
-                <h2 class="section-title">Золотой <span>кликер</span></h2>
-                <p class="section-desc">Кликай по слитку, зарабатывай монеты и прокачивайся!</p>
-            </div>
-            <div class="clicker-container">
-                <div class="clicker-gold" id="clickerGold">
-                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="6" y="14" width="52" height="36" rx="4" ry="4" fill="#ffd700" stroke="#b8860b" stroke-width="2"/>
-                        <rect x="8" y="16" width="48" height="32" rx="3" ry="3" fill="#f0a500" stroke="#b8860b" stroke-width="1.5"/>
-                        <rect x="12" y="20" width="40" height="24" rx="2" ry="2" fill="url(#goldGradClick)" stroke="none"/>
-                        <line x1="14" y1="28" x2="50" y2="28" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
-                        <line x1="14" y1="36" x2="50" y2="36" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
-                        <rect x="12" y="20" width="40" height="6" rx="2" ry="2" fill="rgba(255,255,255,0.15)" stroke="none"/>
-                        <defs>
-                            <linearGradient id="goldGradClick" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#ffd700"/>
-                                <stop offset="50%" stop-color="#f0a500"/>
-                                <stop offset="100%" stop-color="#cc8800"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
-
-                <div class="clicker-stats">
-                    <div class="clicker-stat">
-                        <span class="number" id="clickerCoins">0</span>
-                        <span class="label">💰 Монет</span>
-                    </div>
-                    <div class="clicker-stat">
-                        <span class="number" id="clickerPerClick">1</span>
-                        <span class="label">⚡ За клик</span>
-                    </div>
-                    <div class="clicker-stat">
-                        <span class="number" id="clickerPerSecond">0</span>
-                        <span class="label">🔄 В секунду</span>
-                    </div>
-                </div>
-
-                <div class="clicker-shop">
-                    <button id="upgradeClick">
-                        ⚡ Сила клика<br />
-                        <span class="price">100</span> 🪙
-                    </button>
-                    <button id="upgradeAuto">
-                        🤖 Автоклик<br />
-                        <span class="price">50</span> 🪙
-                    </button>
-                </div>
-
-                <div class="clicker-cookie-notice">
-                    Наш сайт JustSMP использует cookie для сохранения прогресса.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- ================ СЕКЦИЯ 11: РАЗРАБОТЧИКИ ================== -->
+    <!-- ================ СЕКЦИЯ 10: РАЗРАБОТЧИКИ ================== -->
     <!-- ============================================================ -->
     <section class="developers" id="developers">
         <div class="container">
@@ -2491,7 +2320,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 12: КОНТАКТЫ =================== -->
+    <!-- ==================== СЕКЦИЯ 11: КОНТАКТЫ =================== -->
     <!-- ============================================================ -->
     <section class="contacts" id="contacts">
         <div class="container">
@@ -2557,7 +2386,6 @@
                         <li><a href="#bans">Баны</a></li>
                         <li><a href="#team">Команда</a></li>
                         <li><a href="#players">👥 Игроки</a></li>
-                        <li><a href="#clicker">🪙 Clicker</a></li>
                         <li><a href="#developers">💻 Разработчики</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
@@ -2857,95 +2685,6 @@
             }
 
             // ============================================================
-            // ============== CLICKER =====================================
-            // ============================================================
-
-            function initClicker() {
-                let coins = parseInt(getCookie('clicker_coins')) || 0;
-                let clickPower = parseInt(getCookie('clicker_power')) || 1;
-                let autoClickers = parseInt(getCookie('clicker_auto')) || 0;
-
-                let clickPrice = 100;
-                let autoPrice = 50;
-
-                const coinsEl = document.getElementById('clickerCoins');
-                const perClickEl = document.getElementById('clickerPerClick');
-                const perSecondEl = document.getElementById('clickerPerSecond');
-                const goldEl = document.getElementById('clickerGold');
-                const upgradeClickBtn = document.getElementById('upgradeClick');
-                const upgradeAutoBtn = document.getElementById('upgradeAuto');
-
-                function save() {
-                    document.cookie = 'clicker_coins=' + coins + ';path=/;max-age=31536000';
-                    document.cookie = 'clicker_power=' + clickPower + ';path=/;max-age=31536000';
-                    document.cookie = 'clicker_auto=' + autoClickers + ';path=/;max-age=31536000';
-                }
-
-                function updateUI() {
-                    coinsEl.textContent = Math.floor(coins);
-                    perClickEl.textContent = clickPower;
-                    perSecondEl.textContent = autoClickers;
-                    upgradeClickBtn.innerHTML =
-                        '⚡ Сила клика<br /><span class="price">' + clickPrice + '</span> 🪙';
-                    upgradeAutoBtn.innerHTML =
-                        '🤖 Автоклик<br /><span class="price">' + autoPrice + '</span> 🪙';
-                    upgradeClickBtn.disabled = coins < clickPrice;
-                    upgradeAutoBtn.disabled = coins < autoPrice;
-                    save();
-                }
-
-                function getCookie(name) {
-                    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-                    return match ? match[2] : null;
-                }
-
-                goldEl.addEventListener('click', function(e) {
-                    coins += clickPower;
-                    updateUI();
-
-                    const rect = this.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const effect = document.createElement('div');
-                    effect.className = 'click-effect';
-                    effect.textContent = '+' + clickPower;
-                    effect.style.left = x + 'px';
-                    effect.style.top = y + 'px';
-                    effect.style.position = 'absolute';
-                    this.style.position = 'relative';
-                    this.appendChild(effect);
-                    setTimeout(() => effect.remove(), 800);
-                });
-
-                upgradeClickBtn.addEventListener('click', function() {
-                    if (coins >= clickPrice) {
-                        coins -= clickPrice;
-                        clickPower++;
-                        clickPrice = Math.floor(clickPrice * 1.5);
-                        updateUI();
-                    }
-                });
-
-                upgradeAutoBtn.addEventListener('click', function() {
-                    if (coins >= autoPrice) {
-                        coins -= autoPrice;
-                        autoClickers++;
-                        autoPrice = Math.floor(autoPrice * 1.8);
-                        updateUI();
-                    }
-                });
-
-                setInterval(function() {
-                    if (autoClickers > 0) {
-                        coins += autoClickers;
-                        updateUI();
-                    }
-                }, 1000);
-
-                updateUI();
-            }
-
-            // ============================================================
             // ============== ТЕМЫ (8 вариантов) ==========================
             // ============================================================
 
@@ -3227,7 +2966,6 @@
                 initFooterYear();
                 initMobileFixes();
                 initThemes();
-                initClicker();
 
                 fetchServerData();
                 setInterval(fetchServerData, 15000);
