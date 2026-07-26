@@ -2318,35 +2318,35 @@
         <div class="theme-panel" id="themePanel">
             <div class="theme-option active" data-theme="default">
                 <span class="theme-dot" style="background: #ffd700;"></span>
-                <span class="theme-label">☀️ Классическая</span>
+                <span class="theme-label"> Деф тема</span>
             </div>
             <div class="theme-option" data-theme="green">
                 <span class="theme-dot" style="background: #3aff6a;"></span>
-                <span class="theme-label">🌿 Изумрудная</span>
+                <span class="theme-label"> Лаймовая</span>
             </div>
             <div class="theme-option" data-theme="ruby">
                 <span class="theme-dot" style="background: #ff1a1a;"></span>
-                <span class="theme-label">🔴 Рубиновая</span>
+                <span class="theme-label"> Рубиновая</span>
             </div>
             <div class="theme-option" data-theme="sapphire">
                 <span class="theme-dot" style="background: #1e90ff;"></span>
-                <span class="theme-label">🔵 Сапфировая</span>
+                <span class="theme-label"> Лазуритовая</span>
             </div>
             <div class="theme-option" data-theme="amethyst">
                 <span class="theme-dot" style="background: #a855f7;"></span>
-                <span class="theme-label">🟣 Аметистовая</span>
+                <span class="theme-label"> Аметистовая</span>
             </div>
             <div class="theme-option" data-theme="topaz">
                 <span class="theme-dot" style="background: #ff8c00;"></span>
-                <span class="theme-label">🟠 Топаз</span>
+                <span class="theme-label"> Оранжевая</span>
             </div>
             <div class="theme-option" data-theme="pearl">
                 <span class="theme-dot" style="background: #00ffff;"></span>
-                <span class="theme-label">🩵 Жемчужная</span>
+                <span class="theme-label"> Берюзовая</span>
             </div>
             <div class="theme-option" data-theme="animated">
                 <span class="theme-dot" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);"></span>
-                <span class="theme-label">🌀 Анимационная</span>
+                <span class="theme-label"> Градиент</span>
             </div>
         </div>
     </div>
@@ -2421,14 +2421,14 @@
                             // === ОТОБРАЖАЕМ ИГРОКОВ ===
                             if (playerListEl) {
                                 if (players.length === 0) {
-                                    playerListEl.innerHTML = '<span class="empty">👥 На сервере никого нет 😴</span>';
+                                    playerListEl.innerHTML = '<span class="empty"> На сервере никого нет </span>';
                                 } else {
                                     let html = '';
                                     players.forEach(name => {
                                         const isOp = OPERATORS.includes(name);
                                         html += `
                                             <span class="player-name ${isOp ? 'operator' : ''}">
-                                                ${isOp ? '👩‍🎓 ' : ''}${name}
+                                                ${isOp ? '👑 ' : ''}${name}
                                                 ${isOp ? '<span class="op-badge">Оператор</span>' : ''}
                                             </span>
                                         `;
