@@ -42,13 +42,18 @@
             list-style: none;
         }
 
+        /* ===== ЗОЛОТОЙ СЛИТОК (SVG) ===== */
         .gold-ingot {
             display: inline-block;
             width: 40px;
             height: 40px;
-            background: url('https://cdn.discordapp.com/attachments/1527277871180283904/1530465470178918470/i-no-bg-preview_carve.photos.png?ex=6a65ac8a&is=6a645b0a&hm=9bf312dc7131e196a40f3b89280538e944e2967487152d3d1c2a7fd19b82ebea&') no-repeat center center;
-            background-size: contain;
+            flex-shrink: 0;
             filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.5));
+        }
+        .gold-ingot svg {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
         /* ============================================================ */
@@ -308,10 +313,13 @@
         .hero-image .big-gold {
             width: 240px;
             height: 240px;
-            background: url('https://cdn.discordapp.com/attachments/1527277871180283904/1530465470178918470/i-no-bg-preview_carve.photos.png?ex=6a65ac8a&is=6a645b0a&hm=9bf312dc7131e196a40f3b89280538e944e2967487152d3d1c2a7fd19b82ebea&') no-repeat center center;
-            background-size: contain;
             filter: drop-shadow(0 0 60px rgba(255, 215, 0, 0.3));
             animation: floatGold 6s ease-in-out infinite;
+        }
+        .hero-image .big-gold svg {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
         @keyframes floatGold {
             0%, 100% { transform: translateY(0px) scale(1); }
@@ -914,14 +922,17 @@
         .clicker-gold {
             width: 180px;
             height: 180px;
-            background: url('https://cdn.discordapp.com/attachments/1527277871180283904/1530465470178918470/i-no-bg-preview_carve.photos.png?ex=6a65ac8a&is=6a645b0a&hm=9bf312dc7131e196a40f3b89280538e944e2967487152d3d1c2a7fd19b82ebea&') no-repeat center center;
-            background-size: contain;
             cursor: pointer;
             transition: all 0.15s ease;
             filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.2));
             user-select: none;
             -webkit-user-select: none;
             position: relative;
+        }
+        .clicker-gold svg {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
         .clicker-gold:hover {
             transform: scale(1.05);
@@ -1251,8 +1262,10 @@
         }
 
         /* ============================================================ */
-        /* ====================== ТЕМЫ ================================= */
+        /* ====================== ТЕМЫ (8 вариантов) ================== */
         /* ============================================================ */
+
+        /* ----- Тема 1: Классическая (золотая) ----- */
         body.theme-default .hero {
             background: radial-gradient(ellipse at 30% 20%, #1a1a0a, #0a0a0a);
         }
@@ -1265,88 +1278,40 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        body.theme-default .stat-number {
-            color: #ffd700;
-        }
+        body.theme-default .stat-number { color: #ffd700; }
         body.theme-default .section-title span {
             background: linear-gradient(135deg, #ffd700, #f0a500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        body.theme-default .nav-link.active {
-            color: #ffd700;
-            background: rgba(255, 215, 0, 0.08);
-        }
-        body.theme-default .nav-link.active::after {
-            background: #ffd700;
-        }
-        body.theme-default .logo-text span {
-            color: #ffd700;
-        }
-        body.theme-default .ip-address {
-            color: #ffd700;
-        }
+        body.theme-default .nav-link.active { color: #ffd700; background: rgba(255, 215, 0, 0.08); }
+        body.theme-default .nav-link.active::after { background: #ffd700; }
+        body.theme-default .logo-text span { color: #ffd700; }
+        body.theme-default .ip-address { color: #ffd700; }
         body.theme-default .btn-primary {
             background: linear-gradient(135deg, #ffd700, #f0a500);
             color: #1a1a0a;
             box-shadow: 0 4px 30px rgba(255, 215, 0, 0.30);
         }
-        body.theme-default .btn-primary:hover {
-            box-shadow: 0 8px 50px rgba(255, 215, 0, 0.45);
-        }
-        body.theme-default .section-tag {
-            color: #ffd700;
-            background: rgba(255, 215, 0, 0.10);
-        }
-        body.theme-default .gold-ingot {
-            filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.5));
-        }
-        body.theme-default .logo .gold-ingot {
-            filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.6));
-        }
-        body.theme-default .ip-box {
-            border-color: #3a3a2a;
-        }
-        body.theme-default .ip-copy-btn {
-            border-color: #4a4a3a;
-        }
-        body.theme-default .ip-copy-btn:hover {
-            border-color: #ffd700;
-        }
-        body.theme-default .team-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-default .team-card:hover {
-            border-color: #ffd70044;
-        }
-        body.theme-default .contact-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-default .contact-card:hover {
-            border-color: #ffd70044;
-        }
-        body.theme-default .about-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-default .about-card:hover {
-            border-color: #ffd70044;
-        }
-        body.theme-default .feature-item {
-            border-color: #1a1a0a;
-        }
-        body.theme-default .feature-item:hover {
-            border-color: #ffd70044;
-        }
-        body.theme-default .news-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-default .news-card:hover {
-            border-color: #ffd70044;
-        }
-        body.theme-default .players-section {
-            border-color: #1a1a0a;
-        }
+        body.theme-default .btn-primary:hover { box-shadow: 0 8px 50px rgba(255, 215, 0, 0.45); }
+        body.theme-default .section-tag { color: #ffd700; background: rgba(255, 215, 0, 0.10); }
+        body.theme-default .gold-ingot { filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.5)); }
+        body.theme-default .logo .gold-ingot { filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.6)); }
+        body.theme-default .ip-box { border-color: #3a3a2a; }
+        body.theme-default .ip-copy-btn { border-color: #4a4a3a; }
+        body.theme-default .ip-copy-btn:hover { border-color: #ffd700; }
+        body.theme-default .team-card { border-color: #2a2a1a; }
+        body.theme-default .team-card:hover { border-color: #ffd70044; }
+        body.theme-default .contact-card { border-color: #2a2a1a; }
+        body.theme-default .contact-card:hover { border-color: #ffd70044; }
+        body.theme-default .about-card { border-color: #2a2a1a; }
+        body.theme-default .about-card:hover { border-color: #ffd70044; }
+        body.theme-default .feature-item { border-color: #1a1a0a; }
+        body.theme-default .feature-item:hover { border-color: #ffd70044; }
+        body.theme-default .news-card { border-color: #2a2a1a; }
+        body.theme-default .news-card:hover { border-color: #ffd70044; }
+        body.theme-default .players-section { border-color: #1a1a0a; }
         body.theme-default .player-list .player-name {
             background: rgba(255, 215, 0, 0.08);
             border-color: rgba(255, 215, 0, 0.12);
@@ -1356,6 +1321,7 @@
             border-color: #ffd70066;
         }
 
+        /* ----- Тема 2: Изумрудная (зелёная) ----- */
         body.theme-green .hero {
             background: radial-gradient(ellipse at 30% 20%, #0a1a0a, #050805);
         }
@@ -1368,88 +1334,40 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        body.theme-green .stat-number {
-            color: #3aff6a;
-        }
+        body.theme-green .stat-number { color: #3aff6a; }
         body.theme-green .section-title span {
             background: linear-gradient(135deg, #3aff6a, #00cc44);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        body.theme-green .nav-link.active {
-            color: #3aff6a;
-            background: rgba(58, 255, 106, 0.08);
-        }
-        body.theme-green .nav-link.active::after {
-            background: #3aff6a;
-        }
-        body.theme-green .logo-text span {
-            color: #3aff6a;
-        }
-        body.theme-green .ip-address {
-            color: #3aff6a;
-        }
+        body.theme-green .nav-link.active { color: #3aff6a; background: rgba(58, 255, 106, 0.08); }
+        body.theme-green .nav-link.active::after { background: #3aff6a; }
+        body.theme-green .logo-text span { color: #3aff6a; }
+        body.theme-green .ip-address { color: #3aff6a; }
         body.theme-green .btn-primary {
             background: linear-gradient(135deg, #3aff6a, #00cc44);
             color: #1a1a0a;
             box-shadow: 0 4px 30px rgba(58, 255, 106, 0.30);
         }
-        body.theme-green .btn-primary:hover {
-            box-shadow: 0 8px 50px rgba(58, 255, 106, 0.45);
-        }
-        body.theme-green .section-tag {
-            color: #3aff6a;
-            background: rgba(58, 255, 106, 0.10);
-        }
-        body.theme-green .gold-ingot {
-            filter: drop-shadow(0 0 12px rgba(58, 255, 106, 0.5));
-        }
-        body.theme-green .logo .gold-ingot {
-            filter: drop-shadow(0 0 16px rgba(58, 255, 106, 0.6));
-        }
-        body.theme-green .ip-box {
-            border-color: #2a3a2a;
-        }
-        body.theme-green .ip-copy-btn {
-            border-color: #2a4a2a;
-        }
-        body.theme-green .ip-copy-btn:hover {
-            border-color: #3aff6a;
-        }
-        body.theme-green .team-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-green .team-card:hover {
-            border-color: #3aff6a44;
-        }
-        body.theme-green .contact-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-green .contact-card:hover {
-            border-color: #3aff6a44;
-        }
-        body.theme-green .about-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-green .about-card:hover {
-            border-color: #3aff6a44;
-        }
-        body.theme-green .feature-item {
-            border-color: #1a1a0a;
-        }
-        body.theme-green .feature-item:hover {
-            border-color: #3aff6a44;
-        }
-        body.theme-green .news-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-green .news-card:hover {
-            border-color: #3aff6a44;
-        }
-        body.theme-green .players-section {
-            border-color: #1a1a0a;
-        }
+        body.theme-green .btn-primary:hover { box-shadow: 0 8px 50px rgba(58, 255, 106, 0.45); }
+        body.theme-green .section-tag { color: #3aff6a; background: rgba(58, 255, 106, 0.10); }
+        body.theme-green .gold-ingot { filter: drop-shadow(0 0 12px rgba(58, 255, 106, 0.5)); }
+        body.theme-green .logo .gold-ingot { filter: drop-shadow(0 0 16px rgba(58, 255, 106, 0.6)); }
+        body.theme-green .ip-box { border-color: #2a3a2a; }
+        body.theme-green .ip-copy-btn { border-color: #2a4a2a; }
+        body.theme-green .ip-copy-btn:hover { border-color: #3aff6a; }
+        body.theme-green .team-card { border-color: #2a2a1a; }
+        body.theme-green .team-card:hover { border-color: #3aff6a44; }
+        body.theme-green .contact-card { border-color: #2a2a1a; }
+        body.theme-green .contact-card:hover { border-color: #3aff6a44; }
+        body.theme-green .about-card { border-color: #2a2a1a; }
+        body.theme-green .about-card:hover { border-color: #3aff6a44; }
+        body.theme-green .feature-item { border-color: #1a1a0a; }
+        body.theme-green .feature-item:hover { border-color: #3aff6a44; }
+        body.theme-green .news-card { border-color: #2a2a1a; }
+        body.theme-green .news-card:hover { border-color: #3aff6a44; }
+        body.theme-green .players-section { border-color: #1a1a0a; }
         body.theme-green .player-list .player-name {
             background: rgba(58, 255, 106, 0.08);
             border-color: rgba(58, 255, 106, 0.12);
@@ -1459,210 +1377,349 @@
             border-color: #3aff6a66;
         }
 
-        body.theme-coca .hero {
+        /* ----- Тема 3: Рубиновая (красная) ----- */
+        body.theme-ruby .hero {
             background: radial-gradient(ellipse at 30% 20%, #1a0a0a, #080505);
         }
-        body.theme-coca .hero::before {
+        body.theme-ruby .hero::before {
             background: radial-gradient(ellipse at center, rgba(255, 0, 0, 0.08), transparent);
         }
-        body.theme-coca .hero-highlight {
+        body.theme-ruby .hero-highlight {
             background: linear-gradient(135deg, #ff1a1a, #cc0000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        body.theme-coca .stat-number {
-            color: #ff1a1a;
-        }
-        body.theme-coca .section-title span {
+        body.theme-ruby .stat-number { color: #ff1a1a; }
+        body.theme-ruby .section-title span {
             background: linear-gradient(135deg, #ff1a1a, #cc0000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        body.theme-coca .nav-link.active {
-            color: #ff1a1a;
-            background: rgba(255, 0, 0, 0.08);
-        }
-        body.theme-coca .nav-link.active::after {
-            background: #ff1a1a;
-        }
-        body.theme-coca .logo-text span {
-            color: #ff1a1a;
-        }
-        body.theme-coca .ip-address {
-            color: #ff1a1a;
-        }
-        body.theme-coca .btn-primary {
+        body.theme-ruby .nav-link.active { color: #ff1a1a; background: rgba(255, 0, 0, 0.08); }
+        body.theme-ruby .nav-link.active::after { background: #ff1a1a; }
+        body.theme-ruby .logo-text span { color: #ff1a1a; }
+        body.theme-ruby .ip-address { color: #ff1a1a; }
+        body.theme-ruby .btn-primary {
             background: linear-gradient(135deg, #ff1a1a, #cc0000);
             color: #ffffff;
             box-shadow: 0 4px 30px rgba(255, 0, 0, 0.30);
         }
-        body.theme-coca .btn-primary:hover {
-            box-shadow: 0 8px 50px rgba(255, 0, 0, 0.45);
-        }
-        body.theme-coca .section-tag {
-            color: #ff1a1a;
-            background: rgba(255, 0, 0, 0.10);
-        }
-        body.theme-coca .gold-ingot {
-            filter: drop-shadow(0 0 12px rgba(255, 0, 0, 0.5));
-        }
-        body.theme-coca .logo .gold-ingot {
-            filter: drop-shadow(0 0 16px rgba(255, 0, 0, 0.6));
-        }
-        body.theme-coca .ip-box {
-            border-color: #3a2a2a;
-        }
-        body.theme-coca .ip-copy-btn {
-            border-color: #4a2a2a;
-        }
-        body.theme-coca .ip-copy-btn:hover {
-            border-color: #ff1a1a;
-        }
-        body.theme-coca .team-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-coca .team-card:hover {
-            border-color: #ff1a1a44;
-        }
-        body.theme-coca .contact-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-coca .contact-card:hover {
-            border-color: #ff1a1a44;
-        }
-        body.theme-coca .about-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-coca .about-card:hover {
-            border-color: #ff1a1a44;
-        }
-        body.theme-coca .feature-item {
-            border-color: #1a1a0a;
-        }
-        body.theme-coca .feature-item:hover {
-            border-color: #ff1a1a44;
-        }
-        body.theme-coca .news-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-coca .news-card:hover {
-            border-color: #ff1a1a44;
-        }
-        body.theme-coca .players-section {
-            border-color: #1a1a0a;
-        }
-        body.theme-coca .player-list .player-name {
+        body.theme-ruby .btn-primary:hover { box-shadow: 0 8px 50px rgba(255, 0, 0, 0.45); }
+        body.theme-ruby .section-tag { color: #ff1a1a; background: rgba(255, 0, 0, 0.10); }
+        body.theme-ruby .gold-ingot { filter: drop-shadow(0 0 12px rgba(255, 0, 0, 0.5)); }
+        body.theme-ruby .logo .gold-ingot { filter: drop-shadow(0 0 16px rgba(255, 0, 0, 0.6)); }
+        body.theme-ruby .ip-box { border-color: #3a2a2a; }
+        body.theme-ruby .ip-copy-btn { border-color: #4a2a2a; }
+        body.theme-ruby .ip-copy-btn:hover { border-color: #ff1a1a; }
+        body.theme-ruby .team-card { border-color: #2a2a1a; }
+        body.theme-ruby .team-card:hover { border-color: #ff1a1a44; }
+        body.theme-ruby .contact-card { border-color: #2a2a1a; }
+        body.theme-ruby .contact-card:hover { border-color: #ff1a1a44; }
+        body.theme-ruby .about-card { border-color: #2a2a1a; }
+        body.theme-ruby .about-card:hover { border-color: #ff1a1a44; }
+        body.theme-ruby .feature-item { border-color: #1a1a0a; }
+        body.theme-ruby .feature-item:hover { border-color: #ff1a1a44; }
+        body.theme-ruby .news-card { border-color: #2a2a1a; }
+        body.theme-ruby .news-card:hover { border-color: #ff1a1a44; }
+        body.theme-ruby .players-section { border-color: #1a1a0a; }
+        body.theme-ruby .player-list .player-name {
             background: rgba(255, 0, 0, 0.08);
             border-color: rgba(255, 0, 0, 0.12);
         }
-        body.theme-coca .player-list .player-name:hover {
+        body.theme-ruby .player-list .player-name:hover {
             background: rgba(255, 0, 0, 0.15);
             border-color: #ff1a1a66;
         }
 
+        /* ----- Тема 4: Сапфировая (синяя) ----- */
+        body.theme-sapphire .hero {
+            background: radial-gradient(ellipse at 30% 20%, #0a0a1a, #050508);
+        }
+        body.theme-sapphire .hero::before {
+            background: radial-gradient(ellipse at center, rgba(30, 144, 255, 0.08), transparent);
+        }
+        body.theme-sapphire .hero-highlight {
+            background: linear-gradient(135deg, #1e90ff, #0066cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.theme-sapphire .stat-number { color: #1e90ff; }
+        body.theme-sapphire .section-title span {
+            background: linear-gradient(135deg, #1e90ff, #0066cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.theme-sapphire .nav-link.active { color: #1e90ff; background: rgba(30, 144, 255, 0.08); }
+        body.theme-sapphire .nav-link.active::after { background: #1e90ff; }
+        body.theme-sapphire .logo-text span { color: #1e90ff; }
+        body.theme-sapphire .ip-address { color: #1e90ff; }
+        body.theme-sapphire .btn-primary {
+            background: linear-gradient(135deg, #1e90ff, #0066cc);
+            color: #ffffff;
+            box-shadow: 0 4px 30px rgba(30, 144, 255, 0.30);
+        }
+        body.theme-sapphire .btn-primary:hover { box-shadow: 0 8px 50px rgba(30, 144, 255, 0.45); }
+        body.theme-sapphire .section-tag { color: #1e90ff; background: rgba(30, 144, 255, 0.10); }
+        body.theme-sapphire .gold-ingot { filter: drop-shadow(0 0 12px rgba(30, 144, 255, 0.5)); }
+        body.theme-sapphire .logo .gold-ingot { filter: drop-shadow(0 0 16px rgba(30, 144, 255, 0.6)); }
+        body.theme-sapphire .ip-box { border-color: #1a2a3a; }
+        body.theme-sapphire .ip-copy-btn { border-color: #1a2a4a; }
+        body.theme-sapphire .ip-copy-btn:hover { border-color: #1e90ff; }
+        body.theme-sapphire .team-card { border-color: #2a2a1a; }
+        body.theme-sapphire .team-card:hover { border-color: #1e90ff44; }
+        body.theme-sapphire .contact-card { border-color: #2a2a1a; }
+        body.theme-sapphire .contact-card:hover { border-color: #1e90ff44; }
+        body.theme-sapphire .about-card { border-color: #2a2a1a; }
+        body.theme-sapphire .about-card:hover { border-color: #1e90ff44; }
+        body.theme-sapphire .feature-item { border-color: #1a1a0a; }
+        body.theme-sapphire .feature-item:hover { border-color: #1e90ff44; }
+        body.theme-sapphire .news-card { border-color: #2a2a1a; }
+        body.theme-sapphire .news-card:hover { border-color: #1e90ff44; }
+        body.theme-sapphire .players-section { border-color: #1a1a0a; }
+        body.theme-sapphire .player-list .player-name {
+            background: rgba(30, 144, 255, 0.08);
+            border-color: rgba(30, 144, 255, 0.12);
+        }
+        body.theme-sapphire .player-list .player-name:hover {
+            background: rgba(30, 144, 255, 0.15);
+            border-color: #1e90ff66;
+        }
+
+        /* ----- Тема 5: Аметистовая (фиолетовая) ----- */
+        body.theme-amethyst .hero {
+            background: radial-gradient(ellipse at 30% 20%, #1a0a1a, #080508);
+        }
+        body.theme-amethyst .hero::before {
+            background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.08), transparent);
+        }
+        body.theme-amethyst .hero-highlight {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.theme-amethyst .stat-number { color: #a855f7; }
+        body.theme-amethyst .section-title span {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.theme-amethyst .nav-link.active { color: #a855f7; background: rgba(168, 85, 247, 0.08); }
+        body.theme-amethyst .nav-link.active::after { background: #a855f7; }
+        body.theme-amethyst .logo-text span { color: #a855f7; }
+        body.theme-amethyst .ip-address { color: #a855f7; }
+        body.theme-amethyst .btn-primary {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            color: #ffffff;
+            box-shadow: 0 4px 30px rgba(168, 85, 247, 0.30);
+        }
+        body.theme-amethyst .btn-primary:hover { box-shadow: 0 8px 50px rgba(168, 85, 247, 0.45); }
+        body.theme-amethyst .section-tag { color: #a855f7; background: rgba(168, 85, 247, 0.10); }
+        body.theme-amethyst .gold-ingot { filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.5)); }
+        body.theme-amethyst .logo .gold-ingot { filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.6)); }
+        body.theme-amethyst .ip-box { border-color: #2a1a3a; }
+        body.theme-amethyst .ip-copy-btn { border-color: #3a1a4a; }
+        body.theme-amethyst .ip-copy-btn:hover { border-color: #a855f7; }
+        body.theme-amethyst .team-card { border-color: #2a2a1a; }
+        body.theme-amethyst .team-card:hover { border-color: #a855f744; }
+        body.theme-amethyst .contact-card { border-color: #2a2a1a; }
+        body.theme-amethyst .contact-card:hover { border-color: #a855f744; }
+        body.theme-amethyst .about-card { border-color: #2a2a1a; }
+        body.theme-amethyst .about-card:hover { border-color: #a855f744; }
+        body.theme-amethyst .feature-item { border-color: #1a1a0a; }
+        body.theme-amethyst .feature-item:hover { border-color: #a855f744; }
+        body.theme-amethyst .news-card { border-color: #2a2a1a; }
+        body.theme-amethyst .news-card:hover { border-color: #a855f744; }
+        body.theme-amethyst .players-section { border-color: #1a1a0a; }
+        body.theme-amethyst .player-list .player-name {
+            background: rgba(168, 85, 247, 0.08);
+            border-color: rgba(168, 85, 247, 0.12);
+        }
+        body.theme-amethyst .player-list .player-name:hover {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: #a855f766;
+        }
+
+        /* ----- Тема 6: Топаз (оранжевая) ----- */
+        body.theme-topaz .hero {
+            background: radial-gradient(ellipse at 30% 20%, #1a0f0a, #0a0500);
+        }
+        body.theme-topaz .hero::before {
+            background: radial-gradient(ellipse at center, rgba(255, 140, 0, 0.08), transparent);
+        }
+        body.theme-topaz .hero-highlight {
+            background: linear-gradient(135deg, #ff8c00, #e67e00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.theme-topaz .stat-number { color: #ff8c00; }
+        body.theme-topaz .section-title span {
+            background: linear-gradient(135deg, #ff8c00, #e67e00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.theme-topaz .nav-link.active { color: #ff8c00; background: rgba(255, 140, 0, 0.08); }
+        body.theme-topaz .nav-link.active::after { background: #ff8c00; }
+        body.theme-topaz .logo-text span { color: #ff8c00; }
+        body.theme-topaz .ip-address { color: #ff8c00; }
+        body.theme-topaz .btn-primary {
+            background: linear-gradient(135deg, #ff8c00, #e67e00);
+            color: #1a1a0a;
+            box-shadow: 0 4px 30px rgba(255, 140, 0, 0.30);
+        }
+        body.theme-topaz .btn-primary:hover { box-shadow: 0 8px 50px rgba(255, 140, 0, 0.45); }
+        body.theme-topaz .section-tag { color: #ff8c00; background: rgba(255, 140, 0, 0.10); }
+        body.theme-topaz .gold-ingot { filter: drop-shadow(0 0 12px rgba(255, 140, 0, 0.5)); }
+        body.theme-topaz .logo .gold-ingot { filter: drop-shadow(0 0 16px rgba(255, 140, 0, 0.6)); }
+        body.theme-topaz .ip-box { border-color: #3a2a1a; }
+        body.theme-topaz .ip-copy-btn { border-color: #4a3a1a; }
+        body.theme-topaz .ip-copy-btn:hover { border-color: #ff8c00; }
+        body.theme-topaz .team-card { border-color: #2a2a1a; }
+        body.theme-topaz .team-card:hover { border-color: #ff8c0044; }
+        body.theme-topaz .contact-card { border-color: #2a2a1a; }
+        body.theme-topaz .contact-card:hover { border-color: #ff8c0044; }
+        body.theme-topaz .about-card { border-color: #2a2a1a; }
+        body.theme-topaz .about-card:hover { border-color: #ff8c0044; }
+        body.theme-topaz .feature-item { border-color: #1a1a0a; }
+        body.theme-topaz .feature-item:hover { border-color: #ff8c0044; }
+        body.theme-topaz .news-card { border-color: #2a2a1a; }
+        body.theme-topaz .news-card:hover { border-color: #ff8c0044; }
+        body.theme-topaz .players-section { border-color: #1a1a0a; }
+        body.theme-topaz .player-list .player-name {
+            background: rgba(255, 140, 0, 0.08);
+            border-color: rgba(255, 140, 0, 0.12);
+        }
+        body.theme-topaz .player-list .player-name:hover {
+            background: rgba(255, 140, 0, 0.15);
+            border-color: #ff8c0066;
+        }
+
+        /* ----- Тема 7: Жемчужная (голубая) ----- */
+        body.theme-pearl .hero {
+            background: radial-gradient(ellipse at 30% 20%, #0a1a1a, #050808);
+        }
+        body.theme-pearl .hero::before {
+            background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.06), transparent);
+        }
+        body.theme-pearl .hero-highlight {
+            background: linear-gradient(135deg, #00ffff, #00bcd4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.theme-pearl .stat-number { color: #00ffff; }
+        body.theme-pearl .section-title span {
+            background: linear-gradient(135deg, #00ffff, #00bcd4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.theme-pearl .nav-link.active { color: #00ffff; background: rgba(0, 255, 255, 0.08); }
+        body.theme-pearl .nav-link.active::after { background: #00ffff; }
+        body.theme-pearl .logo-text span { color: #00ffff; }
+        body.theme-pearl .ip-address { color: #00ffff; }
+        body.theme-pearl .btn-primary {
+            background: linear-gradient(135deg, #00ffff, #00bcd4);
+            color: #1a1a0a;
+            box-shadow: 0 4px 30px rgba(0, 255, 255, 0.25);
+        }
+        body.theme-pearl .btn-primary:hover { box-shadow: 0 8px 50px rgba(0, 255, 255, 0.40); }
+        body.theme-pearl .section-tag { color: #00ffff; background: rgba(0, 255, 255, 0.10); }
+        body.theme-pearl .gold-ingot { filter: drop-shadow(0 0 12px rgba(0, 255, 255, 0.4)); }
+        body.theme-pearl .logo .gold-ingot { filter: drop-shadow(0 0 16px rgba(0, 255, 255, 0.5)); }
+        body.theme-pearl .ip-box { border-color: #1a2a2a; }
+        body.theme-pearl .ip-copy-btn { border-color: #1a3a3a; }
+        body.theme-pearl .ip-copy-btn:hover { border-color: #00ffff; }
+        body.theme-pearl .team-card { border-color: #2a2a1a; }
+        body.theme-pearl .team-card:hover { border-color: #00ffff44; }
+        body.theme-pearl .contact-card { border-color: #2a2a1a; }
+        body.theme-pearl .contact-card:hover { border-color: #00ffff44; }
+        body.theme-pearl .about-card { border-color: #2a2a1a; }
+        body.theme-pearl .about-card:hover { border-color: #00ffff44; }
+        body.theme-pearl .feature-item { border-color: #1a1a0a; }
+        body.theme-pearl .feature-item:hover { border-color: #00ffff44; }
+        body.theme-pearl .news-card { border-color: #2a2a1a; }
+        body.theme-pearl .news-card:hover { border-color: #00ffff44; }
+        body.theme-pearl .players-section { border-color: #1a1a0a; }
+        body.theme-pearl .player-list .player-name {
+            background: rgba(0, 255, 255, 0.08);
+            border-color: rgba(0, 255, 255, 0.12);
+        }
+        body.theme-pearl .player-list .player-name:hover {
+            background: rgba(0, 255, 255, 0.15);
+            border-color: #00ffff66;
+        }
+
+        /* ----- Тема 8: Анимационная (динамическая) ----- */
         body.theme-animated .hero {
             background: radial-gradient(ellipse at 30% 20%, #0a0a1a, #050508);
         }
         body.theme-animated .hero::before {
-            background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.08), transparent);
+            background: radial-gradient(ellipse at center, rgba(236, 72, 153, 0.08), transparent);
         }
         body.theme-animated .hero-highlight {
-            background: linear-gradient(135deg, #a855f7, #6d28d9);
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
         }
-        body.theme-animated .stat-number {
-            color: #a855f7;
+        @keyframes gradientShift {
+            0% { background: linear-gradient(135deg, #ec4899, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+            50% { background: linear-gradient(135deg, #f472b6, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+            100% { background: linear-gradient(135deg, #ec4899, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         }
+        body.theme-animated .stat-number { color: #ec4899; }
         body.theme-animated .section-title span {
-            background: linear-gradient(135deg, #a855f7, #6d28d9);
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        body.theme-animated .nav-link.active {
-            color: #a855f7;
-            background: rgba(168, 85, 247, 0.08);
-        }
-        body.theme-animated .nav-link.active::after {
-            background: #a855f7;
-        }
-        body.theme-animated .logo-text span {
-            color: #a855f7;
-        }
-        body.theme-animated .ip-address {
-            color: #a855f7;
-        }
+        body.theme-animated .nav-link.active { color: #ec4899; background: rgba(236, 72, 153, 0.08); }
+        body.theme-animated .nav-link.active::after { background: #ec4899; }
+        body.theme-animated .logo-text span { color: #ec4899; }
+        body.theme-animated .ip-address { color: #ec4899; }
         body.theme-animated .btn-primary {
-            background: linear-gradient(135deg, #a855f7, #6d28d9);
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
             color: #ffffff;
-            box-shadow: 0 4px 30px rgba(168, 85, 247, 0.30);
+            box-shadow: 0 4px 30px rgba(236, 72, 153, 0.30);
         }
-        body.theme-animated .btn-primary:hover {
-            box-shadow: 0 8px 50px rgba(168, 85, 247, 0.45);
-        }
-        body.theme-animated .section-tag {
-            color: #a855f7;
-            background: rgba(168, 85, 247, 0.10);
-        }
-        body.theme-animated .gold-ingot {
-            filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.5));
-        }
-        body.theme-animated .logo .gold-ingot {
-            filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.6));
-        }
-        body.theme-animated .ip-box {
-            border-color: #2a2a3a;
-        }
-        body.theme-animated .ip-copy-btn {
-            border-color: #3a2a4a;
-        }
-        body.theme-animated .ip-copy-btn:hover {
-            border-color: #a855f7;
-        }
-        body.theme-animated .team-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-animated .team-card:hover {
-            border-color: #a855f744;
-        }
-        body.theme-animated .contact-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-animated .contact-card:hover {
-            border-color: #a855f744;
-        }
-        body.theme-animated .about-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-animated .about-card:hover {
-            border-color: #a855f744;
-        }
-        body.theme-animated .feature-item {
-            border-color: #1a1a0a;
-        }
-        body.theme-animated .feature-item:hover {
-            border-color: #a855f744;
-        }
-        body.theme-animated .news-card {
-            border-color: #2a2a1a;
-        }
-        body.theme-animated .news-card:hover {
-            border-color: #a855f744;
-        }
-        body.theme-animated .players-section {
-            border-color: #1a1a0a;
-        }
+        body.theme-animated .btn-primary:hover { box-shadow: 0 8px 50px rgba(236, 72, 153, 0.45); }
+        body.theme-animated .section-tag { color: #ec4899; background: rgba(236, 72, 153, 0.10); }
+        body.theme-animated .gold-ingot { filter: drop-shadow(0 0 12px rgba(236, 72, 153, 0.5)); }
+        body.theme-animated .logo .gold-ingot { filter: drop-shadow(0 0 16px rgba(236, 72, 153, 0.6)); }
+        body.theme-animated .ip-box { border-color: #2a1a2a; }
+        body.theme-animated .ip-copy-btn { border-color: #3a1a3a; }
+        body.theme-animated .ip-copy-btn:hover { border-color: #ec4899; }
+        body.theme-animated .team-card { border-color: #2a2a1a; }
+        body.theme-animated .team-card:hover { border-color: #ec489944; }
+        body.theme-animated .contact-card { border-color: #2a2a1a; }
+        body.theme-animated .contact-card:hover { border-color: #ec489944; }
+        body.theme-animated .about-card { border-color: #2a2a1a; }
+        body.theme-animated .about-card:hover { border-color: #ec489944; }
+        body.theme-animated .feature-item { border-color: #1a1a0a; }
+        body.theme-animated .feature-item:hover { border-color: #ec489944; }
+        body.theme-animated .news-card { border-color: #2a2a1a; }
+        body.theme-animated .news-card:hover { border-color: #ec489944; }
+        body.theme-animated .players-section { border-color: #1a1a0a; }
         body.theme-animated .player-list .player-name {
-            background: rgba(168, 85, 247, 0.08);
-            border-color: rgba(168, 85, 247, 0.12);
+            background: rgba(236, 72, 153, 0.08);
+            border-color: rgba(236, 72, 153, 0.12);
         }
         body.theme-animated .player-list .player-name:hover {
-            background: rgba(168, 85, 247, 0.15);
-            border-color: #a855f766;
+            background: rgba(236, 72, 153, 0.15);
+            border-color: #ec489966;
+        }
+        body.theme-animated .animated-bg {
+            display: block !important;
         }
 
         /* ============================================================ */
@@ -1679,14 +1736,11 @@
             overflow: hidden;
             display: none;
         }
-        body.theme-animated .animated-bg {
-            display: block;
-        }
         .animated-bg .circle {
             position: absolute;
             border-radius: 50%;
-            background: rgba(139, 92, 246, 0.08);
-            border: 1px solid rgba(139, 92, 246, 0.05);
+            background: rgba(236, 72, 153, 0.06);
+            border: 1px solid rgba(236, 72, 153, 0.04);
             animation: floatCircle 20s infinite ease-in-out;
         }
         .animated-bg .circle:nth-child(1) {
@@ -1704,7 +1758,7 @@
             right: -5%;
             animation-delay: 2s;
             animation-duration: 20s;
-            background: rgba(139, 92, 246, 0.06);
+            background: rgba(139, 92, 246, 0.05);
         }
         .animated-bg .circle:nth-child(3) {
             width: 150px;
@@ -1713,7 +1767,7 @@
             right: 10%;
             animation-delay: 4s;
             animation-duration: 18s;
-            background: rgba(192, 132, 252, 0.05);
+            background: rgba(244, 114, 182, 0.04);
         }
         .animated-bg .circle:nth-child(4) {
             width: 250px;
@@ -1722,7 +1776,7 @@
             left: 10%;
             animation-delay: 1s;
             animation-duration: 22s;
-            background: rgba(124, 58, 237, 0.05);
+            background: rgba(124, 58, 237, 0.04);
         }
         .animated-bg .circle:nth-child(5) {
             width: 100px;
@@ -1731,7 +1785,7 @@
             left: 40%;
             animation-delay: 3s;
             animation-duration: 15s;
-            background: rgba(167, 139, 250, 0.06);
+            background: rgba(167, 139, 250, 0.05);
         }
         .animated-bg .circle:nth-child(6) {
             width: 180px;
@@ -1740,7 +1794,7 @@
             left: 50%;
             animation-delay: 5s;
             animation-duration: 28s;
-            background: rgba(139, 92, 246, 0.04);
+            background: rgba(236, 72, 153, 0.03);
         }
         .animated-bg .circle:nth-child(7) {
             width: 120px;
@@ -1749,7 +1803,7 @@
             left: 35%;
             animation-delay: 2.5s;
             animation-duration: 19s;
-            background: rgba(192, 132, 252, 0.05);
+            background: rgba(244, 114, 182, 0.04);
         }
         @keyframes floatCircle {
             0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
@@ -1861,7 +1915,35 @@
     <header class="header" id="header">
         <div class="container header-container">
             <div class="logo">
-                <span class="gold-ingot"></span>
+                <!-- ===== ВСТРОЕННЫЙ SVG СЛИТОК ===== -->
+                <span class="gold-ingot">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ffd700"/>
+                                <stop offset="50%" stop-color="#f0a500"/>
+                                <stop offset="100%" stop-color="#b8860b"/>
+                            </linearGradient>
+                            <linearGradient id="goldShine" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
+                                <stop offset="50%" stop-color="rgba(255,255,255,0.0)"/>
+                                <stop offset="100%" stop-color="rgba(255,215,0,0.3)"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Основная форма слитка -->
+                        <rect x="8" y="16" width="48" height="32" rx="6" ry="6" fill="url(#goldGrad)" stroke="#b8860b" stroke-width="1.5"/>
+                        <!-- Верхняя грань (блик) -->
+                        <rect x="8" y="16" width="48" height="10" rx="6" ry="4" fill="url(#goldShine)" stroke="none"/>
+                        <!-- Блик в центре -->
+                        <ellipse cx="32" cy="30" rx="18" ry="8" fill="rgba(255,255,255,0.08)"/>
+                        <!-- Штрихи текстуры -->
+                        <line x1="16" y1="24" x2="48" y2="24" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
+                        <line x1="16" y1="32" x2="48" y2="32" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
+                        <line x1="16" y1="40" x2="48" y2="40" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
+                        <!-- Маленькая звезда (символ) -->
+                        <text x="32" y="38" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.3)" font-weight="bold">$</text>
+                    </svg>
+                </span>
                 <span class="logo-text">Just<span>SMP</span></span>
             </div>
             <nav class="nav">
@@ -1924,7 +2006,29 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="big-gold"></div>
+                <div class="big-gold">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="goldGradBig" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ffd700"/>
+                                <stop offset="50%" stop-color="#f0a500"/>
+                                <stop offset="100%" stop-color="#b8860b"/>
+                            </linearGradient>
+                            <linearGradient id="goldShineBig" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
+                                <stop offset="50%" stop-color="rgba(255,255,255,0.0)"/>
+                                <stop offset="100%" stop-color="rgba(255,215,0,0.3)"/>
+                            </linearGradient>
+                        </defs>
+                        <rect x="8" y="16" width="48" height="32" rx="6" ry="6" fill="url(#goldGradBig)" stroke="#b8860b" stroke-width="1.5"/>
+                        <rect x="8" y="16" width="48" height="10" rx="6" ry="4" fill="url(#goldShineBig)" stroke="none"/>
+                        <ellipse cx="32" cy="30" rx="18" ry="8" fill="rgba(255,255,255,0.08)"/>
+                        <line x1="16" y1="24" x2="48" y2="24" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
+                        <line x1="16" y1="32" x2="48" y2="32" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
+                        <line x1="16" y1="40" x2="48" y2="40" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
+                        <text x="32" y="38" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.3)" font-weight="bold">$</text>
+                    </svg>
+                </div>
             </div>
         </div>
     </section>
@@ -2168,11 +2272,10 @@
                 <p class="section-desc">Люди, которые делают JustSMP лучшим сервером.</p>
             </div>
             <div class="team-grid">
-                <!-- Drun_777 - Владелец -->
                 <div class="team-card owner" data-admin="Drun_777">
                     <div class="card-popup">
                         <div class="popup-title">👑 Drun_777</div>
-                        <div class="popup-desc">В разработке</div>
+                        <div class="popup-desc">Основатель и душа сервера</div>
                     </div>
                     <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566612070174832/cvs3NAAAABklEQVQDANcw1lycNXCYAAAAAElFTkSuQmCC.png?ex=6a660abc&is=6a64b93c&hm=e1e6c8d6dd83a799aabc592ad67121cf6fc3269a275a0f50ba6c7433104e4e94&" alt="Drun_777" />
                     <h4>Drun_777</h4>
@@ -2180,11 +2283,10 @@
                     <p class="team-bio">Основатель сервера и просто друнчик.</p>
                 </div>
 
-                <!-- Denchick1789 - Администратор -->
                 <div class="team-card admin" data-admin="Denchick1789">
                     <div class="card-popup">
                         <div class="popup-title">⚙️ Denchick1789</div>
-                        <div class="popup-desc">В разработке</div>
+                        <div class="popup-desc">Технический гений</div>
                     </div>
                     <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566936214241503/UO2uLQAAAAZJREFUAwBl0nTDfamiQAAAABJRU5ErkJggg.png?ex=6a660b0a&is=6a64b98a&hm=5fe0e44afa5412e3bbb02721fb0beec5cb6522f18322ffa2b26dc68c4d9d04b5&" alt="Denchick1789" />
                     <h4>Denchick1789</h4>
@@ -2192,11 +2294,10 @@
                     <p class="team-bio">Технический администратор, отвечает за стабильность сервера.</p>
                 </div>
 
-                <!-- Lait_TIM - Хелпер -->
                 <div class="team-card moderator" data-admin="Lait_TIM">
                     <div class="card-popup">
                         <div class="popup-title">🛡️ Lait_TIM</div>
-                        <div class="popup-desc">В разработке</div>
+                        <div class="popup-desc">Страж порядка</div>
                     </div>
                     <img class="team-avatar" src="https://cdn.discordapp.com/attachments/1527277871180283904/1530566831264497856/8osJVMAAAABklEQVQDAAr0FvG9MCdbAAAAAElFTkSuQmCC.png?ex=6a660af1&is=6a64b971&hm=a805b8c169bd3aeca7a4f83517280cf73d9f90dbcc9455300b426a8f4eb4560d&" alt="Lait_TIM" />
                     <h4>Lait_TIM</h4>
@@ -2236,7 +2337,29 @@
                 <p class="section-desc">Кликай по слитку, зарабатывай монеты и прокачивайся!</p>
             </div>
             <div class="clicker-container">
-                <div class="clicker-gold" id="clickerGold"></div>
+                <div class="clicker-gold" id="clickerGold">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="goldGradClick" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ffd700"/>
+                                <stop offset="50%" stop-color="#f0a500"/>
+                                <stop offset="100%" stop-color="#b8860b"/>
+                            </linearGradient>
+                            <linearGradient id="goldShineClick" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
+                                <stop offset="50%" stop-color="rgba(255,255,255,0.0)"/>
+                                <stop offset="100%" stop-color="rgba(255,215,0,0.3)"/>
+                            </linearGradient>
+                        </defs>
+                        <rect x="8" y="16" width="48" height="32" rx="6" ry="6" fill="url(#goldGradClick)" stroke="#b8860b" stroke-width="1.5"/>
+                        <rect x="8" y="16" width="48" height="10" rx="6" ry="4" fill="url(#goldShineClick)" stroke="none"/>
+                        <ellipse cx="32" cy="30" rx="18" ry="8" fill="rgba(255,255,255,0.08)"/>
+                        <line x1="16" y1="24" x2="48" y2="24" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
+                        <line x1="16" y1="32" x2="48" y2="32" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
+                        <line x1="16" y1="40" x2="48" y2="40" stroke="rgba(184,134,11,0.2)" stroke-width="1"/>
+                        <text x="32" y="38" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.3)" font-weight="bold">$</text>
+                    </svg>
+                </div>
 
                 <div class="clicker-stats">
                     <div class="clicker-stat">
@@ -2300,7 +2423,14 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="logo">
-                        <span class="gold-ingot"></span>
+                        <span class="gold-ingot">
+                            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="8" y="16" width="48" height="32" rx="6" ry="6" fill="url(#goldGrad)" stroke="#b8860b" stroke-width="1.5"/>
+                                <rect x="8" y="16" width="48" height="10" rx="6" ry="4" fill="url(#goldShine)" stroke="none"/>
+                                <ellipse cx="32" cy="30" rx="18" ry="8" fill="rgba(255,255,255,0.08)"/>
+                                <text x="32" y="38" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.3)" font-weight="bold">$</text>
+                            </svg>
+                        </span>
                         <span class="logo-text">Just<span>SMP</span></span>
                     </div>
                     <p class="footer-desc">
@@ -2344,7 +2474,7 @@
             <div class="footer-bottom">
                 <span>© 2026 JustSMP · Все права защищены</span>
                 <span>Сделано с ❤️ командой JustSMP</span>
-                <span>Версия 2.0 · Реальный онлайн</span>
+                <span>Версия 2.1 · 8 тем · Встроенный SVG</span>
             </div>
         </div>
     </footer>
@@ -2362,19 +2492,35 @@
         <div class="theme-panel" id="themePanel">
             <div class="theme-option active" data-theme="default">
                 <span class="theme-dot" style="background: #ffd700;"></span>
-                <span class="theme-label">Классическая</span>
+                <span class="theme-label">☀️ Классическая</span>
             </div>
             <div class="theme-option" data-theme="green">
                 <span class="theme-dot" style="background: #3aff6a;"></span>
-                <span class="theme-label">Зелёная</span>
+                <span class="theme-label">🌿 Изумрудная</span>
             </div>
-            <div class="theme-option" data-theme="coca">
+            <div class="theme-option" data-theme="ruby">
                 <span class="theme-dot" style="background: #ff1a1a;"></span>
-                <span class="theme-label">Красная</span>
+                <span class="theme-label">🔴 Рубиновая</span>
+            </div>
+            <div class="theme-option" data-theme="sapphire">
+                <span class="theme-dot" style="background: #1e90ff;"></span>
+                <span class="theme-label">🔵 Сапфировая</span>
+            </div>
+            <div class="theme-option" data-theme="amethyst">
+                <span class="theme-dot" style="background: #a855f7;"></span>
+                <span class="theme-label">🟣 Аметистовая</span>
+            </div>
+            <div class="theme-option" data-theme="topaz">
+                <span class="theme-dot" style="background: #ff8c00;"></span>
+                <span class="theme-label">🟠 Топаз</span>
+            </div>
+            <div class="theme-option" data-theme="pearl">
+                <span class="theme-dot" style="background: #00ffff;"></span>
+                <span class="theme-label">🩵 Жемчужная</span>
             </div>
             <div class="theme-option" data-theme="animated">
-                <span class="theme-dot" style="background: linear-gradient(135deg, #a855f7, #6d28d9);"></span>
-                <span class="theme-label">Анимированная</span>
+                <span class="theme-dot" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);"></span>
+                <span class="theme-label">🌀 Анимационная</span>
             </div>
         </div>
     </div>
@@ -2454,7 +2600,6 @@
                     let players = [];
 
                     if (!useBackup) {
-                        // Формат MCStatus.io
                         if (data.online) {
                             isOnline = true;
                             online = data.players?.online || 0;
@@ -2464,7 +2609,6 @@
                             }
                         }
                     } else {
-                        // Формат xDefcon
                         if (data.status === 'online') {
                             isOnline = true;
                             online = data.players?.now || 0;
@@ -2475,7 +2619,6 @@
                         }
                     }
 
-                    // === ОБНОВЛЯЕМ UI ===
                     if (isOnline) {
                         if (statusText) statusText.textContent = '✅ Сервер онлайн · 24/7';
                         if (statusDot) statusDot.style.background = '#3aff6a';
@@ -2495,7 +2638,6 @@
                     }
                     if (maxEl) maxEl.textContent = max || '?';
 
-                    // === СПИСОК ИГРОКОВ ===
                     if (playerListEl) {
                         if (!isOnline || online === 0) {
                             playerListEl.innerHTML = '<span class="empty">👥 На сервере никого нет 😴</span>';
@@ -2508,14 +2650,12 @@
                         }
                     }
 
-                    // Если первый API упал — переключаемся на резервный
                     useBackup = false;
 
                 })
                 .catch(error => {
                     console.warn('⚠️ Основной API упал:', error);
                     
-                    // === АВТОМАТИЧЕСКИЙ ПЕРЕХОД НА РЕЗЕРВ ===
                     if (!useBackup) {
                         useBackup = true;
                         console.log('🔄 Переключаюсь на резервный API...');
@@ -2523,7 +2663,6 @@
                         return;
                     }
 
-                    // Если оба упали — показываем ошибку
                     if (statusText) statusText.textContent = '⚠️ Ошибка соединения';
                     if (statusDot) statusDot.style.background = '#ffaa00';
                     if (onlineEl) onlineEl.textContent = '?';
@@ -2532,7 +2671,6 @@
                         playerListEl.innerHTML = '<span class="offline-text">⚠️ Не удалось загрузить данные</span>';
                     }
                     
-                    // Через 30 секунд пробуем снова с основного
                     setTimeout(() => {
                         useBackup = false;
                         fetchServerData();
@@ -2705,7 +2843,7 @@
             }
 
             // ============================================================
-            // ============== ТЕМЫ ========================================
+            // ============== ТЕМЫ (8 вариантов) ==========================
             // ============================================================
 
             function initThemes() {
@@ -2970,6 +3108,7 @@
                 console.log('⛏️ JustSMP — Классический SMP сервер!');
                 console.log('📌 IP: JustSMP.minerent.io:31048');
                 console.log('📡 Данные через MCStatus.io + xDefcon');
+                console.log('🎨 8 тем оформления');
                 console.log('💬 Присоединяйся к нам!');
                 console.log('🔄 Обновление каждые 15 секунд');
 
@@ -2986,7 +3125,6 @@
                 initThemes();
                 initClicker();
 
-                // Запускаем мониторинг онлайна
                 fetchServerData();
                 setInterval(fetchServerData, 15000);
             }
