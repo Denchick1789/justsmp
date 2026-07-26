@@ -10,9 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
     <style>
-        /* ============================================================ */
-        /* ====================== ОБЩИЕ СТИЛИ ========================= */
-        /* ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -42,7 +39,6 @@
             list-style: none;
         }
 
-        /* ===== ЗОЛОТОЙ СЛИТОК (из файла gold_gold.png) ===== */
         .gold-ingot {
             display: inline-block;
             width: 40px;
@@ -53,9 +49,6 @@
             filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.5));
         }
 
-        /* ============================================================ */
-        /* ====================== ШАПКА ================================ */
-        /* ============================================================ */
         .header {
             position: fixed;
             top: 0;
@@ -98,7 +91,6 @@
             color: #ffd700;
         }
 
-        /* ===== НАВИГАЦИЯ (шрифт 13px) ===== */
         .nav-list {
             display: flex;
             gap: 10px;
@@ -140,7 +132,6 @@
             user-select: none;
         }
 
-        /* ===== БУРГЕР (для мобильных) ===== */
         .burger {
             display: none;
             flex-direction: column;
@@ -168,9 +159,6 @@
             transform: rotate(-45deg) translate(6px, -6px);
         }
 
-        /* ============================================================ */
-        /* ====================== HERO ================================= */
-        /* ============================================================ */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -332,9 +320,6 @@
             50% { transform: translateY(-15px) scale(1.02); }
         }
 
-        /* ============================================================ */
-        /* ====================== IP =================================== */
-        /* ============================================================ */
         .ip-section {
             padding: 40px 0;
             background: linear-gradient(180deg, #0a0a0a, #0f0f08);
@@ -407,9 +392,6 @@
             to { transform: scale(4); opacity: 0; }
         }
 
-        /* ============================================================ */
-        /* ================== ОБЩИЕ СТИЛИ ДЛЯ СЕКЦИЙ =================== */
-        /* ============================================================ */
         section {
             padding: 80px 0;
             transition: background 0.4s ease;
@@ -451,9 +433,6 @@
             line-height: 1.7;
         }
 
-        /* ============================================================ */
-        /* ====================== ABOUT ================================ */
-        /* ============================================================ */
         .about {
             background: #0f0f08;
         }
@@ -492,9 +471,6 @@
             line-height: 1.6;
         }
 
-        /* ============================================================ */
-        /* ====================== FEATURES ============================= */
-        /* ============================================================ */
         .features {
             background: #0a0a0a;
         }
@@ -533,9 +509,6 @@
             line-height: 1.5;
         }
 
-        /* ============================================================ */
-        /* ====================== NEWS ================================= */
-        /* ============================================================ */
         .news {
             background: #0f0f08;
         }
@@ -631,9 +604,6 @@
             border-color: #ffd70044;
         }
 
-        /* ============================================================ */
-        /* ====================== RULES ================================ */
-        /* ============================================================ */
         .rules {
             background: #0a0a0a;
         }
@@ -671,9 +641,6 @@
             color: #ffd700;
         }
 
-        /* ============================================================ */
-        /* ====================== BANS ================================= */
-        /* ============================================================ */
         .bans {
             background: #0f0f08;
         }
@@ -731,9 +698,6 @@
             border-color: rgba(58, 255, 106, 0.20);
         }
 
-        /* ============================================================ */
-        /* ====================== TEAM ================================= */
-        /* ============================================================ */
         .team {
             background: #0a0a0a;
         }
@@ -838,9 +802,6 @@
             pointer-events: auto;
         }
 
-        /* ============================================================ */
-        /* ====================== PLAYERS LIST ========================= */
-        /* ============================================================ */
         .players-section {
             background: #0f0f08;
             padding: 30px 0 40px;
@@ -930,9 +891,6 @@
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
-        /* ============================================================ */
-        /* ====================== CONTACTS ============================= */
-        /* ============================================================ */
         .contacts {
             background: #0a0a0a;
         }
@@ -984,9 +942,6 @@
             background: rgba(255, 215, 0, 0.08);
         }
 
-        /* ============================================================ */
-        /* ====================== DEVELOPERS =========================== */
-        /* ============================================================ */
         .developers {
             background: #0f0f08;
         }
@@ -1034,9 +989,6 @@
             line-height: 1.6;
         }
 
-        /* ============================================================ */
-        /* ====================== FOOTER =============================== */
-        /* ============================================================ */
         .footer {
             background: #040404;
             border-top: 1px solid #1a1a0a;
@@ -1115,9 +1067,6 @@
             font-size: 12px;
         }
 
-        /* ============================================================ */
-        /* ==================== SCROLL TOP ============================= */
-        /* ============================================================ */
         .scroll-top {
             position: fixed;
             bottom: 30px;
@@ -1148,9 +1097,6 @@
             box-shadow: 0 8px 50px rgba(255, 215, 0, 0.45);
         }
 
-        /* ============================================================ */
-        /* ==================== THEME TOGGLE =========================== */
-        /* ============================================================ */
         .theme-toggle {
             position: fixed;
             bottom: 100px;
@@ -1254,11 +1200,7 @@
             vertical-align: middle;
         }
 
-        /* ============================================================ */
-        /* ====================== ТЕМЫ (8 вариантов) ================== */
-        /* ============================================================ */
-
-        /* ----- Тема 1: Классическая (золотая) ----- */
+        /* ===== ТЕМЫ (8 вариантов) ===== */
         body.theme-default .hero {
             background: radial-gradient(ellipse at 30% 20%, #1a1a0a, #0a0a0a);
         }
@@ -1314,7 +1256,6 @@
             border-color: #ffd70066;
         }
 
-        /* ----- Тема 2: Изумрудная (зелёная) ----- */
         body.theme-green .hero {
             background: radial-gradient(ellipse at 30% 20%, #0a1a0a, #050805);
         }
@@ -1370,7 +1311,6 @@
             border-color: #3aff6a66;
         }
 
-        /* ----- Тема 3: Рубиновая (красная) ----- */
         body.theme-ruby .hero {
             background: radial-gradient(ellipse at 30% 20%, #1a0a0a, #080505);
         }
@@ -1426,7 +1366,6 @@
             border-color: #ff1a1a66;
         }
 
-        /* ----- Тема 4: Сапфировая (синяя) ----- */
         body.theme-sapphire .hero {
             background: radial-gradient(ellipse at 30% 20%, #0a0a1a, #050508);
         }
@@ -1482,7 +1421,6 @@
             border-color: #1e90ff66;
         }
 
-        /* ----- Тема 5: Аметистовая (фиолетовая) ----- */
         body.theme-amethyst .hero {
             background: radial-gradient(ellipse at 30% 20%, #1a0a1a, #080508);
         }
@@ -1538,7 +1476,6 @@
             border-color: #a855f766;
         }
 
-        /* ----- Тема 6: Топаз (оранжевая) ----- */
         body.theme-topaz .hero {
             background: radial-gradient(ellipse at 30% 20%, #1a0f0a, #0a0500);
         }
@@ -1594,7 +1531,6 @@
             border-color: #ff8c0066;
         }
 
-        /* ----- Тема 7: Жемчужная (голубая) ----- */
         body.theme-pearl .hero {
             background: radial-gradient(ellipse at 30% 20%, #0a1a1a, #050808);
         }
@@ -1650,7 +1586,6 @@
             border-color: #00ffff66;
         }
 
-        /* ----- Тема 8: Анимационная (динамическая) ----- */
         body.theme-animated .hero {
             background: radial-gradient(ellipse at 30% 20%, #0a0a1a, #050508);
         }
@@ -1715,9 +1650,6 @@
             display: block !important;
         }
 
-        /* ============================================================ */
-        /* ====================== АНИМИРОВАННЫЙ ФОН ==================== */
-        /* ============================================================ */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -1805,9 +1737,6 @@
             75% { transform: translate(30px, -20px) scale(1.1); opacity: 0.5; }
         }
 
-        /* ============================================================ */
-        /* ====================== АДАПТАЦИЯ ============================ */
-        /* ============================================================ */
         @media (max-width: 1024px) {
             .hero-title { font-size: 40px; }
             .hero-container { gap: 30px; }
@@ -1884,9 +1813,6 @@
 </head>
 <body>
 
-    <!-- ============================================================ -->
-    <!-- ====================== АНИМИРОВАННЫЙ ФОН ==================== -->
-    <!-- ============================================================ -->
     <div class="animated-bg">
         <div class="circle"></div>
         <div class="circle"></div>
@@ -1897,9 +1823,6 @@
         <div class="circle"></div>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- ==================== ШАПКА / НАВИГАЦИЯ ===================== -->
-    <!-- ============================================================ -->
     <header class="header" id="header">
         <div class="container header-container">
             <div class="logo">
@@ -1937,9 +1860,6 @@
         </div>
     </header>
 
-    <!-- ============================================================ -->
-    <!-- ====================== СЕКЦИЯ 1: HERO ====================== -->
-    <!-- ============================================================ -->
     <section class="hero" id="home">
         <div class="container hero-container">
             <div class="hero-content">
@@ -1980,9 +1900,6 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 2: IP-АДРЕС ==================== -->
-    <!-- ============================================================ -->
     <section class="ip-section" id="ip">
         <div class="container">
             <div class="ip-box">
@@ -1999,9 +1916,6 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 3: О СЕРВЕРЕ =================== -->
-    <!-- ============================================================ -->
     <section class="about" id="about">
         <div class="container">
             <div class="section-header">
@@ -2037,9 +1951,6 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- ================== СЕКЦИЯ 4: ОСОБЕННОСТИ =================== -->
-    <!-- ============================================================ -->
     <section class="features" id="features">
         <div class="container">
             <div class="section-header">
@@ -2080,9 +1991,6 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 5: НОВОСТИ ===================== -->
-    <!-- ============================================================ -->
     <section class="news" id="news">
         <div class="container">
             <div class="section-header">
@@ -2101,7 +2009,6 @@
                         <p>Мы рады объявить о запуске нашего SMP сервера! Присоединяйся к нам и стань частью истории!</p>
                     </div>
                 </article>
-
                 <article class="news-card">
                     <div class="news-card-body">
                         <span class="news-card-date">25 июля 2026</span>
@@ -2116,9 +2023,6 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 6: ПРАВИЛА ===================== -->
-    <!-- ============================================================ -->
     <section class="rules" id="rules">
         <div class="container">
             <div class="section-header">
@@ -2134,7 +2038,6 @@
                         <li>Не обсуждайте политику</li>
                     </ul>
                 </div>
-
                 <div class="rules-category">
                     <h3 class="rules-category-title">⚔️ PvP</h3>
                     <ul class="rules-list">
@@ -2144,7 +2047,6 @@
                         <li>Клановые войны по согласованию</li>
                     </ul>
                 </div>
-
                 <div class="rules-category">
                     <h3 class="rules-category-title">🏗️ Гриферство</h3>
                     <ul class="rules-list">
@@ -2152,7 +2054,6 @@
                         <li>Ломайте и стройте где хотите</li>
                     </ul>
                 </div>
-
                 <div class="rules-category">
                     <h3 class="rules-category-title">🚫 Запрещено</h3>
                     <ul class="rules-list">
@@ -2166,9 +2067,6 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 7: БАНЫ ======================== -->
-    <!-- ============================================================ -->
     <section class="bans" id="bans">
         <div class="container">
             <div class="section-header">
@@ -2183,21 +2081,18 @@
                     <span class="ban-punishment">⚠️ Предупреждение + очистка руд</span>
                     <p class="ban-desc">При обнаружении использования X-Ray текстурпаков все добытые руды будут удалены, выдаётся предупреждение.</p>
                 </div>
-
                 <div class="ban-card">
                     <span class="ban-icon">👁️</span>
                     <h4>ESP (WallHack)</h4>
                     <span class="ban-punishment">🔨 Бан на 7 дней</span>
                     <p class="ban-desc">Использование ESP / WallHack для просмотра игроков сквозь стены карается временным баном.</p>
                 </div>
-
                 <div class="ban-card allowed">
                     <span class="ban-icon">🏗️</span>
                     <h4>Гриферство</h4>
                     <span class="ban-punishment">✅ РАЗРЕШЕНО</span>
                     <p class="ban-desc">Гриферство на сервере полностью разрешено. Ломайте и стройте где хотите — это часть игры!</p>
                 </div>
-
                 <div class="ban-card allowed">
                     <span class="ban-icon">🗡️</span>
                     <h4>Убийство новичков</h4>
@@ -2208,9 +2103,6 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 8: КОМАНДА ===================== -->
-    <!-- ============================================================ -->
     <section class="team" id="team">
         <div class="container">
             <div class="section-header">
@@ -2229,7 +2121,6 @@
                     <span class="team-role">👑 Владелец</span>
                     <p class="team-bio">Основатель сервера и просто друнчик.</p>
                 </div>
-
                 <div class="team-card admin" data-admin="Denchick1789">
                     <div class="card-popup">
                         <div class="popup-title">⚙️ Denchick1789</div>
@@ -2240,7 +2131,6 @@
                     <span class="team-role">⚙️ Администратор</span>
                     <p class="team-bio">Технический администратор, отвечает за стабильность сервера.</p>
                 </div>
-
                 <div class="team-card moderator" data-admin="Lait_TIM">
                     <div class="card-popup">
                         <div class="popup-title">🛡️ Lait_TIM</div>
@@ -2255,9 +2145,6 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 9: PLAYERS LIST ================ -->
-    <!-- ============================================================ -->
     <section class="players-section" id="players">
         <div class="container">
             <div class="players-header">
@@ -2273,9 +2160,6 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- ================ СЕКЦИЯ 10: РАЗРАБОТЧИКИ ================== -->
-    <!-- ============================================================ -->
     <section class="developers" id="developers">
         <div class="container">
             <div class="section-header">
@@ -2300,9 +2184,6 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- ==================== СЕКЦИЯ 11: КОНТАКТЫ =================== -->
-    <!-- ============================================================ -->
     <section class="contacts" id="contacts">
         <div class="container">
             <div class="section-header">
@@ -2321,9 +2202,6 @@
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- ====================== ПОДВАЛ / ФУТЕР ====================== -->
-    <!-- ============================================================ -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -2378,14 +2256,8 @@
         </div>
     </footer>
 
-    <!-- ============================================================ -->
-    <!-- ==================== КНОПКА НАВЕРХ ========================== -->
-    <!-- ============================================================ -->
     <button class="scroll-top" id="scrollTopBtn" aria-label="Наверх">↑</button>
 
-    <!-- ============================================================ -->
-    <!-- ==================== ВКЛАДКА ТЕМ ============================ -->
-    <!-- ============================================================ -->
     <div class="theme-toggle">
         <button class="theme-btn" id="themeBtn" aria-label="Темы">🎨</button>
         <div class="theme-panel" id="themePanel">
@@ -2424,16 +2296,10 @@
         </div>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- ====================== ВЕСЬ JAVASCRIPT ===================== -->
-    <!-- ============================================================ -->
     <script>
         (function() {
             'use strict';
 
-            // ============================================================
-            // ============== КЛИК ПО КАРТОЧКАМ АДМИНОВ ===================
-            // ============================================================
             function initAdminCards() {
                 const cards = document.querySelectorAll('.team-card[data-admin]');
                 cards.forEach(card => {
@@ -2454,27 +2320,33 @@
             }
 
             // ============================================================
-            // ============== РЕАЛЬНЫЙ ОНЛАЙН + ОПЕРАТОРЫ =================
+            // ===== ОНЛАЙН И СПИСОК ИГРОКОВ ЧЕРЕЗ RCON =====
             // ============================================================
             
             const API_URL = 'https://api.mcstatus.io/v2/status/java/JustSMP.minerent.io:31048';
             const BACKUP_API = 'https://mcapi.xdefcon.com/server/JustSMP.minerent.io:31048/status/json';
-            const OPS_API = 'ops.php'; // <-- PHP-файл в корне
+            const RCON_API = 'ops.php'; // <-- получаем игроков и операторов
             
             let useBackup = false;
+            let players = [];
             let operators = [];
 
-            // Загружаем список операторов
-            function fetchOperators() {
-                fetch(OPS_API)
+            // Загружаем список игроков и операторов через RCON
+            function fetchRCONData() {
+                fetch(RCON_API)
                     .then(response => response.json())
                     .then(data => {
+                        players = data.players || [];
                         operators = data.operators || [];
-                        console.log('👑 Операторы загружены:', operators);
+                        console.log('👥 Игроки (RCON):', players);
+                        console.log('👑 Операторы (RCON):', operators);
+                        updatePlayerList();
                     })
                     .catch(err => {
-                        console.warn('⚠️ Не удалось загрузить операторов:', err);
+                        console.warn('⚠️ RCON не отвечает:', err);
+                        players = [];
                         operators = [];
+                        updatePlayerList();
                     });
             }
 
@@ -2483,11 +2355,9 @@
                 const statusDot = document.getElementById('statusDot');
                 const onlineEl = document.getElementById('onlineCount');
                 const maxEl = document.getElementById('maxPlayers');
-                const playerListEl = document.getElementById('playerList');
 
                 if (statusText) statusText.textContent = '🔄 Проверка сервера...';
                 if (statusDot) statusDot.style.background = '#ffaa00';
-                if (playerListEl) playerListEl.innerHTML = '<span class="loading-text">🔄 Загрузка игроков...</span>';
 
                 const url = useBackup ? BACKUP_API : API_URL;
 
@@ -2500,30 +2370,23 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log('📡 Данные с сервера:', data);
+                    console.log('📡 Данные с сервера (онлайн):', data);
 
                     let online = 0;
                     let max = 0;
                     let isOnline = false;
-                    let players = [];
 
                     if (!useBackup) {
                         if (data.online) {
                             isOnline = true;
                             online = data.players?.online || 0;
                             max = data.players?.max || 0;
-                            if (data.players?.sample) {
-                                players = data.players.sample.map(p => p.name);
-                            }
                         }
                     } else {
                         if (data.status === 'online') {
                             isOnline = true;
                             online = data.players?.now || 0;
                             max = data.players?.max || 0;
-                            if (data.players?.list) {
-                                players = data.players.list;
-                            }
                         }
                     }
 
@@ -2536,6 +2399,7 @@
                         online = 0;
                         max = 0;
                         players = [];
+                        operators = [];
                     }
 
                     if (onlineEl) {
@@ -2546,25 +2410,9 @@
                     }
                     if (maxEl) maxEl.textContent = max || '?';
 
-                    // === ОТОБРАЖАЕМ ИГРОКОВ С ОПЕРАТОРАМИ ===
-                    if (playerListEl) {
-                        if (!isOnline || online === 0) {
-                            playerListEl.innerHTML = '<span class="empty">👥 На сервере никого нет 😴</span>';
-                        } else if (players.length > 0) {
-                            let html = '';
-                            players.forEach(name => {
-                                const isOp = operators.includes(name);
-                                html += `
-                                    <span class="player-name ${isOp ? 'operator' : ''}">
-                                        ${isOp ? '👩‍🎓 ' : ''}${name}
-                                        ${isOp ? '<span class="op-badge">Оператор</span>' : ''}
-                                    </span>
-                                `;
-                            });
-                            playerListEl.innerHTML = html;
-                        } else {
-                            playerListEl.innerHTML = `<span class="player-name">👥 ${online} игроков онлайн</span>`;
-                        }
+                    // Обновляем список игроков (если сервер офлайн — очищаем)
+                    if (!isOnline) {
+                        updatePlayerList();
                     }
 
                     useBackup = false;
@@ -2582,15 +2430,34 @@
                     if (statusDot) statusDot.style.background = '#ffaa00';
                     if (onlineEl) onlineEl.textContent = '?';
                     if (maxEl) maxEl.textContent = '?';
-                    if (playerListEl) {
-                        playerListEl.innerHTML = '<span class="offline-text">⚠️ Не удалось загрузить данные</span>';
-                    }
 
                     setTimeout(() => {
                         useBackup = false;
                         fetchServerData();
                     }, 30000);
                 });
+            }
+
+            function updatePlayerList() {
+                const playerListEl = document.getElementById('playerList');
+                if (!playerListEl) return;
+
+                if (players.length === 0) {
+                    playerListEl.innerHTML = '<span class="empty">👥 На сервере никого нет 😴</span>';
+                    return;
+                }
+
+                let html = '';
+                players.forEach(name => {
+                    const isOp = operators.includes(name);
+                    html += `
+                        <span class="player-name ${isOp ? 'operator' : ''}">
+                            ${isOp ? '👩‍🎓 ' : ''}${name}
+                            ${isOp ? '<span class="op-badge">Оператор</span>' : ''}
+                        </span>
+                    `;
+                });
+                playerListEl.innerHTML = html;
             }
 
             // ============================================================
@@ -2669,7 +2536,7 @@
             }
 
             // ============================================================
-            // ============== ТЕМЫ (8 вариантов) ==========================
+            // ============== ТЕМЫ ========================================
             // ============================================================
 
             function initThemes() {
@@ -2933,11 +2800,10 @@
             function init() {
                 console.log('⛏️ JustSMP — Классический SMP сервер!');
                 console.log('📌 IP: JustSMP.minerent.io:31048');
-                console.log('📡 Данные через MCStatus.io + xDefcon');
-                console.log('👑 Операторы через RCON (ops.php)');
+                console.log('📡 Онлайн через MCStatus.io + xDefcon');
+                console.log('👥 Игроки и операторы через RCON (ops.php)');
                 console.log('🎨 8 тем оформления');
                 console.log('💻 Разработчики: JustZero, Denchick1789');
-                console.log('💬 Присоединяйся к нам!');
                 console.log('🔄 Обновление каждые 15 секунд');
 
                 initAdminCards();
@@ -2952,9 +2818,9 @@
                 initMobileFixes();
                 initThemes();
 
-                // Загружаем операторов
-                fetchOperators();
-                setInterval(fetchOperators, 60000);
+                // Загружаем данные через RCON
+                fetchRCONData();
+                setInterval(fetchRCONData, 15000);
 
                 // Загружаем онлайн
                 fetchServerData();
