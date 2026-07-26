@@ -42,7 +42,6 @@
             list-style: none;
         }
 
-        /* ===== ЗОЛОТОЙ СЛИТОК ===== */
         .gold-ingot {
             display: inline-block;
             width: 40px;
@@ -777,7 +776,6 @@
             line-height: 1.5;
             margin-bottom: 14px;
         }
-        /* ===== ВСПЛЫВАЮЩЕЕ ОКНО ДЛЯ КАРТОЧЕК ===== */
         .team-card .card-popup {
             position: absolute;
             bottom: calc(100% + 16px);
@@ -1255,8 +1253,6 @@
         /* ============================================================ */
         /* ====================== ТЕМЫ ================================= */
         /* ============================================================ */
-
-        /* ----- Тема 1: Классическая (жёлто-чёрная) ----- */
         body.theme-default .hero {
             background: radial-gradient(ellipse at 30% 20%, #1a1a0a, #0a0a0a);
         }
@@ -1360,7 +1356,6 @@
             border-color: #ffd70066;
         }
 
-        /* ----- Тема 2: Зелёная ----- */
         body.theme-green .hero {
             background: radial-gradient(ellipse at 30% 20%, #0a1a0a, #050805);
         }
@@ -1464,7 +1459,6 @@
             border-color: #3aff6a66;
         }
 
-        /* ----- Тема 3: Красная ----- */
         body.theme-coca .hero {
             background: radial-gradient(ellipse at 30% 20%, #1a0a0a, #080505);
         }
@@ -1568,7 +1562,6 @@
             border-color: #ff1a1a66;
         }
 
-        /* ----- Тема 4: Анимированная ----- */
         body.theme-animated .hero {
             background: radial-gradient(ellipse at 30% 20%, #0a0a1a, #050508);
         }
@@ -1846,7 +1839,6 @@
             .players-icon { font-size: 22px; }
         }
     </style>
-
 </head>
 <body>
 
@@ -2417,90 +2409,135 @@
             }
 
             // ============================================================
-            // ============== РЕАЛЬНЫЙ ОНЛАЙН + СПИСОК ИГРОКОВ ==========
+            // ============== РЕАЛЬНЫЙ ОНЛАЙН 2026 (В 1 ФАЙЛЕ) ===========
             // ============================================================
-
-            const API_URL = 'https://mcapi.us/server/status?ip=JustSMP.minerent.io&port=31048';
+            
+            // === СТРАТЕГИЯ 1: MCStatus.io (Прямой API) ===
+            const API_URL = 'https://api.mcstatus.io/v2/status/java/JustSMP.minerent.io:31048';
+            
+            // === СТРАТЕГИЯ 2: Резервный (xDefcon) ===
+            const BACKUP_API = 'https://mcapi.xdefcon.com/server/JustSMP.minerent.io:31048/status/json';
+            
+            let useBackup = false;
 
             function fetchServerData() {
                 const statusText = document.getElementById('statusText');
                 const statusDot = document.getElementById('statusDot');
                 const onlineEl = document.getElementById('onlineCount');
                 const maxEl = document.getElementById('maxPlayers');
-                const versionEl = document.getElementById('serverVersion');
                 const playerListEl = document.getElementById('playerList');
 
-                // Показываем загрузку
                 if (statusText) statusText.textContent = '🔄 Проверка сервера...';
                 if (statusDot) statusDot.style.background = '#ffaa00';
                 if (playerListEl) playerListEl.innerHTML = '<span class="loading-text">🔄 Загрузка игроков...</span>';
 
-                fetch(API_URL)
-                    .then(response => {
-                        if (!response.ok) throw new Error('HTTP ' + response.status);
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('📡 Данные с сервера:', data);
+                const url = useBackup ? BACKUP_API : API_URL;
 
-                        // === ОНЛАЙН / ОФЛАЙН ===
-                        if (data.online === false) {
-                            if (statusText) statusText.textContent = '❌ Сервер офлайн';
-                            if (statusDot) statusDot.style.background = '#ff4444';
-                            if (onlineEl) onlineEl.textContent = '0';
-                            if (maxEl) maxEl.textContent = '0';
-                            if (playerListEl) playerListEl.innerHTML =
-                            '<span class="offline-text">❌ Сервер офлайн</span>';
-                            return;
-                        }
+                fetch(url, {
+                    mode: 'cors',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('📡 Данные с сервера (2026):', data);
 
-                        // === СЕРВЕР ОНЛАЙН ===
-                        if (statusText) statusText.textContent = '✅ Сервер онлайн · 24/7';
-                        if (statusDot) statusDot.style.background = '#3aff6a';
+                    let online = 0;
+                    let max = 0;
+                    let isOnline = false;
+                    let players = [];
 
-                        // === ОНЛАЙН ===
-                        const online = data.players ? data.players.now : 0;
-                        if (onlineEl) {
-                            onlineEl.textContent = online;
-                            // Анимация при изменении
-                            onlineEl.classList.remove('pulse');
-                            void onlineEl.offsetWidth;
-                            onlineEl.classList.add('pulse');
-                        }
-
-                        // === МАКСИМУМ ===
-                        const max = data.players ? data.players.max : '?';
-                        if (maxEl) maxEl.textContent = max;
-
-                        // === ВЕРСИЯ ===
-                        if (data.server && data.server.name) {
-                            if (versionEl) versionEl.textContent = data.server.name;
-                        }
-
-                        // === СПИСОК ИГРОКОВ ===
-                        const players = data.players ? data.players.sample : [];
-                        if (playerListEl) {
-                            if (players.length === 0) {
-                                playerListEl.innerHTML = '<span class="empty">👥 На сервере никого нет 😴</span>';
-                            } else {
-                                let html = '';
-                                players.forEach(player => {
-                                    html += `<span class="player-name">${player.name}</span>`;
-                                });
-                                playerListEl.innerHTML = html;
+                    if (!useBackup) {
+                        // Формат MCStatus.io
+                        if (data.online) {
+                            isOnline = true;
+                            online = data.players?.online || 0;
+                            max = data.players?.max || 0;
+                            if (data.players?.sample) {
+                                players = data.players.sample.map(p => p.name);
                             }
                         }
+                    } else {
+                        // Формат xDefcon
+                        if (data.status === 'online') {
+                            isOnline = true;
+                            online = data.players?.now || 0;
+                            max = data.players?.max || 0;
+                            if (data.players?.list) {
+                                players = data.players.list;
+                            }
+                        }
+                    }
 
-                    })
-                    .catch(error => {
-                        console.error('❌ Ошибка:', error);
-                        if (statusText) statusText.textContent = '⚠️ Ошибка соединения';
-                        if (statusDot) statusDot.style.background = '#ffaa00';
-                        if (onlineEl) onlineEl.textContent = '?';
-                        if (maxEl) maxEl.textContent = '?';
-                        if (playerListEl) playerListEl.innerHTML =
-                            '<span class="offline-text">⚠️ Не удалось загрузить данные</span>';
-                    });
+                    // === ОБНОВЛЯЕМ UI ===
+                    if (isOnline) {
+                        if (statusText) statusText.textContent = '✅ Сервер онлайн · 24/7';
+                        if (statusDot) statusDot.style.background = '#3aff6a';
+                    } else {
+                        if (statusText) statusText.textContent = '❌ Сервер офлайн';
+                        if (statusDot) statusDot.style.background = '#ff4444';
+                        online = 0;
+                        max = 0;
+                        players = [];
+                    }
+
+                    if (onlineEl) {
+                        onlineEl.textContent = online;
+                        onlineEl.classList.remove('pulse');
+                        void onlineEl.offsetWidth;
+                        onlineEl.classList.add('pulse');
+                    }
+                    if (maxEl) maxEl.textContent = max || '?';
+
+                    // === СПИСОК ИГРОКОВ ===
+                    if (playerListEl) {
+                        if (!isOnline || online === 0) {
+                            playerListEl.innerHTML = '<span class="empty">👥 На сервере никого нет 😴</span>';
+                        } else if (players.length > 0) {
+                            playerListEl.innerHTML = players.map(name => 
+                                `<span class="player-name">${name}</span>`
+                            ).join('');
+                        } else {
+                            playerListEl.innerHTML = `<span class="player-name">👥 ${online} игроков онлайн</span>`;
+                        }
+                    }
+
+                    // Если первый API упал — переключаемся на резервный
+                    useBackup = false;
+
+                })
+                .catch(error => {
+                    console.warn('⚠️ Основной API упал:', error);
+                    
+                    // === АВТОМАТИЧЕСКИЙ ПЕРЕХОД НА РЕЗЕРВ ===
+                    if (!useBackup) {
+                        useBackup = true;
+                        console.log('🔄 Переключаюсь на резервный API...');
+                        fetchServerData();
+                        return;
+                    }
+
+                    // Если оба упали — показываем ошибку
+                    if (statusText) statusText.textContent = '⚠️ Ошибка соединения';
+                    if (statusDot) statusDot.style.background = '#ffaa00';
+                    if (onlineEl) onlineEl.textContent = '?';
+                    if (maxEl) maxEl.textContent = '?';
+                    if (playerListEl) {
+                        playerListEl.innerHTML = '<span class="offline-text">⚠️ Не удалось загрузить данные</span>';
+                    }
+                    
+                    // Через 30 секунд пробуем снова с основного
+                    setTimeout(() => {
+                        useBackup = false;
+                        fetchServerData();
+                    }, 30000);
+                });
             }
 
             // ============================================================
@@ -2932,9 +2969,9 @@
             function init() {
                 console.log('⛏️ JustSMP — Классический SMP сервер!');
                 console.log('📌 IP: JustSMP.minerent.io:31048');
-                console.log('📡 Данные через MCAPI');
+                console.log('📡 Данные через MCStatus.io + xDefcon');
                 console.log('💬 Присоединяйся к нам!');
-                console.log('🔄 Обновление каждые 30 секунд');
+                console.log('🔄 Обновление каждые 15 секунд');
 
                 initAdminCards();
                 initCopyIp();
@@ -2949,8 +2986,9 @@
                 initThemes();
                 initClicker();
 
+                // Запускаем мониторинг онлайна
                 fetchServerData();
-                setInterval(fetchServerData, 30000);
+                setInterval(fetchServerData, 15000);
             }
 
             if (document.readyState === 'loading') {
