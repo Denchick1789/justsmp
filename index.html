@@ -2417,11 +2417,10 @@
             }
 
             // ============================================================
-            // ============== РЕАЛЬНЫЙ ОНЛАЙН (СИНХРОНИЗАЦИЯ) ===========
+            // ============== РЕАЛЬНЫЙ ОНЛАЙН + СПИСОК ИГРОКОВ ==========
             // ============================================================
 
             const API_URL = 'https://mcapi.us/server/status?ip=JustSMP.minerent.io&port=31048';
-            let lastOnline = -1;
 
             function fetchServerData() {
                 const statusText = document.getElementById('statusText');
@@ -2431,12 +2430,10 @@
                 const versionEl = document.getElementById('serverVersion');
                 const playerListEl = document.getElementById('playerList');
 
-                // Показываем загрузку (только если нет данных)
-                if (lastOnline === -1) {
-                    if (statusText) statusText.textContent = '🔄 Проверка сервера...';
-                    if (statusDot) statusDot.style.background = '#ffaa00';
-                    if (playerListEl) playerListEl.innerHTML = '<span class="loading-text">🔄 Загрузка игроков...</span>';
-                }
+                // Показываем загрузку
+                if (statusText) statusText.textContent = '🔄 Проверка сервера...';
+                if (statusDot) statusDot.style.background = '#ffaa00';
+                if (playerListEl) playerListEl.innerHTML = '<span class="loading-text">🔄 Загрузка игроков...</span>';
 
                 fetch(API_URL)
                     .then(response => {
@@ -2444,7 +2441,7 @@
                         return response.json();
                     })
                     .then(data => {
-                        console.log('📡 Данные с сервера (синхронизация):', data);
+                        console.log('📡 Данные с сервера:', data);
 
                         // === ОНЛАЙН / ОФЛАЙН ===
                         if (data.online === false) {
@@ -2454,7 +2451,6 @@
                             if (maxEl) maxEl.textContent = '0';
                             if (playerListEl) playerListEl.innerHTML =
                             '<span class="offline-text">❌ Сервер офлайн</span>';
-                            lastOnline = 0;
                             return;
                         }
 
@@ -2462,20 +2458,14 @@
                         if (statusText) statusText.textContent = '✅ Сервер онлайн · 24/7';
                         if (statusDot) statusDot.style.background = '#3aff6a';
 
-                        // === ОНЛАЙН (БЕРЁМ ТОЛЬКО ИЗ API) ===
+                        // === ОНЛАЙН ===
                         const online = data.players ? data.players.now : 0;
                         if (onlineEl) {
-                            // Обновляем только если число изменилось
-                            if (online !== lastOnline) {
-                                onlineEl.textContent = online;
-                                onlineEl.classList.remove('pulse');
-                                void onlineEl.offsetWidth;
-                                onlineEl.classList.add('pulse');
-                                lastOnline = online;
-                            } else {
-                                // Просто обновляем без анимации
-                                onlineEl.textContent = online;
-                            }
+                            onlineEl.textContent = online;
+                            // Анимация при изменении
+                            onlineEl.classList.remove('pulse');
+                            void onlineEl.offsetWidth;
+                            onlineEl.classList.add('pulse');
                         }
 
                         // === МАКСИМУМ ===
@@ -2504,15 +2494,12 @@
                     })
                     .catch(error => {
                         console.error('❌ Ошибка:', error);
-                        // Не сбрасываем lastOnline, чтобы не мигать
                         if (statusText) statusText.textContent = '⚠️ Ошибка соединения';
                         if (statusDot) statusDot.style.background = '#ffaa00';
-                        if (onlineEl && lastOnline === -1) onlineEl.textContent = '?';
-                        if (maxEl && lastOnline === -1) maxEl.textContent = '?';
-                        if (playerListEl && lastOnline === -1) {
-                            playerListEl.innerHTML =
+                        if (onlineEl) onlineEl.textContent = '?';
+                        if (maxEl) maxEl.textContent = '?';
+                        if (playerListEl) playerListEl.innerHTML =
                             '<span class="offline-text">⚠️ Не удалось загрузить данные</span>';
-                        }
                     });
             }
 
@@ -2943,10 +2930,11 @@
             // ============================================================
 
             function init() {
-                console.log('⛏️ JustSMP — Синхронизация с API');
+                console.log('⛏️ JustSMP — Классический SMP сервер!');
                 console.log('📌 IP: JustSMP.minerent.io:31048');
-                console.log('📡 Данные через MCAPI (обновление 15 сек)');
+                console.log('📡 Данные через MCAPI');
                 console.log('💬 Присоединяйся к нам!');
+                console.log('🔄 Обновление каждые 30 секунд');
 
                 initAdminCards();
                 initCopyIp();
@@ -2961,11 +2949,8 @@
                 initThemes();
                 initClicker();
 
-                // Первая загрузка
                 fetchServerData();
-
-                // Обновление каждые 15 секунд (синхронизация)
-                setInterval(fetchServerData, 15000);
+                setInterval(fetchServerData, 30000);
             }
 
             if (document.readyState === 'loading') {
