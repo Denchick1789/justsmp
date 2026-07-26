@@ -1,23 +1,23 @@
 <?php
-// ops.php — с отладкой, чтобы увидеть сырой ответ
+// ops.php — с портом 31048 (как у основного сервера)
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
 $host = 'JustSMP.minerent.io';
-$port = 25575;
+$port = 31048;                    // <-- новый порт
 $password = 'JustSrun777';
 
 $result = [
     'players' => [],
     'operators' => [],
-    'raw_list' => '',   // <-- для отладки
-    'raw_op' => ''      // <-- для отладки
+    'raw_list' => '',
+    'raw_op' => ''
 ];
 
 try {
     $socket = fsockopen($host, $port, $errno, $errstr, 2);
     if (!$socket) {
-        throw new Exception("RCON connection failed");
+        throw new Exception("RCON connection failed: $errstr ($errno)");
     }
 
     // Аутентификация
@@ -35,12 +35,9 @@ try {
     $response = substr($response, 8);
     $response = trim($response);
     
-    $result['raw_list'] = $response; // сохраняем сырой ответ
+    $result['raw_list'] = $response;
 
-    // Парсим /list
     $players = [];
-    
-    // Вариант 1: "There are 2 of a max of 50 players online: Drun_777, Denchick1789"
     if (strpos($response, 'players online:') !== false) {
         $parts = explode('players online:', $response);
         if (isset($parts[1])) {
@@ -49,9 +46,7 @@ try {
                 $players = array_map('trim', explode(',', $list));
             }
         }
-    } 
-    // Вариант 2: "online: Drun_777, Denchick1789" (сокращённый)
-    elseif (strpos($response, 'online:') !== false) {
+    } elseif (strpos($response, 'online:') !== false) {
         $parts = explode('online:', $response);
         if (isset($parts[1])) {
             $list = trim($parts[1]);
@@ -59,9 +54,7 @@ try {
                 $players = array_map('trim', explode(',', $list));
             }
         }
-    }
-    // Вариант 3: "Drun_777, Denchick1789" (только имена)
-    elseif (strpos($response, ',') !== false) {
+    } elseif (strpos($response, ',') !== false) {
         $players = array_map('trim', explode(',', $response));
     }
 
@@ -92,7 +85,12 @@ try {
     fclose($socket);
 
 } catch (Exception $e) {
-    $result = ['players' => [], 'operators' => [], 'raw_list' => $e->getMessage(), 'raw_op' => ''];
+    $result = [
+        'players' => [],
+        'operators' => [],
+        'raw_list' => 'ERROR: ' . $e->getMessage(),
+        'raw_op' => ''
+    ];
 }
 
 echo json_encode($result);
