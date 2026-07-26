@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
     <style>
+        /* ============================================================ */
+        /* ====================== ОБЩИЕ СТИЛИ ========================= */
+        /* ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -39,6 +42,7 @@
             list-style: none;
         }
 
+        /* ===== ЗОЛОТОЙ СЛИТОК (из файла gold_gold.png) ===== */
         .gold-ingot {
             display: inline-block;
             width: 40px;
@@ -49,6 +53,9 @@
             filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.5));
         }
 
+        /* ============================================================ */
+        /* ====================== ШАПКА ================================ */
+        /* ============================================================ */
         .header {
             position: fixed;
             top: 0;
@@ -91,6 +98,7 @@
             color: #ffd700;
         }
 
+        /* ===== НАВИГАЦИЯ (шрифт 13px) ===== */
         .nav-list {
             display: flex;
             gap: 10px;
@@ -159,6 +167,9 @@
             transform: rotate(-45deg) translate(6px, -6px);
         }
 
+        /* ============================================================ */
+        /* ====================== HERO ================================= */
+        /* ============================================================ */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -320,6 +331,9 @@
             50% { transform: translateY(-15px) scale(1.02); }
         }
 
+        /* ============================================================ */
+        /* ====================== IP =================================== */
+        /* ============================================================ */
         .ip-section {
             padding: 40px 0;
             background: linear-gradient(180deg, #0a0a0a, #0f0f08);
@@ -392,6 +406,9 @@
             to { transform: scale(4); opacity: 0; }
         }
 
+        /* ============================================================ */
+        /* ================== ОБЩИЕ СТИЛИ ДЛЯ СЕКЦИЙ =================== */
+        /* ============================================================ */
         section {
             padding: 80px 0;
             transition: background 0.4s ease;
@@ -433,6 +450,9 @@
             line-height: 1.7;
         }
 
+        /* ============================================================ */
+        /* ====================== ABOUT ================================ */
+        /* ============================================================ */
         .about {
             background: #0f0f08;
         }
@@ -471,6 +491,9 @@
             line-height: 1.6;
         }
 
+        /* ============================================================ */
+        /* ====================== FEATURES ============================= */
+        /* ============================================================ */
         .features {
             background: #0a0a0a;
         }
@@ -509,6 +532,9 @@
             line-height: 1.5;
         }
 
+        /* ============================================================ */
+        /* ====================== NEWS ================================= */
+        /* ============================================================ */
         .news {
             background: #0f0f08;
         }
@@ -604,6 +630,9 @@
             border-color: #ffd70044;
         }
 
+        /* ============================================================ */
+        /* ====================== RULES ================================ */
+        /* ============================================================ */
         .rules {
             background: #0a0a0a;
         }
@@ -641,6 +670,9 @@
             color: #ffd700;
         }
 
+        /* ============================================================ */
+        /* ====================== BANS ================================= */
+        /* ============================================================ */
         .bans {
             background: #0f0f08;
         }
@@ -698,6 +730,9 @@
             border-color: rgba(58, 255, 106, 0.20);
         }
 
+        /* ============================================================ */
+        /* ====================== TEAM ================================= */
+        /* ============================================================ */
         .team {
             background: #0a0a0a;
         }
@@ -802,6 +837,9 @@
             pointer-events: auto;
         }
 
+        /* ============================================================ */
+        /* ====================== PLAYERS LIST ========================= */
+        /* ============================================================ */
         .players-section {
             background: #0f0f08;
             padding: 30px 0 40px;
@@ -891,6 +929,59 @@
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
+        /* ============================================================ */
+        /* ====================== DEVELOPERS =========================== */
+        /* ============================================================ */
+        .developers {
+            background: #0f0f08;
+        }
+        .developers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .developer-card {
+            background: linear-gradient(145deg, #111108, #0a0a0a);
+            border: 1px solid #2a2a1a;
+            border-radius: 16px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .developer-card:hover {
+            transform: translateY(-6px);
+            border-color: #ffd70044;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+        .developer-card .dev-icon {
+            font-size: 44px;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .developer-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #e8e0c8;
+            margin-bottom: 6px;
+        }
+        .developer-card .dev-role {
+            color: #ffd700;
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .developer-card p {
+            font-size: 15px;
+            color: #8a7a5a;
+            line-height: 1.6;
+        }
+
+        /* ============================================================ */
+        /* ====================== CONTACTS ============================= */
+        /* ============================================================ */
         .contacts {
             background: #0a0a0a;
         }
@@ -942,53 +1033,9 @@
             background: rgba(255, 215, 0, 0.08);
         }
 
-        .developers {
-            background: #0f0f08;
-        }
-        .developers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .developer-card {
-            background: linear-gradient(145deg, #111108, #0a0a0a);
-            border: 1px solid #2a2a1a;
-            border-radius: 16px;
-            padding: 30px 24px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        .developer-card:hover {
-            transform: translateY(-6px);
-            border-color: #ffd70044;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-        }
-        .developer-card .dev-icon {
-            font-size: 44px;
-            display: block;
-            margin-bottom: 12px;
-        }
-        .developer-card h3 {
-            font-size: 22px;
-            font-weight: 700;
-            color: #e8e0c8;
-            margin-bottom: 6px;
-        }
-        .developer-card .dev-role {
-            color: #ffd700;
-            font-size: 14px;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 10px;
-        }
-        .developer-card p {
-            font-size: 15px;
-            color: #8a7a5a;
-            line-height: 1.6;
-        }
-
+        /* ============================================================ */
+        /* ====================== FOOTER =============================== */
+        /* ============================================================ */
         .footer {
             background: #040404;
             border-top: 1px solid #1a1a0a;
@@ -1067,6 +1114,9 @@
             font-size: 12px;
         }
 
+        /* ============================================================ */
+        /* ==================== SCROLL TOP ============================= */
+        /* ============================================================ */
         .scroll-top {
             position: fixed;
             bottom: 30px;
@@ -1097,6 +1147,9 @@
             box-shadow: 0 8px 50px rgba(255, 215, 0, 0.45);
         }
 
+        /* ============================================================ */
+        /* ==================== THEME TOGGLE =========================== */
+        /* ============================================================ */
         .theme-toggle {
             position: fixed;
             bottom: 100px;
@@ -1200,7 +1253,9 @@
             vertical-align: middle;
         }
 
-        /* ===== ТЕМЫ (8 вариантов) ===== */
+        /* ============================================================ */
+        /* ====================== ТЕМЫ (8 вариантов) ================== */
+        /* ============================================================ */
         body.theme-default .hero {
             background: radial-gradient(ellipse at 30% 20%, #1a1a0a, #0a0a0a);
         }
@@ -2300,6 +2355,9 @@
         (function() {
             'use strict';
 
+            // ============================================================
+            // ============== КЛИК ПО КАРТОЧКАМ АДМИНОВ ===================
+            // ============================================================
             function initAdminCards() {
                 const cards = document.querySelectorAll('.team-card[data-admin]');
                 cards.forEach(card => {
@@ -2320,144 +2378,84 @@
             }
 
             // ============================================================
-            // ===== ОНЛАЙН И СПИСОК ИГРОКОВ ЧЕРЕЗ RCON =====
+            // ===== ОНЛАЙН И СПИСОК ИГРОКОВ через mcsrvstat.us =====
             // ============================================================
             
-            const API_URL = 'https://api.mcstatus.io/v2/status/java/JustSMP.minerent.io:31048';
-            const BACKUP_API = 'https://mcapi.xdefcon.com/server/JustSMP.minerent.io:31048/status/json';
-            const RCON_API = 'ops.php'; // <-- получаем игроков и операторов
+            const API_URL = 'https://api.mcsrvstat.us/2/JustSMP.minerent.io:31048';
             
-            let useBackup = false;
-            let players = [];
-            let operators = [];
-
-            // Загружаем список игроков и операторов через RCON
-            function fetchRCONData() {
-                fetch(RCON_API)
-                    .then(response => response.json())
-                    .then(data => {
-                        players = data.players || [];
-                        operators = data.operators || [];
-                        console.log('👥 Игроки (RCON):', players);
-                        console.log('👑 Операторы (RCON):', operators);
-                        updatePlayerList();
-                    })
-                    .catch(err => {
-                        console.warn('⚠️ RCON не отвечает:', err);
-                        players = [];
-                        operators = [];
-                        updatePlayerList();
-                    });
-            }
+            // ===== СПИСОК ОПЕРАТОРОВ (обновляй здесь) =====
+            const OPERATORS = ['Denchick1789', 'Drun_777', 'Lait_TIM'];
 
             function fetchServerData() {
                 const statusText = document.getElementById('statusText');
                 const statusDot = document.getElementById('statusDot');
                 const onlineEl = document.getElementById('onlineCount');
                 const maxEl = document.getElementById('maxPlayers');
+                const playerListEl = document.getElementById('playerList');
 
                 if (statusText) statusText.textContent = '🔄 Проверка сервера...';
                 if (statusDot) statusDot.style.background = '#ffaa00';
+                if (playerListEl) playerListEl.innerHTML = '<span class="loading-text">🔄 Загрузка...</span>';
 
-                const url = useBackup ? BACKUP_API : API_URL;
+                fetch(API_URL)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('📡 Данные с mcsrvstat.us:', data);
 
-                fetch(url, {
-                    mode: 'cors',
-                    headers: { 'Accept': 'application/json' }
-                })
-                .then(response => {
-                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('📡 Данные с сервера (онлайн):', data);
-
-                    let online = 0;
-                    let max = 0;
-                    let isOnline = false;
-
-                    if (!useBackup) {
                         if (data.online) {
-                            isOnline = true;
-                            online = data.players?.online || 0;
-                            max = data.players?.max || 0;
+                            if (statusText) statusText.textContent = '✅ Сервер онлайн · 24/7';
+                            if (statusDot) statusDot.style.background = '#3aff6a';
+
+                            const online = data.players?.online || 0;
+                            const max = data.players?.max || 0;
+                            const players = data.players?.list || [];
+
+                            if (onlineEl) {
+                                onlineEl.textContent = online;
+                                onlineEl.classList.remove('pulse');
+                                void onlineEl.offsetWidth;
+                                onlineEl.classList.add('pulse');
+                            }
+                            if (maxEl) maxEl.textContent = max;
+
+                            // === ОТОБРАЖАЕМ ИГРОКОВ ===
+                            if (playerListEl) {
+                                if (players.length === 0) {
+                                    playerListEl.innerHTML = '<span class="empty">👥 На сервере никого нет 😴</span>';
+                                } else {
+                                    let html = '';
+                                    players.forEach(name => {
+                                        const isOp = OPERATORS.includes(name);
+                                        html += `
+                                            <span class="player-name ${isOp ? 'operator' : ''}">
+                                                ${isOp ? '👩‍🎓 ' : ''}${name}
+                                                ${isOp ? '<span class="op-badge">Оператор</span>' : ''}
+                                            </span>
+                                        `;
+                                    });
+                                    playerListEl.innerHTML = html;
+                                }
+                            }
+                        } else {
+                            if (statusText) statusText.textContent = '❌ Сервер офлайн';
+                            if (statusDot) statusDot.style.background = '#ff4444';
+                            if (onlineEl) onlineEl.textContent = '0';
+                            if (maxEl) maxEl.textContent = '0';
+                            if (playerListEl) {
+                                playerListEl.innerHTML = '<span class="offline-text">❌ Сервер офлайн</span>';
+                            }
                         }
-                    } else {
-                        if (data.status === 'online') {
-                            isOnline = true;
-                            online = data.players?.now || 0;
-                            max = data.players?.max || 0;
+                    })
+                    .catch(error => {
+                        console.warn('⚠️ Ошибка:', error);
+                        if (statusText) statusText.textContent = '⚠️ Ошибка соединения';
+                        if (statusDot) statusDot.style.background = '#ffaa00';
+                        if (onlineEl) onlineEl.textContent = '?';
+                        if (maxEl) maxEl.textContent = '?';
+                        if (playerListEl) {
+                            playerListEl.innerHTML = '<span class="offline-text">⚠️ Не удалось загрузить данные</span>';
                         }
-                    }
-
-                    if (isOnline) {
-                        if (statusText) statusText.textContent = '✅ Сервер онлайн · 24/7';
-                        if (statusDot) statusDot.style.background = '#3aff6a';
-                    } else {
-                        if (statusText) statusText.textContent = '❌ Сервер офлайн';
-                        if (statusDot) statusDot.style.background = '#ff4444';
-                        online = 0;
-                        max = 0;
-                        players = [];
-                        operators = [];
-                    }
-
-                    if (onlineEl) {
-                        onlineEl.textContent = online;
-                        onlineEl.classList.remove('pulse');
-                        void onlineEl.offsetWidth;
-                        onlineEl.classList.add('pulse');
-                    }
-                    if (maxEl) maxEl.textContent = max || '?';
-
-                    // Обновляем список игроков (если сервер офлайн — очищаем)
-                    if (!isOnline) {
-                        updatePlayerList();
-                    }
-
-                    useBackup = false;
-                })
-                .catch(error => {
-                    console.warn('⚠️ Ошибка API:', error);
-                    if (!useBackup) {
-                        useBackup = true;
-                        console.log('🔄 Переключаюсь на резервный API...');
-                        fetchServerData();
-                        return;
-                    }
-
-                    if (statusText) statusText.textContent = '⚠️ Ошибка соединения';
-                    if (statusDot) statusDot.style.background = '#ffaa00';
-                    if (onlineEl) onlineEl.textContent = '?';
-                    if (maxEl) maxEl.textContent = '?';
-
-                    setTimeout(() => {
-                        useBackup = false;
-                        fetchServerData();
-                    }, 30000);
-                });
-            }
-
-            function updatePlayerList() {
-                const playerListEl = document.getElementById('playerList');
-                if (!playerListEl) return;
-
-                if (players.length === 0) {
-                    playerListEl.innerHTML = '<span class="empty">👥 На сервере никого нет 😴</span>';
-                    return;
-                }
-
-                let html = '';
-                players.forEach(name => {
-                    const isOp = operators.includes(name);
-                    html += `
-                        <span class="player-name ${isOp ? 'operator' : ''}">
-                            ${isOp ? '👩‍🎓 ' : ''}${name}
-                            ${isOp ? '<span class="op-badge">Оператор</span>' : ''}
-                        </span>
-                    `;
-                });
-                playerListEl.innerHTML = html;
+                    });
             }
 
             // ============================================================
@@ -2800,9 +2798,8 @@
             function init() {
                 console.log('⛏️ JustSMP — Классический SMP сервер!');
                 console.log('📌 IP: JustSMP.minerent.io:31048');
-                console.log('📡 Онлайн через MCStatus.io + xDefcon');
-                console.log('👥 Игроки и операторы через RCON (ops.php)');
-                console.log('🎨 8 тем оформления');
+                console.log('📡 Данные через mcsrvstat.us');
+                console.log('👑 Операторы:', OPERATORS);
                 console.log('💻 Разработчики: JustZero, Denchick1789');
                 console.log('🔄 Обновление каждые 15 секунд');
 
@@ -2818,11 +2815,6 @@
                 initMobileFixes();
                 initThemes();
 
-                // Загружаем данные через RCON
-                fetchRCONData();
-                setInterval(fetchRCONData, 15000);
-
-                // Загружаем онлайн
                 fetchServerData();
                 setInterval(fetchServerData, 15000);
             }
