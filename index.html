@@ -1922,7 +1922,7 @@
                         <span class="stat-label">Игроков онлайн</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" id="maxPlayers">--</span>
+                        <span class="stat-number" id="maxPlayers">67</span>
                         <span class="stat-label">Максимум</span>
                     </div>
                     <div class="stat-item">
@@ -2417,7 +2417,7 @@
             }
 
             // ============================================================
-            // ============== РЕАЛЬНЫЙ ОНЛАЙН (СИНХРОНИЗАЦИЯ) ===========
+            // ============== РЕАЛЬНЫЙ ОНЛАЙН (MOTD + API) ==============
             // ============================================================
 
             const API_URL = 'https://mcapi.us/server/status?ip=JustSMP.minerent.io&port=31048';
@@ -2444,7 +2444,7 @@
                         return response.json();
                     })
                     .then(data => {
-                        console.log('📡 Данные с сервера (синхронизация):', data);
+                        console.log('📡 Данные с сервера (MOTD):', data);
 
                         // === ОНЛАЙН / ОФЛАЙН ===
                         if (data.online === false) {
@@ -2462,10 +2462,21 @@
                         if (statusText) statusText.textContent = '✅ Сервер онлайн · 24/7';
                         if (statusDot) statusDot.style.background = '#3aff6a';
 
-                        // === ОНЛАЙН (БЕРЁМ ТОЛЬКО ИЗ API) ===
-                        const online = data.players ? data.players.now : 0;
+                        // === ОНЛАЙН (БЕРЁМ ИЗ MOTD, ПАРСИМ) ===
+                        let online = 0;
+                        if (data.motd) {
+                            // Ищем "Игроков X/Y" или "Игроков: X/Y" в MOTD
+                            const motdMatch = data.motd.match(/Игроков\s*:?\s*(\d+)\s*\/\s*(\d+)/);
+                            if (motdMatch) {
+                                online = parseInt(motdMatch[1]);
+                            }
+                        }
+                        // Если не нашли в MOTD — используем players.now
+                        if (online === 0 && data.players) {
+                            online = data.players.now || 0;
+                        }
+
                         if (onlineEl) {
-                            // Обновляем только если число изменилось
                             if (online !== lastOnline) {
                                 onlineEl.textContent = online;
                                 onlineEl.classList.remove('pulse');
@@ -2473,25 +2484,34 @@
                                 onlineEl.classList.add('pulse');
                                 lastOnline = online;
                             } else {
-                                // Просто обновляем без анимации
                                 onlineEl.textContent = online;
                             }
                         }
 
-                        // === МАКСИМУМ ===
-                        const max = data.players ? data.players.max : '?';
+                        // === МАКСИМУМ (из MOTD или из players) ===
+                        let max = 67;
+                        if (data.motd) {
+                            const motdMatch = data.motd.match(/Игроков\s*:?\s*(\d+)\s*\/\s*(\d+)/);
+                            if (motdMatch) {
+                                max = parseInt(motdMatch[2]);
+                            }
+                        }
+                        if (max === 67 && data.players) {
+                            max = data.players.max || 67;
+                        }
                         if (maxEl) maxEl.textContent = max;
 
-                        // === ВЕРСИЯ ===
-                        if (data.server && data.server.name) {
-                            if (versionEl) versionEl.textContent = data.server.name;
-                        }
+                        // === ВЕРСИЯ (ФИКСИРОВАННАЯ) ===
+                        if (versionEl) versionEl.textContent = '1.21.11';
 
                         // === СПИСОК ИГРОКОВ ===
                         const players = data.players ? data.players.sample : [];
                         if (playerListEl) {
-                            if (players.length === 0) {
+                            if (players.length === 0 && online === 0) {
                                 playerListEl.innerHTML = '<span class="empty">👥 На сервере никого нет 😴</span>';
+                            } else if (players.length === 0 && online > 0) {
+                                playerListEl.innerHTML =
+                                    `<span class="empty">👥 Игроки онлайн: <strong>${online}</strong></span>`;
                             } else {
                                 let html = '';
                                 players.forEach(player => {
@@ -2504,7 +2524,6 @@
                     })
                     .catch(error => {
                         console.error('❌ Ошибка:', error);
-                        // Не сбрасываем lastOnline, чтобы не мигать
                         if (statusText) statusText.textContent = '⚠️ Ошибка соединения';
                         if (statusDot) statusDot.style.background = '#ffaa00';
                         if (onlineEl && lastOnline === -1) onlineEl.textContent = '?';
@@ -2551,439 +2570,4 @@
                             fallbackCopy(copyBtn);
                         });
                     } else {
-                        fallbackCopy(copyBtn);
-                    }
-                });
-            }
-
-            function showCopiedFeedback(btn) {
-                const icon = btn.querySelector('.copy-icon');
-                const text = btn.querySelector('.copy-text');
-                btn.classList.add('copied');
-                icon.textContent = '✅';
-                text.textContent = 'Скопировано!';
-                btn.style.borderColor = '#3aff6a';
-
-                setTimeout(function() {
-                    btn.classList.remove('copied');
-                    icon.textContent = '📋';
-                    text.textContent = 'Копировать';
-                    btn.style.borderColor = '';
-                }, 3000);
-            }
-
-            function fallbackCopy(btn) {
-                try {
-                    var textarea = document.createElement('textarea');
-                    textarea.value = 'JustSMP.minerent.io:31048';
-                    textarea.style.position = 'fixed';
-                    textarea.style.opacity = '0';
-                    textarea.style.left = '-9999px';
-                    textarea.style.top = '-9999px';
-                    document.body.appendChild(textarea);
-                    textarea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textarea);
-                    showCopiedFeedback(btn);
-                } catch (err) {
-                    console.error('Ошибка копирования:', err);
-                    alert('Не удалось скопировать IP. Скопируйте вручную: JustSMP.minerent.io:31048');
-                }
-            }
-
-            // ============================================================
-            // ============== CLICKER =====================================
-            // ============================================================
-
-            function initClicker() {
-                let coins = parseInt(getCookie('clicker_coins')) || 0;
-                let clickPower = parseInt(getCookie('clicker_power')) || 1;
-                let autoClickers = parseInt(getCookie('clicker_auto')) || 0;
-
-                let clickPrice = 100;
-                let autoPrice = 50;
-
-                const coinsEl = document.getElementById('clickerCoins');
-                const perClickEl = document.getElementById('clickerPerClick');
-                const perSecondEl = document.getElementById('clickerPerSecond');
-                const goldEl = document.getElementById('clickerGold');
-                const upgradeClickBtn = document.getElementById('upgradeClick');
-                const upgradeAutoBtn = document.getElementById('upgradeAuto');
-
-                function save() {
-                    document.cookie = 'clicker_coins=' + coins + ';path=/;max-age=31536000';
-                    document.cookie = 'clicker_power=' + clickPower + ';path=/;max-age=31536000';
-                    document.cookie = 'clicker_auto=' + autoClickers + ';path=/;max-age=31536000';
-                }
-
-                function updateUI() {
-                    coinsEl.textContent = Math.floor(coins);
-                    perClickEl.textContent = clickPower;
-                    perSecondEl.textContent = autoClickers;
-                    upgradeClickBtn.innerHTML =
-                        '⚡ Сила клика<br /><span class="price">' + clickPrice + '</span> 🪙';
-                    upgradeAutoBtn.innerHTML =
-                        '🤖 Автоклик<br /><span class="price">' + autoPrice + '</span> 🪙';
-                    upgradeClickBtn.disabled = coins < clickPrice;
-                    upgradeAutoBtn.disabled = coins < autoPrice;
-                    save();
-                }
-
-                function getCookie(name) {
-                    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-                    return match ? match[2] : null;
-                }
-
-                goldEl.addEventListener('click', function(e) {
-                    coins += clickPower;
-                    updateUI();
-
-                    const rect = this.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const effect = document.createElement('div');
-                    effect.className = 'click-effect';
-                    effect.textContent = '+' + clickPower;
-                    effect.style.left = x + 'px';
-                    effect.style.top = y + 'px';
-                    effect.style.position = 'absolute';
-                    this.style.position = 'relative';
-                    this.appendChild(effect);
-                    setTimeout(() => effect.remove(), 800);
-                });
-
-                upgradeClickBtn.addEventListener('click', function() {
-                    if (coins >= clickPrice) {
-                        coins -= clickPrice;
-                        clickPower++;
-                        clickPrice = Math.floor(clickPrice * 1.5);
-                        updateUI();
-                    }
-                });
-
-                upgradeAutoBtn.addEventListener('click', function() {
-                    if (coins >= autoPrice) {
-                        coins -= autoPrice;
-                        autoClickers++;
-                        autoPrice = Math.floor(autoPrice * 1.8);
-                        updateUI();
-                    }
-                });
-
-                setInterval(function() {
-                    if (autoClickers > 0) {
-                        coins += autoClickers;
-                        updateUI();
-                    }
-                }, 1000);
-
-                updateUI();
-            }
-
-            // ============================================================
-            // ============== ТЕМЫ ========================================
-            // ============================================================
-
-            function initThemes() {
-                const themeBtn = document.getElementById('themeBtn');
-                const themePanel = document.getElementById('themePanel');
-                const themeOptions = document.querySelectorAll('.theme-option');
-                let currentTheme = localStorage.getItem('justsmp-theme') || 'default';
-
-                function applyTheme(theme) {
-                    document.body.className = '';
-                    document.body.classList.add('theme-' + theme);
-                    currentTheme = theme;
-                    localStorage.setItem('justsmp-theme', theme);
-
-                    themeOptions.forEach(opt => {
-                        opt.classList.toggle('active', opt.dataset.theme === theme);
-                    });
-                }
-
-                themeBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    themePanel.classList.toggle('open');
-                });
-
-                document.addEventListener('click', function() {
-                    themePanel.classList.remove('open');
-                });
-
-                themeOptions.forEach(opt => {
-                    opt.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        applyTheme(this.dataset.theme);
-                        themePanel.classList.remove('open');
-                    });
-                });
-
-                applyTheme(currentTheme);
-            }
-
-            // ============================================================
-            // ============== ОСТАЛЬНЫЕ ФУНКЦИИ ==========================
-            // ============================================================
-
-            function initActiveNavLink() {
-                var sections = document.querySelectorAll('section[id]');
-                var navLinks = document.querySelectorAll('.nav-link');
-                if (!sections.length || !navLinks.length) return;
-
-                function updateActiveLink() {
-                    var scrollPos = window.pageYOffset + 120;
-                    var currentId = '';
-                    sections.forEach(function(section) {
-                        var sectionTop = section.offsetTop;
-                        var sectionHeight = section.offsetHeight;
-                        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                            currentId = section.getAttribute('id');
-                        }
-                    });
-                    navLinks.forEach(function(link) {
-                        link.classList.remove('active');
-                        var href = link.getAttribute('href');
-                        if (href && href === '#' + currentId) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-
-                var ticking = false;
-                window.addEventListener('scroll', function() {
-                    if (!ticking) {
-                        window.requestAnimationFrame(function() {
-                            updateActiveLink();
-                            ticking = false;
-                        });
-                        ticking = true;
-                    }
-                });
-                setTimeout(updateActiveLink, 100);
-            }
-
-            function initHeaderScroll() {
-                var header = document.querySelector('.header');
-                if (!header) return;
-
-                function handleScroll() {
-                    if (window.pageYOffset > 50) {
-                        header.classList.add('scrolled');
-                    } else {
-                        header.classList.remove('scrolled');
-                    }
-                }
-                window.addEventListener('scroll', handleScroll);
-                handleScroll();
-            }
-
-            function initScrollTopButton() {
-                var scrollBtn = document.getElementById('scrollTopBtn');
-                if (!scrollBtn) return;
-
-                function handleScroll() {
-                    if (window.pageYOffset > 500) {
-                        scrollBtn.classList.add('visible');
-                    } else {
-                        scrollBtn.classList.remove('visible');
-                    }
-                }
-                window.addEventListener('scroll', handleScroll);
-                handleScroll();
-
-                scrollBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
-
-            function initBurgerMenu() {
-                var burgerBtn = document.getElementById('burgerBtn');
-                var nav = document.querySelector('.nav');
-                var navLinks = document.querySelectorAll('.nav-link');
-                if (!burgerBtn || !nav) return;
-
-                var newBurger = burgerBtn.cloneNode(true);
-                burgerBtn.parentNode.replaceChild(newBurger, burgerBtn);
-                burgerBtn = newBurger;
-
-                function toggleMenu(e) {
-                    if (e) e.preventDefault();
-                    burgerBtn.classList.toggle('active');
-                    nav.classList.toggle('open');
-                }
-
-                burgerBtn.addEventListener('click', toggleMenu);
-
-                navLinks.forEach(function(link) {
-                    link.addEventListener('click', function() {
-                        burgerBtn.classList.remove('active');
-                        nav.classList.remove('open');
-                    });
-                });
-
-                document.addEventListener('click', function(e) {
-                    var target = e.target;
-                    if (!target.closest('.header')) {
-                        burgerBtn.classList.remove('active');
-                        nav.classList.remove('open');
-                    }
-                });
-
-                window.addEventListener('resize', function() {
-                    if (window.innerWidth > 768) {
-                        burgerBtn.classList.remove('active');
-                        nav.classList.remove('open');
-                    }
-                });
-            }
-
-            function initAnimations() {
-                var elements = document.querySelectorAll(
-                    '.about-card, .feature-item, .news-card, .rules-category, .ban-card, .team-card, .contact-card'
-                );
-                if (!elements.length) return;
-
-                if (!('IntersectionObserver' in window)) {
-                    elements.forEach(function(el) {
-                        el.style.opacity = '1';
-                        el.style.transform = 'translateY(0)';
-                    });
-                    return;
-                }
-
-                var observer = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry, index) {
-                        if (entry.isIntersecting) {
-                            setTimeout(function() {
-                                entry.target.style.opacity = '1';
-                                entry.target.style.transform = 'translateY(0)';
-                            }, index * 80);
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, {
-                    threshold: 0.1,
-                    rootMargin: '0px 0px -50px 0px'
-                });
-
-                elements.forEach(function(el, index) {
-                    el.style.opacity = '0';
-                    el.style.transform = 'translateY(30px)';
-                    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    el.style.transitionDelay = (index * 80) + 'ms';
-                    observer.observe(el);
-                });
-            }
-
-            function initSmoothScroll() {
-                var links = document.querySelectorAll('a[href^="#"]');
-                var header = document.querySelector('.header');
-
-                links.forEach(function(link) {
-                    var href = link.getAttribute('href');
-                    if (href === '#') return;
-
-                    link.addEventListener('click', function(e) {
-                        var targetId = this.getAttribute('href');
-                        if (!targetId || targetId === '#') return;
-
-                        var target = document.querySelector(targetId);
-                        if (!target) return;
-
-                        e.preventDefault();
-
-                        var headerHeight = header ? header.offsetHeight : 70;
-                        var targetPosition = target.getBoundingClientRect().top + window.pageYOffset -
-                            headerHeight - 10;
-
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    });
-                });
-            }
-
-            function initFooterYear() {
-                var yearSpans = document.querySelectorAll('.footer-bottom span:first-child');
-                var currentYear = new Date().getFullYear();
-                yearSpans.forEach(function(el) {
-                    var text = el.textContent;
-                    if (text && text.indexOf('2026') !== -1) {
-                        el.textContent = text.replace('2026', currentYear);
-                    }
-                });
-            }
-
-            function initMobileFixes() {
-                var vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', vh + 'px');
-
-                window.addEventListener('resize', function() {
-                    var vh = window.innerHeight * 0.01;
-                    document.documentElement.style.setProperty('--vh', vh + 'px');
-                });
-
-                var nav = document.querySelector('.nav');
-                if (nav) {
-                    var observer = new MutationObserver(function() {
-                        if (nav.classList.contains('open')) {
-                            document.body.style.overflow = 'hidden';
-                        } else {
-                            document.body.style.overflow = '';
-                        }
-                    });
-                    observer.observe(nav, { attributes: true, attributeFilter: ['class'] });
-                }
-            }
-
-            // ============================================================
-            // ============== ЗАПУСК ======================================
-            // ============================================================
-
-            function init() {
-                console.log('⛏️ JustSMP — Синхронизация с API');
-                console.log('📌 IP: JustSMP.minerent.io:31048');
-                console.log('📡 Данные через MCAPI (обновление 15 сек)');
-                console.log('💬 Присоединяйся к нам!');
-
-                initAdminCards();
-                initCopyIp();
-                initActiveNavLink();
-                initHeaderScroll();
-                initScrollTopButton();
-                initBurgerMenu();
-                initAnimations();
-                initSmoothScroll();
-                initFooterYear();
-                initMobileFixes();
-                initThemes();
-                initClicker();
-
-                // Первая загрузка
-                fetchServerData();
-
-                // Обновление каждые 15 секунд (синхронизация)
-                setInterval(fetchServerData, 15000);
-            }
-
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', init);
-            } else {
-                init();
-            }
-
-            window.addEventListener('error', function(e) {
-                console.warn('⚠️ Ошибка:', e.message);
-            });
-
-            window.addEventListener('unhandledrejection', function(e) {
-                console.warn('⚠️ Необработанный Promise:', e.reason);
-            });
-
-        })();
-    </script>
-
-</body>
-</html>
+                        fallbackCopy(copy
