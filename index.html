@@ -930,53 +930,100 @@
         }
 
         /* ============================================================ */
-        /* ====================== DEVELOPERS =========================== */
+        /* ================ СОЗДАТЕЛИ СЕРВЕРА ========================== */
         /* ============================================================ */
-        .developers {
+        .creators {
             background: #0f0f08;
         }
-        .developers-grid {
+        .creators-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-            max-width: 700px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
         }
-        .developer-card {
+        .creator-card {
             background: linear-gradient(145deg, #111108, #0a0a0a);
             border: 1px solid #2a2a1a;
             border-radius: 16px;
             padding: 30px 24px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            transform: translateY(0);
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 0.6s ease forwards;
         }
-        .developer-card:hover {
-            transform: translateY(-6px);
-            border-color: #ffd70044;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        .creator-card:nth-child(1) { animation-delay: 0.1s; }
+        .creator-card:nth-child(2) { animation-delay: 0.2s; }
+        .creator-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
         }
-        .developer-card .dev-icon {
-            font-size: 44px;
+
+        .creator-card:hover {
+            transform: translateY(-8px);
+            border-color: #ffd70066;
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.08);
+        }
+        .creator-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            border: 3px solid #ffd70044;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .creator-card:hover .creator-avatar {
+            border-color: #ffd700;
+            transform: scale(1.05);
+        }
+        .creator-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
-            margin-bottom: 12px;
         }
-        .developer-card h3 {
-            font-size: 22px;
+        .creator-card h3 {
+            font-size: 20px;
             font-weight: 700;
             color: #e8e0c8;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
-        .developer-card .dev-role {
-            color: #ffd700;
-            font-size: 14px;
-            font-weight: 600;
+        .creator-role {
             display: block;
-            margin-bottom: 10px;
+            font-size: 14px;
+            color: #ffd700;
+            font-weight: 600;
+            margin-bottom: 12px;
         }
-        .developer-card p {
-            font-size: 15px;
+        .creator-bio {
+            font-size: 14px;
             color: #8a7a5a;
-            line-height: 1.6;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .creator-links {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .creator-link {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #e8e0c8;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid #3a3a2a;
+            transition: all 0.3s ease;
+        }
+        .creator-link:hover {
+            background: rgba(255, 215, 0, 0.08);
+            border-color: #ffd70066;
+            color: #ffd700;
         }
 
         /* ============================================================ */
@@ -1823,7 +1870,7 @@
             .bans-grid { grid-template-columns: 1fr 1fr; }
             .team-grid { grid-template-columns: 1fr 1fr; }
             .contacts-grid { grid-template-columns: 1fr; }
-            .developers-grid { grid-template-columns: 1fr; }
+            .creators-grid { grid-template-columns: 1fr; }
             .theme-toggle { bottom: 90px; }
             .team-card .card-popup {
                 min-width: 140px;
@@ -1845,7 +1892,7 @@
             .bans-grid { grid-template-columns: 1fr; }
             .team-grid { grid-template-columns: 1fr; }
             .contacts-grid { grid-template-columns: 1fr; }
-            .developers-grid { grid-template-columns: 1fr; }
+            .creators-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; text-align: center; }
             .btn { padding: 12px 24px; font-size: 14px; }
@@ -1868,6 +1915,7 @@
 </head>
 <body>
 
+    <!-- ===== АНИМИРОВАННЫЙ ФОН ===== -->
     <div class="animated-bg">
         <div class="circle"></div>
         <div class="circle"></div>
@@ -1878,6 +1926,9 @@
         <div class="circle"></div>
     </div>
 
+    <!-- ============================================================ -->
+    <!-- ==================== ШАПКА ================================== -->
+    <!-- ============================================================ -->
     <header class="header" id="header">
         <div class="container header-container">
             <div class="logo">
@@ -1900,9 +1951,9 @@
                     <span class="nav-divider">|</span>
                     <li><a href="#team" class="nav-link">Команда</a></li>
                     <span class="nav-divider">|</span>
-                    <li><a href="#players" class="nav-link">👥 Игроки</a></li>
+                    <li><a href="#players" class="nav-link">Игроки</a></li>
                     <span class="nav-divider">|</span>
-                    <li><a href="#developers" class="nav-link">💻 Разработчики</a></li>
+                    <li><a href="#creators" class="nav-link">Создатели</a></li>
                     <span class="nav-divider">|</span>
                     <li><a href="#contacts" class="nav-link">Контакты</a></li>
                 </ul>
@@ -1915,6 +1966,9 @@
         </div>
     </header>
 
+    <!-- ============================================================ -->
+    <!-- ====================== HERO ================================== -->
+    <!-- ============================================================ -->
     <section class="hero" id="home">
         <div class="container hero-container">
             <div class="hero-content">
@@ -1955,6 +2009,9 @@
         </div>
     </section>
 
+    <!-- ============================================================ -->
+    <!-- ====================== IP ==================================== -->
+    <!-- ============================================================ -->
     <section class="ip-section" id="ip">
         <div class="container">
             <div class="ip-box">
@@ -1971,6 +2028,9 @@
         </div>
     </section>
 
+    <!-- ============================================================ -->
+    <!-- ====================== ABOUT ================================= -->
+    <!-- ============================================================ -->
     <section class="about" id="about">
         <div class="container">
             <div class="section-header">
@@ -2006,6 +2066,9 @@
         </div>
     </section>
 
+    <!-- ============================================================ -->
+    <!-- ====================== FEATURES ============================== -->
+    <!-- ============================================================ -->
     <section class="features" id="features">
         <div class="container">
             <div class="section-header">
@@ -2046,6 +2109,9 @@
         </div>
     </section>
 
+    <!-- ============================================================ -->
+    <!-- ====================== NEWS ================================== -->
+    <!-- ============================================================ -->
     <section class="news" id="news">
         <div class="container">
             <div class="section-header">
@@ -2078,6 +2144,9 @@
         </div>
     </section>
 
+    <!-- ============================================================ -->
+    <!-- ====================== RULES ================================= -->
+    <!-- ============================================================ -->
     <section class="rules" id="rules">
         <div class="container">
             <div class="section-header">
@@ -2122,6 +2191,9 @@
         </div>
     </section>
 
+    <!-- ============================================================ -->
+    <!-- ====================== BANS ================================== -->
+    <!-- ============================================================ -->
     <section class="bans" id="bans">
         <div class="container">
             <div class="section-header">
@@ -2158,6 +2230,9 @@
         </div>
     </section>
 
+    <!-- ============================================================ -->
+    <!-- ====================== TEAM ================================== -->
+    <!-- ============================================================ -->
     <section class="team" id="team">
         <div class="container">
             <div class="section-header">
@@ -2200,6 +2275,9 @@
         </div>
     </section>
 
+    <!-- ============================================================ -->
+    <!-- ====================== PLAYERS LIST ========================== -->
+    <!-- ============================================================ -->
     <section class="players-section" id="players">
         <div class="container">
             <div class="players-header">
@@ -2215,30 +2293,65 @@
         </div>
     </section>
 
-    <section class="developers" id="developers">
+    <!-- ============================================================ -->
+    <!-- ====================== CREATORS ============================== -->
+    <!-- ============================================================ -->
+    <section class="creators" id="creators">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">💻 Разработчики</span>
-                <h2 class="section-title">Кто создал <span>JustSMP</span>?</h2>
-                <p class="section-desc">Команда разработчиков, благодаря которым этот сервер существует.</p>
+                <span class="section-tag">👑 Создатели сервера</span>
+                <h2 class="section-title">Кто стоит за <span>JustSMP</span>?</h2>
+                <p class="section-desc">Команда, которая делает JustSMP лучшим местом для игры.</p>
             </div>
-            <div class="developers-grid">
-                <div class="developer-card">
-                    <span class="dev-icon">🧑‍💻</span>
-                    <h3>JustZero</h3>
-                    <span class="dev-role">⭐ Ведущий разработчик</span>
-                    <p>Основатель и главный архитектор сервера. Отвечает за техническую часть и развитие проекта.</p>
+            <div class="creators-grid">
+                <!-- Drun_777 -->
+                <div class="creator-card">
+                    <div class="creator-avatar">
+                        <img src="drun777.png" alt="Drun_777" />
+                    </div>
+                    <h3>Drun_777</h3>
+                    <span class="creator-role">👑 Владелец сервера</span>
+                    <p class="creator-bio">Основатель JustSMP. Именно он придумал концепцию сервера и собрал первую команду. Отвечает за общее направление, модерацию и развитие комьюнити. Всегда открыт к диалогу с игроками.</p>
+                    <div class="creator-links">
+                        <a href="#" class="creator-link">💬 Discord</a>
+                        <a href="#" class="creator-link">📧 Связаться</a>
+                    </div>
                 </div>
-                <div class="developer-card">
-                    <span class="dev-icon">👨‍💻</span>
+
+                <!-- Denchick1789 -->
+                <div class="creator-card">
+                    <div class="creator-avatar">
+                        <img src="denchick1789.png" alt="Denchick1789" />
+                    </div>
                     <h3>Denchick1789</h3>
-                    <span class="dev-role">⚡ Разработчик</span>
-                    <p>Технический специалист, занимается оптимизацией и поддержкой серверной инфраструктуры.</p>
+                    <span class="creator-role">⚙️ Технический администратор</span>
+                    <p class="creator-bio">Отвечает за стабильность сервера, оптимизацию и техническую поддержку. Благодаря ему сервер работает без лагов, а новые обновления устанавливаются быстро и без сбоев.</p>
+                    <div class="creator-links">
+                        <a href="#" class="creator-link">💬 Discord</a>
+                        <a href="#" class="creator-link">📧 Связаться</a>
+                    </div>
+                </div>
+
+                <!-- Lait_TIM -->
+                <div class="creator-card">
+                    <div class="creator-avatar">
+                        <img src="lait_tim.png" alt="Lait_TIM" />
+                    </div>
+                    <h3>Lait_TIM</h3>
+                    <span class="creator-role">🛡️ Хелпер</span>
+                    <p class="creator-bio">Главный помощник на сервере. Следит за порядком в чате, помогает новичкам освоиться, разрешает конфликты и всегда готов прийти на помощь игрокам.</p>
+                    <div class="creator-links">
+                        <a href="#" class="creator-link">💬 Discord</a>
+                        <a href="#" class="creator-link">📧 Связаться</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ============================================================ -->
+    <!-- ====================== CONTACTS ============================== -->
+    <!-- ============================================================ -->
     <section class="contacts" id="contacts">
         <div class="container">
             <div class="section-header">
@@ -2257,6 +2370,9 @@
         </div>
     </section>
 
+    <!-- ============================================================ -->
+    <!-- ====================== FOOTER ================================ -->
+    <!-- ============================================================ -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -2283,8 +2399,8 @@
                         <li><a href="#rules">Правила</a></li>
                         <li><a href="#bans">Баны</a></li>
                         <li><a href="#team">Команда</a></li>
-                        <li><a href="#players">👥 Игроки</a></li>
-                        <li><a href="#developers">💻 Разработчики</a></li>
+                        <li><a href="#players">Игроки</a></li>
+                        <li><a href="#creators">Создатели</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </div>
@@ -2311,46 +2427,55 @@
         </div>
     </footer>
 
+    <!-- ============================================================ -->
+    <!-- ==================== SCROLL TOP ============================== -->
+    <!-- ============================================================ -->
     <button class="scroll-top" id="scrollTopBtn" aria-label="Наверх">↑</button>
 
+    <!-- ============================================================ -->
+    <!-- ==================== THEME TOGGLE ============================ -->
+    <!-- ============================================================ -->
     <div class="theme-toggle">
         <button class="theme-btn" id="themeBtn" aria-label="Темы">🎨</button>
         <div class="theme-panel" id="themePanel">
             <div class="theme-option active" data-theme="default">
                 <span class="theme-dot" style="background: #ffd700;"></span>
-                <span class="theme-label"> Деф тема</span>
+                <span class="theme-label">Деф тема</span>
             </div>
             <div class="theme-option" data-theme="green">
                 <span class="theme-dot" style="background: #3aff6a;"></span>
-                <span class="theme-label"> Лаймовая</span>
+                <span class="theme-label">Лаймовая</span>
             </div>
             <div class="theme-option" data-theme="ruby">
                 <span class="theme-dot" style="background: #ff1a1a;"></span>
-                <span class="theme-label"> Рубиновая</span>
+                <span class="theme-label">Рубиновая</span>
             </div>
             <div class="theme-option" data-theme="sapphire">
                 <span class="theme-dot" style="background: #1e90ff;"></span>
-                <span class="theme-label"> Лазуритовая</span>
+                <span class="theme-label">Лазуритовая</span>
             </div>
             <div class="theme-option" data-theme="amethyst">
                 <span class="theme-dot" style="background: #a855f7;"></span>
-                <span class="theme-label"> Аметистовая</span>
+                <span class="theme-label">Аметистовая</span>
             </div>
             <div class="theme-option" data-theme="topaz">
                 <span class="theme-dot" style="background: #ff8c00;"></span>
-                <span class="theme-label"> Оранжевая</span>
+                <span class="theme-label">Оранжевая</span>
             </div>
             <div class="theme-option" data-theme="pearl">
                 <span class="theme-dot" style="background: #00ffff;"></span>
-                <span class="theme-label"> Берюзовая</span>
+                <span class="theme-label">Бирюзовая</span>
             </div>
             <div class="theme-option" data-theme="animated">
                 <span class="theme-dot" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);"></span>
-                <span class="theme-label"> Градиент</span>
+                <span class="theme-label">Градиент</span>
             </div>
         </div>
     </div>
 
+    <!-- ============================================================ -->
+    <!-- ====================== JAVASCRIPT ============================ -->
+    <!-- ============================================================ -->
     <script>
         (function() {
             'use strict';
@@ -2382,8 +2507,6 @@
             // ============================================================
             
             const API_URL = 'https://api.mcsrvstat.us/2/JustSMP.minerent.io:31048';
-            
-            // ===== СПИСОК ОПЕРАТОРОВ (обновляй здесь) =====
             const OPERATORS = ['Denchick1789', 'Drun_777', 'Lait_TIM'];
 
             function fetchServerData() {
@@ -2418,10 +2541,9 @@
                             }
                             if (maxEl) maxEl.textContent = max;
 
-                            // === ОТОБРАЖАЕМ ИГРОКОВ ===
                             if (playerListEl) {
                                 if (players.length === 0) {
-                                    playerListEl.innerHTML = '<span class="empty"> На сервере никого нет </span>';
+                                    playerListEl.innerHTML = '<span class="empty">На сервере никого нет</span>';
                                 } else {
                                     let html = '';
                                     players.forEach(name => {
@@ -2693,7 +2815,7 @@
 
             function initAnimations() {
                 var elements = document.querySelectorAll(
-                    '.about-card, .feature-item, .news-card, .rules-category, .ban-card, .team-card, .developer-card, .contact-card'
+                    '.about-card, .feature-item, .news-card, .rules-category, .ban-card, .team-card, .creator-card, .contact-card'
                 );
                 if (!elements.length) return;
 
@@ -2800,7 +2922,6 @@
                 console.log('📌 IP: JustSMP.minerent.io:31048');
                 console.log('📡 Данные через mcsrvstat.us');
                 console.log('👑 Операторы:', OPERATORS);
-                console.log('💻 Разработчики: JustZero, Denchick1789');
                 console.log('🔄 Обновление каждые 15 секунд');
 
                 initAdminCards();
